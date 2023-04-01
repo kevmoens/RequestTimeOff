@@ -25,7 +25,7 @@ namespace RequestTimeOff.MVVM
         public async void GoBack()
         {
             await _taskCompletionSource.Task;
-            if (!Service.CanGoBack)
+            if (Service.CanGoBack)
             {
                 Service.GoBack();
             }

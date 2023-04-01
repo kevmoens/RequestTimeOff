@@ -35,16 +35,26 @@ namespace RequestTimeOff
         {
             var services = new ServiceCollection();
 
-            services.AddTransient<Home>();
-            services.AddTransient<HomeViewModel>();
-            services.AddTransient<HomeAdmin>();
-            services.AddTransient<HomeAdminViewModel>();
-            services.AddTransient<Login>();
-            services.AddTransient<LoginViewModel>();
+            services.AddSingleton<Calendar>();
+            services.AddSingleton<CalendarViewModel>();
+            services.AddSingleton<Holidays>();
+            services.AddSingleton<HolidaysViewModel>();
+            services.AddSingleton<Home>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<HomeAdmin>();
+            services.AddSingleton<HomeAdminViewModel>();
+            services.AddSingleton<Login>();
+            services.AddSingleton<LoginViewModel>();
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowViewModel>();
-            services.AddTransient<Users>();
-            services.AddTransient<UsersViewModel>();
+            services.AddSingleton<PendingRequests>();
+            services.AddSingleton<PendingRequestsViewModel>();
+            services.AddSingleton<Settings>();
+            services.AddSingleton<SettingsViewModel>();
+            services.AddSingleton<UserEdit>();
+            services.AddSingleton<UserEditViewModel>();
+            services.AddSingleton<Users>();
+            services.AddSingleton<UsersViewModel>();
             
             services.AddByName<IPage>()
                 .Add<Login>("Login")

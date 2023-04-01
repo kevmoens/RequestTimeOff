@@ -42,13 +42,13 @@ namespace RequestTimeOff.ViewModels
         public ICommand LoginCommand { get; set; }
         public void OnLogin(PasswordBox passwordBox)
         {
-            var user = _requestTimeOffRepository.UserQuery(u => u.Username == Username).FirstOrDefault();
+            var user = _requestTimeOffRepository.UserQuery(u => (u.Username ?? "").ToUpper() == (passwordBox.Password ?? "").ToUpper()).FirstOrDefault();
             if (user == null)
             {
                 MessageBox.Show("Invalid Username");
                 return;
             }
-            if (user.Password != passwordBox.Password)
+            if (ValidatePasswordFailed())
             {
                 MessageBox.Show("Invalid Password");
                 return;
@@ -59,6 +59,19 @@ namespace RequestTimeOff.ViewModels
                 return;
             }
             _navigationService.NavigateTo("Home");
+
+            bool ValidatePasswordFailed()
+            {
+                if (user.Password == passwordBox.Password)
+                {
+                    return false;
+                }
+                if (string.IsNullOrEmpty(user.Password) && string.IsNullOrEmpty(passwordBox.Password))
+                {
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }
