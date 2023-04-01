@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Neleus.DependencyInjection.Extensions;
+using RequestTimeOff.Models;
 using RequestTimeOff.MVVM;
 using RequestTimeOff.ViewModels;
 using RequestTimeOff.Views;
@@ -35,15 +37,23 @@ namespace RequestTimeOff
 
             services.AddTransient<Home>();
             services.AddTransient<HomeViewModel>();
+            services.AddTransient<HomeAdmin>();
+            services.AddTransient<HomeAdminViewModel>();
             services.AddTransient<Login>();
             services.AddTransient<LoginViewModel>();
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowViewModel>();
+            services.AddTransient<Users>();
+            services.AddTransient<UsersViewModel>();
             
             services.AddByName<IPage>()
                 .Add<Login>("Login")
                 .Add<Home>("Home")
+                .Add<HomeAdmin>("HomeAdmin")
                 .Build();
+
+            services.AddSingleton<IRequestTimeOffRepository, RequestTimeOffContext>();
+            services.AddDbContext<RequestTimeOffContext>(options => options.UseSqlite("TimeOff.sqlite"));
             services.AddSingleton<INavigationService, WPFNavigationService>();
 
             _serviceProvider = services.BuildServiceProvider();

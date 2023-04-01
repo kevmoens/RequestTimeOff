@@ -1,4 +1,5 @@
-﻿using RequestTimeOff.MVVM;
+﻿using RequestTimeOff.Models;
+using RequestTimeOff.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -21,9 +23,11 @@ namespace RequestTimeOff.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private readonly INavigationService _navigationService;
-        public LoginViewModel(INavigationService navigationService)
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        public LoginViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository)
         {
             _navigationService = navigationService;
+            _requestTimeOffRepository = requestTimeOffRepository;
             LoginCommand = new DelegateCommand<PasswordBox>(OnLogin);
         }
 
@@ -38,6 +42,22 @@ namespace RequestTimeOff.ViewModels
         public ICommand LoginCommand { get; set; }
         public void OnLogin(PasswordBox passwordBox)
         {
+            var user = _requestTimeOffRepository.UserQuery(u => u.Username == Username).FirstOrDefault();
+            if (user == null)
+            {
+                MessageBox.Show("Invalid Username");
+                return;
+            }
+            if (user.Password != passwordBox.Password)
+            {
+                MessageBox.Show("Invalid Password");
+                return;
+            }
+            if (user.IsAdmin)
+            {
+                _navigationService.NavigateTo("HomeAdmin");
+                return;
+            }
             _navigationService.NavigateTo("Home");
         }
     }

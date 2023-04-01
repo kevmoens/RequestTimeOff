@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RequestTimeOff.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Login"
     d:DesignHeight="450"
@@ -33,30 +34,22 @@
             FontSize="20"
             FontWeight="Bold"
             Text="Request Time Off" />
-        <TextBlock
-            Grid.Row="2"
-            Grid.Column="1"
-            Margin="3"
-            HorizontalAlignment="Right"
-            Text="Username" />
-        <TextBlock
-            Grid.Row="3"
-            Grid.Column="1"
-            Margin="3"
-            HorizontalAlignment="Right"
-            Text="Password" />
         <TextBox
             Grid.Row="2"
-            Grid.Column="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Margin="3"
             HorizontalAlignment="Stretch"
+            materialDesign:HintAssist.Hint="Username"
             Text="{Binding Username}" />
         <PasswordBox
             x:Name="passwordBox"
             Grid.Row="3"
-            Grid.Column="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Margin="3"
-            HorizontalAlignment="Stretch" />
+            HorizontalAlignment="Stretch"
+            materialDesign:HintAssist.Hint="Password" />
         <Button
             Grid.Row="4"
             Grid.Column="1"
