@@ -11,6 +11,6 @@ namespace RequestTimeOff.Models
     {
         public string Name { get; set; }
         [Key]
-        public DateTime Date { get; set; }
+        public DateTimeOffset Date { get; set; }
     }
 }

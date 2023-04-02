@@ -29,12 +29,14 @@ namespace RequestTimeOff.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly Session _session;
         private readonly PubSubToken _viewNavigationToken;
-        public HomeAdminViewModel(INavigationService navigationService, IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public HomeAdminViewModel(INavigationService navigationService, IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _navigationService = navigationService;
             _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;
+            _session = session;
             LoadedCommand = new DelegateCommand(OnLoaded);
             PendingRequestsCommand = new DelegateCommand(OnPendingRequests);
             CalendarCommand = new DelegateCommand(OnCalendar);
@@ -79,6 +81,11 @@ namespace RequestTimeOff.ViewModels
         public void OnLoaded()
         {
            PendingRequests =  _requestTimeOffRepository.TimeOffQuery(t => t.Approved == false && t.Declined == false).Count;
+
+            ViewNavigation viewNav = new ViewNavigation();
+            var view = _serviceProvider.GetService<HomePageAdmin>();
+            viewNav.Content = view;
+            ViewNavigationPubSub.Instance.Publish(viewNav);
         }
 
         private void OnPendingRequests()
@@ -114,12 +121,18 @@ namespace RequestTimeOff.ViewModels
         
         public void OnViewNavigation(ViewNavigation view)
         {
+            if (_session.User.IsAdmin == false)
+            {
+                return;
+            }
             var viewModel = view.Content.DataContext as INavigationAware;
             DisplayContent = view.Content;
             if (viewModel != null)
             {
                 viewModel.OnNavigatedTo(view.Parameters);
             }
+            HamburgerOpen = false;
         }
     }
+    
 }

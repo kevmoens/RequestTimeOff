@@ -57,9 +57,9 @@ namespace RequestTimeOff.ViewModels
             get { return _isAdding; }
             set { _isAdding = value; OnPropertyChanged(); }
         }
-        private DateTime _newHoliday;
+        private DateTimeOffset _newHoliday;
 
-        public DateTime NewHoliday
+        public DateTimeOffset NewHoliday
         {
             get { return _newHoliday; }
             set { _newHoliday = value; OnPropertyChanged(); }

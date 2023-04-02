@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace RequestTimeOff.Views
 {
     /// <summary>
-    /// Interaction logic for PendingRequests.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class PendingRequests : UserControl
+    public partial class HomePage : UserControl
     {
-        public PendingRequests(PendingRequestsViewModel viewModel) : this()
+        public HomePage(HomePageViewModel viewModel) : this()
         {
             DataContext = viewModel;
         }
-        public PendingRequests()
+        public HomePage()
         {
             InitializeComponent();
         }

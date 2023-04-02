@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RequestTimeOff.ViewModels
 {
-    public class PendingRequestsViewModel : INotifyPropertyChanged
+    public class HomePageAdminViewModel : INotifyPropertyChanged
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -20,7 +20,7 @@ namespace RequestTimeOff.ViewModels
         }
         private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public PendingRequestsViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public HomePageAdminViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
         {
             _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;

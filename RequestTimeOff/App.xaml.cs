@@ -1,7 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Neleus.DependencyInjection.Extensions;
+using NLog.Extensions.Logging;
 using RequestTimeOff.Models;
+using RequestTimeOff.Models.Date;
+using RequestTimeOff.Models.HomePages;
+using RequestTimeOff.Models.Sessions;
 using RequestTimeOff.MVVM;
 using RequestTimeOff.ViewModels;
 using RequestTimeOff.Views;
@@ -43,6 +47,10 @@ namespace RequestTimeOff
             services.AddSingleton<HolidaysViewModel>();
             services.AddSingleton<Home>();
             services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<HomePage>();
+            services.AddSingleton<HomePageViewModel>();
+            services.AddSingleton<HomePageAdmin>();
+            services.AddSingleton<HomePageAdminViewModel>();
             services.AddSingleton<HomeAdmin>();
             services.AddSingleton<HomeAdminViewModel>();
             services.AddSingleton<Login>();
@@ -66,8 +74,13 @@ namespace RequestTimeOff
 
             services.AddSingleton<IRequestTimeOffRepository, RequestTimeOffContext>();
             services.AddDbContext<RequestTimeOffContext>(options => options.UseSqlite("TimeOff.sqlite"));
+            services.AddSingleton<Session>();
             services.AddSingleton<INavigationService, WPFNavigationService>();
 
+            services.AddTransient<ISessionLoad, SessionLoad>();
+            services.AddSingleton<ISystemDateTime, SystemDateTime>();
+            services.AddTransient<IUserYearInfo, UserYearInfo>();
+            services.AddLogging(builder => builder.AddNLog());
             _serviceProvider = services.BuildServiceProvider();
 
         }

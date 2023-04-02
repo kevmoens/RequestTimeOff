@@ -1,4 +1,6 @@
-﻿using RequestTimeOff.Models;
+﻿using RequestTimeOff.Extensions;
+using RequestTimeOff.Models;
+using RequestTimeOff.Models.Sessions;
 using RequestTimeOff.MVVM;
 using System;
 using System.Collections.Generic;
@@ -24,10 +26,14 @@ namespace RequestTimeOff.ViewModels
         }
         private readonly INavigationService _navigationService;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public LoginViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository)
+        private readonly Session _session;
+        private ISessionLoad _sessionLoad;
+        public LoginViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository, Session session, ISessionLoad sessionLoad)
         {
             _navigationService = navigationService;
             _requestTimeOffRepository = requestTimeOffRepository;
+            _session = session;
+            _sessionLoad = sessionLoad;
             LoginCommand = new DelegateCommand<PasswordBox>(OnLogin);
         }
 
@@ -48,11 +54,13 @@ namespace RequestTimeOff.ViewModels
                 MessageBox.Show("Invalid Username");
                 return;
             }
-            if (ValidatePasswordFailed())
+            if (ValidatePasswordFailed(user, passwordBox.Password))
             {
                 MessageBox.Show("Invalid Password");
                 return;
             }
+            _session.User = user;
+            _sessionLoad.Initialize().Await(new Action<Exception>((ex) => { MessageBox.Show(ex.Message); }));
             if (user.IsAdmin)
             {
                 _navigationService.NavigateTo("HomeAdmin");
@@ -60,18 +68,18 @@ namespace RequestTimeOff.ViewModels
             }
             _navigationService.NavigateTo("Home");
 
-            bool ValidatePasswordFailed()
+        }
+        bool ValidatePasswordFailed(User user, string password)
+        {
+            if (user.Password == password)
             {
-                if (user.Password == passwordBox.Password)
-                {
-                    return false;
-                }
-                if (string.IsNullOrEmpty(user.Password) && string.IsNullOrEmpty(passwordBox.Password))
-                {
-                    return false;
-                }
-                return true;
+                return false;
             }
+            if (string.IsNullOrEmpty(user.Password) && string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using RequestTimeOff.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,11 @@ using System.Windows.Shapes;
 namespace RequestTimeOff.Views
 {
     /// <summary>
-    /// Interaction logic for PendingRequests.xaml
+    /// Interaction logic for HomePageAdmin.xaml
     /// </summary>
-    public partial class PendingRequests : UserControl
+    public partial class HomePageAdmin : UserControl
     {
-        public PendingRequests(PendingRequestsViewModel viewModel) : this()
-        {
-            DataContext = viewModel;
-        }
-        public PendingRequests()
+        public HomePageAdmin()
         {
             InitializeComponent();
         }

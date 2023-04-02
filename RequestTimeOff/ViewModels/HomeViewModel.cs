@@ -28,13 +28,16 @@ namespace RequestTimeOff.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly Session _session;
         private readonly PubSubToken _viewNavigationToken;
-        public HomeViewModel(INavigationService navigationService, IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public HomeViewModel(INavigationService navigationService, IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _navigationService = navigationService;
             _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;
+            _session = session;
             LoadedCommand = new DelegateCommand(OnLoaded);
+            HomeCommand = new DelegateCommand(OnHome);
             CalendarCommand = new DelegateCommand(OnCalendar);
             HolidaysCommand = new DelegateCommand(OnHolidays);
             SignoutCommand = new DelegateCommand(OnSignout);
@@ -43,6 +46,7 @@ namespace RequestTimeOff.ViewModels
 
 
         public ICommand LoadedCommand { get; set; }
+        public ICommand HomeCommand { get; set; }
         public ICommand CalendarCommand { get; set; }
         public ICommand HolidaysCommand { get; set; }
         public ICommand SignoutCommand { get; set; }
@@ -72,8 +76,19 @@ namespace RequestTimeOff.ViewModels
         public void OnLoaded()
         {
             PendingRequests = _requestTimeOffRepository.TimeOffQuery(t => t.Approved == false && t.Declined == false).Count;
-        }
 
+            ViewNavigation viewNav = new ViewNavigation();
+            var view = _serviceProvider.GetService<HomePage>();
+            viewNav.Content = view;
+            ViewNavigationPubSub.Instance.Publish(viewNav);
+        }
+        private void OnHome()
+        {
+            ViewNavigation viewNav = new ViewNavigation();
+            var view = _serviceProvider.GetService<HomePage>();
+            viewNav.Content = view;
+            ViewNavigationPubSub.Instance.Publish(viewNav);
+        }
         private void OnCalendar()
         {
             DisplayContent = _serviceProvider.GetService<Views.Calendar>();
@@ -92,12 +107,17 @@ namespace RequestTimeOff.ViewModels
 
         public void OnViewNavigation(ViewNavigation view)
         {
+            if (_session.User.IsAdmin)
+            {
+                return;
+            }
             var viewModel = view.Content.DataContext as INavigationAware;
             DisplayContent = view.Content;
             if (viewModel != null)
             {
                 viewModel.OnNavigatedTo(view.Parameters);
             }
+            HamburgerOpen = false;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RequestTimeOff.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace RequestTimeOff.Views
     /// </summary>
     public partial class Settings : UserControl
     {
+        public Settings(SettingsViewModel viewModel) : this()
+        {
+            DataContext = viewModel;
+        }
         public Settings()
         {
             InitializeComponent();
