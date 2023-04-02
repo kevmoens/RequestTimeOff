@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RequestTimeOff.Models;
 
 namespace RequestTimeOff.Migrations
 {
     [DbContext(typeof(RequestTimeOffContext))]
-    partial class RequestTimeOffContextModelSnapshot : ModelSnapshot
+    [Migration("20230401215741_AddDeptAndUserFullName")]
+    partial class AddDeptAndUserFullName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,10 +62,7 @@ namespace RequestTimeOff.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Manager")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Range")
+                    b.Property<int>("Hrs")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Reason")

@@ -12,6 +12,7 @@ namespace RequestTimeOff.Models
         List<Holiday> HolidayQuery(Expression<Func<Holiday, bool>> expression);
         List<TimeOff> TimeOffQuery(Expression<Func<TimeOff, bool>> expression);
         List<User> UserQuery(Expression<Func<User, bool>> expression);
+        List<Department> DepartmentQuery(Expression<Func<Department, bool>> expression);
 
         bool AddHoliday(Holiday holiday);
         bool RemoveHoliday(Holiday holiday);
@@ -22,5 +23,8 @@ namespace RequestTimeOff.Models
         bool AddUser(User user);
         bool RemoveUser(User user);
         bool UpdateUser(User user);
+        bool AddDepartment(Department department);
+        bool RemoveDepartment(Department department);
+        bool UpdateDepartment(Department department);
     }
 }

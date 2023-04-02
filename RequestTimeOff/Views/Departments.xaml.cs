@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace RequestTimeOff.Views
 {
     /// <summary>
-    /// Interaction logic for Holidays.xaml
+    /// Interaction logic for Departments.xaml
     /// </summary>
-    public partial class Holidays : UserControl
+    public partial class Departments : UserControl
     {
-        public Holidays(HolidaysViewModel viewModel) : this()
+        public Departments(DepartmentsViewModel viewModel) : this()
         {
             DataContext = viewModel;
         }
-        public Holidays()
+        public Departments()
         {
             InitializeComponent();
         }

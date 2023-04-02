@@ -12,85 +12,108 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <GroupBox Margin="16" Header="Add User">
+        <ScrollViewer CanContentScroll="False">
 
-        <StackPanel>
-            <TextBox
-                materialDesign:HintAssist.Hint="Username"
-                IsEnabled="{Binding IsNew}"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                Text="{Binding User.Username}" />
+            <StackPanel>
+                <TextBox
+                    materialDesign:HintAssist.Hint="Username"
+                    IsEnabled="{Binding IsNew}"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding User.Username}" />
 
-            <CheckBox
-                Grid.Column="1"
-                Content="Is Admin"
-                IsChecked="{Binding User.IsAdmin}"
-                Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
-                ToolTip="Is Admin">
+                <TextBox
+                    materialDesign:HintAssist.Hint="Full Name"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding User.FullName}" />
 
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="Checked">
-                        <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-            </CheckBox>
-            <TextBox
-                Grid.Column="2"
-                Margin="3"
-                materialDesign:HintAssist.Hint="Sick Hours"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                Text="{Binding User.SickHrs}">
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="TextChanged">
-                        <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-            </TextBox>
-            <TextBox
-                Grid.Column="3"
-                Margin="3"
-                materialDesign:HintAssist.Hint="Vac Hours"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                Text="{Binding User.VacHrs}">
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="TextChanged">
-                        <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-            </TextBox>
-            <PasswordBox
-                x:Name="passwordBox"
-                Grid.Row="3"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Margin="3"
-                HorizontalAlignment="Stretch"
-                helpers:PasswordBoxHelper.BindPassword="True"
-                helpers:PasswordBoxHelper.BoundPassword="{Binding Password}"
-                materialDesign:HintAssist.Hint="Password" />
-            <PasswordBox
-                x:Name="passwordBoxVerify"
-                Grid.Row="3"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Margin="3"
-                HorizontalAlignment="Stretch"
-                helpers:PasswordBoxHelper.BindPassword="True"
-                helpers:PasswordBoxHelper.BoundPassword="{Binding PasswordVerify}"
-                materialDesign:HintAssist.Hint="Password" />
-            <StackPanel Orientation="Horizontal">
-                <Button Margin="0,5,5,5" Command="{Binding SaveCommand}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ContentSave" />
-                        <TextBlock Text="Save" />
-                    </StackPanel>
-                </Button>
-                <Button Margin="5" Command="{Binding BackCommand}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="SkipBackward" />
-                        <TextBlock Text="Back" />
-                    </StackPanel>
-                </Button>
+                <CheckBox
+                    Content="Is Admin"
+                    IsChecked="{Binding User.IsAdmin}"
+                    Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
+                    ToolTip="Is Admin">
+
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Checked">
+                            <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </CheckBox>
+                <ComboBox
+                    Margin="3"
+                    materialDesign:HintAssist.Hint="Department"
+                    ItemsSource="{Binding ElementName=_this, Path=DataContext.Departments}"
+                    SelectedValue="{Binding Dept}"
+                    SelectedValuePath="Dept">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="240" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Dept}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Description}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBox
+                    Margin="3"
+                    materialDesign:HintAssist.Hint="Sick Hours"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding User.SickHrs}">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="TextChanged">
+                            <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </TextBox>
+                <TextBox
+                    Grid.Column="3"
+                    Margin="3"
+                    materialDesign:HintAssist.Hint="Vac Hours"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding User.VacHrs}">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="TextChanged">
+                            <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </TextBox>
+                <PasswordBox
+                    x:Name="passwordBox"
+                    Margin="3"
+                    HorizontalAlignment="Stretch"
+                    helpers:PasswordBoxHelper.BindPassword="True"
+                    helpers:PasswordBoxHelper.BoundPassword="{Binding Password}"
+                    materialDesign:HintAssist.Hint="Password" />
+                <PasswordBox
+                    x:Name="passwordBoxVerify"
+                    Margin="3"
+                    HorizontalAlignment="Stretch"
+                    helpers:PasswordBoxHelper.BindPassword="True"
+                    helpers:PasswordBoxHelper.BoundPassword="{Binding PasswordVerify}"
+                    materialDesign:HintAssist.Hint="Password" />
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="0,5,5,5" Command="{Binding SaveCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ContentSave" />
+                            <TextBlock Text="Save" />
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="5" Command="{Binding BackCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="SkipBackward" />
+                            <TextBlock Text="Back" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </GroupBox>
 </UserControl>

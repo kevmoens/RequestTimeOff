@@ -5,6 +5,7 @@ using RequestTimeOff.MVVM.Events;
 using RequestTimeOff.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -41,6 +42,9 @@ namespace RequestTimeOff.ViewModels
             get { return _User; }
             set { _User = value; OnPropertyChanged(); }
         }
+
+        private ObservableCollection<Department> _departments;
+        public ObservableCollection<Department> Departments { get { return _departments; } set { _departments = value; OnPropertyChanged(); } }
         private bool _isNew;
         public bool IsNew { get { return _isNew; } set { _isNew = value; OnPropertyChanged(); } }
         private string _password;
@@ -60,6 +64,7 @@ namespace RequestTimeOff.ViewModels
 
         public void OnNavigatedTo(Dictionary<string, object> parameters)
         {
+            Departments = new ObservableCollection<Department>(_requestTimeOffRepository.DepartmentQuery(d => true).OrderBy(d => d.Dept));
             if (parameters?.TryGetValue("User", out object user) == true)
             {
                 User = user as User;

@@ -1,5 +1,7 @@
-﻿using RequestTimeOff.Models;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RequestTimeOff.Models;
 using RequestTimeOff.MVVM;
+using RequestTimeOff.MVVM.Events;
 using RequestTimeOff.Views;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
 {
-    public class HolidaysViewModel : INotifyPropertyChanged
+    public class DepartmentsViewModel : INotifyPropertyChanged
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,15 +26,15 @@ namespace RequestTimeOff.ViewModels
         }
         private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public HolidaysViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public DepartmentsViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
         {
             _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;
             LoadedCommand = new DelegateCommand(OnLoaded);
-            ChangedCommand = new DelegateCommand<Holiday>(OnChanged);
+            ChangedCommand = new DelegateCommand<Department>(OnChanged);
             AddCommand = new DelegateCommand(OnAdd);
             AddedCommand = new DelegateCommand(OnAdded);
-            DeleteCommand = new DelegateCommand<Holiday>(OnDelete);
+            DeleteCommand = new DelegateCommand<Department>(OnDelete);
 
         }
 
@@ -42,12 +44,12 @@ namespace RequestTimeOff.ViewModels
         public ICommand AddedCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        private ObservableCollection<Holiday> _holidays;
+        private ObservableCollection<Department>     _departments;
 
-        public ObservableCollection<Holiday> Holidays
+        public ObservableCollection<Department> Departments
         {
-            get { return _holidays; }
-            set { _holidays = value; OnPropertyChanged(); }
+            get { return _departments; }
+            set { _departments = value; OnPropertyChanged(); }
         }
 
         private bool _isAdding;
@@ -57,40 +59,40 @@ namespace RequestTimeOff.ViewModels
             get { return _isAdding; }
             set { _isAdding = value; OnPropertyChanged(); }
         }
-        private DateTime _newHoliday;
+        private string _newDept;
 
-        public DateTime NewHoliday
+        public string NewDept
         {
-            get { return _newHoliday; }
-            set { _newHoliday = value; OnPropertyChanged(); }
+            get { return _newDept; }
+            set { _newDept = value; OnPropertyChanged(); }
         }
 
         public void OnLoaded()
         {
-            Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(d => true).OrderByDescending(d => d.Date));
+            Departments = new ObservableCollection<Department>(_requestTimeOffRepository.DepartmentQuery(d => true).OrderBy(d => d.Dept));
         }
 
-        private void OnDelete(Holiday holiday)
+        private void OnDelete(Department department)
         {
-            _requestTimeOffRepository.RemoveHoliday(holiday);
-            Holidays.Remove(holiday);
+            _requestTimeOffRepository.RemoveDepartment(department);
+            Departments.Remove(department);
         }
 
-        private void OnChanged(Holiday holiday)
+        private void OnChanged(Department department)
         {
-            _requestTimeOffRepository.UpdateHoliday(holiday);
+            _requestTimeOffRepository.UpdateDepartment(department);
         }
 
         private void OnAdd()
         {
-            NewHoliday = DateTime.Today;
+            NewDept = string.Empty;
             IsAdding = true;
         }
         private void OnAdded()
         {
-            var newHoliday = new Holiday() { Date = NewHoliday };
-            _requestTimeOffRepository.AddHoliday(newHoliday);
-            Holidays.Add(newHoliday);
+            var newDepartment = new Department() { Dept = NewDept };
+            _requestTimeOffRepository.AddDepartment(newDepartment);
+            Departments.Add(newDepartment);
             MaterialDesignThemes.Wpf.DialogHost.CloseDialogCommand.Execute(null, null);
         }
     }

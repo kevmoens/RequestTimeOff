@@ -29,6 +29,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="91" />
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="*" />
@@ -37,8 +39,20 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <TextBlock Margin="5,11" Text="{Binding Username}" />
-                            <CheckBox
+                            <TextBox
                                 Grid.Column="1"
+                                Margin="3"
+                                materialDesign:HintAssist.Hint="Full Name"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TextChanged">
+                                        <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </TextBox>
+                            <CheckBox
+                                Grid.Column="2"
                                 Content="Is Admin"
                                 IsChecked="{Binding IsAdmin}"
                                 Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"
@@ -50,12 +64,37 @@
                                     </b:EventTrigger>
                                 </b:Interaction.Triggers>
                             </CheckBox>
+                            <ComboBox
+                                Grid.Column="3"
+                                Margin="3"
+                                materialDesign:HintAssist.Hint="Department"
+                                ItemsSource="{Binding ElementName=_this, Path=DataContext.Departments}"
+                                SelectedValue="{Binding Dept}"
+                                SelectedValuePath="Dept">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="SelectionChanged">
+                                        <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120" />
+                                                <ColumnDefinition Width="240" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Dept}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Description}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <TextBox
-                                Grid.Column="2"
+                                Grid.Column="4"
                                 Margin="3"
                                 materialDesign:HintAssist.Hint="Sick Hours"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                Text="{Binding SickHrs, UpdateSourceTrigger=PropertyChanged}" >
+                                Text="{Binding SickHrs, UpdateSourceTrigger=PropertyChanged}">
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="TextChanged">
                                         <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
@@ -63,11 +102,11 @@
                                 </b:Interaction.Triggers>
                             </TextBox>
                             <TextBox
-                                Grid.Column="3"
+                                Grid.Column="5"
                                 Margin="3"
                                 materialDesign:HintAssist.Hint="Vac Hours"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                Text="{Binding VacHrs, UpdateSourceTrigger=PropertyChanged}" >
+                                Text="{Binding VacHrs, UpdateSourceTrigger=PropertyChanged}">
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="TextChanged">
                                         <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
@@ -75,7 +114,7 @@
                                 </b:Interaction.Triggers>
                             </TextBox>
                             <StackPanel
-                                Grid.Column="4"
+                                Grid.Column="6"
                                 Margin="0,0,20,0"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">

@@ -60,17 +60,28 @@
     <Compile Include="Migrations\20230401103331_InitialCreate.designer.cs">
       <DependentUpon>20230401103331_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230401215741_AddDeptAndUserFullName.cs" />
+    <Compile Include="Migrations\20230401215741_AddDeptAndUserFullName.designer.cs">
+      <DependentUpon>20230401215741_AddDeptAndUserFullName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20230402005231_TimeOffRangeAndManager.cs" />
+    <Compile Include="Migrations\20230402005231_TimeOffRangeAndManager.designer.cs">
+      <DependentUpon>20230402005231_TimeOffRangeAndManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RequestTimeOffContextModelSnapshot.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Holiday.cs" />
     <Compile Include="Models\IRequestTimeOffRepository.cs" />
     <Compile Include="Models\RequestTimeOffContext.cs" />
     <Compile Include="Models\TimeOff.cs" />
+    <Compile Include="Models\TimeOffRange.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MVVM\Events\ViewNavigationPubSub.cs" />
     <Compile Include="MVVM\INavigationAware.cs" />
     <Compile Include="MVVM\IPage.cs" />
     <Compile Include="MVVM\PubSub.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
+    <Compile Include="ViewModels\DepartmentsViewModel.cs" />
     <Compile Include="ViewModels\HolidaysViewModel.cs" />
     <Compile Include="ViewModels\HomeAdminViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -81,6 +92,9 @@
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Views\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Departments.xaml.cs">
+      <DependentUpon>Departments.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Holidays.xaml.cs">
       <DependentUpon>Holidays.xaml</DependentUpon>
@@ -108,6 +122,10 @@
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Departments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

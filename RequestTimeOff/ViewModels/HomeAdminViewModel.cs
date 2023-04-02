@@ -39,8 +39,8 @@ namespace RequestTimeOff.ViewModels
             PendingRequestsCommand = new DelegateCommand(OnPendingRequests);
             CalendarCommand = new DelegateCommand(OnCalendar);
             UsersCommand = new DelegateCommand(OnUsers);
+            DepartmentsCommand = new DelegateCommand(OnDepartments);
             HolidaysCommand = new DelegateCommand(OnHolidays);
-            SettingsCommand = new DelegateCommand(OnSettings);
             SignoutCommand = new DelegateCommand(OnSignout);
             _viewNavigationToken = ViewNavigationPubSub.Instance.Subscribe(OnViewNavigation);
         }
@@ -50,8 +50,8 @@ namespace RequestTimeOff.ViewModels
         public ICommand PendingRequestsCommand { get; set; }
         public ICommand CalendarCommand { get; set; }
         public ICommand UsersCommand { get; set; }
+        public ICommand DepartmentsCommand { get; set; }
         public ICommand HolidaysCommand { get; set; }
-        public ICommand SettingsCommand { get; set; }
         public ICommand SignoutCommand { get; set; }
         private int _PendingRequests;
 
@@ -96,15 +96,14 @@ namespace RequestTimeOff.ViewModels
             DisplayContent = _serviceProvider.GetService<Users>();
             HamburgerOpen = false;
         }
+        private void OnDepartments()
+        {
+            DisplayContent = _serviceProvider.GetService<Departments>();
+            HamburgerOpen = false;
+        }
         private void OnHolidays()
         {
             DisplayContent = _serviceProvider.GetService<Holidays>();
-            HamburgerOpen = false;
-        }
-
-        private void OnSettings()
-        {
-            DisplayContent = _serviceProvider.GetService<Settings>();
             HamburgerOpen = false;
         }
 

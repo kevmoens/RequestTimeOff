@@ -37,6 +37,8 @@ namespace RequestTimeOff
 
             services.AddSingleton<Calendar>();
             services.AddSingleton<CalendarViewModel>();
+            services.AddSingleton<Departments>();
+            services.AddSingleton<DepartmentsViewModel>();
             services.AddSingleton<Holidays>();
             services.AddSingleton<HolidaysViewModel>();
             services.AddSingleton<Home>();

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RequestTimeOff.Models;
 
 namespace RequestTimeOff.Migrations
 {
     [DbContext(typeof(RequestTimeOffContext))]
-    partial class RequestTimeOffContextModelSnapshot : ModelSnapshot
+    [Migration("20230402005231_TimeOffRangeAndManager")]
+    partial class TimeOffRangeAndManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

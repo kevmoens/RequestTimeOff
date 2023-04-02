@@ -30,10 +30,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <materialDesign:DialogHost
-        DialogTheme="Inherit"
-        Identifier="RootDialog"
-        SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+    <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog">
 
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
@@ -41,7 +38,7 @@
                     <ToggleButton
                         Margin="16"
                         HorizontalAlignment="Right"
-                        IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
+                        IsChecked="{Binding HamburgerOpen}"
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
 
                     <materialDesign:Badged Margin="16,4" Badge="{Binding PendingRequests}">
@@ -58,8 +55,8 @@
                     <Button
                         Width="200"
                         Margin="16,4"
-                        Command="{Binding CalendarCommand}"
-                        HorizontalContentAlignment="Stretch">
+                        HorizontalContentAlignment="Stretch"
+                        Command="{Binding CalendarCommand}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CalendarMonth" />
                             <TextBlock Margin="10,0" Text="Calendar" />
@@ -79,21 +76,21 @@
                     <Button
                         Width="200"
                         Margin="16,4"
-                        Command="{Binding HolidaysCommand}"
-                        HorizontalContentAlignment="Stretch">
+                        HorizontalContentAlignment="Stretch"
+                        Command="{Binding DepartmentsCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Island" />
-                            <TextBlock Margin="10,0" Text="Holidays" />
+                            <materialDesign:PackIcon Kind="AccountGroup" />
+                            <TextBlock Margin="10,0" Text="Departments" />
                         </StackPanel>
                     </Button>
                     <Button
                         Width="200"
                         Margin="16,4"
-                        Command="{Binding SettingsCommand}"
-                        HorizontalContentAlignment="Stretch">
+                        HorizontalContentAlignment="Stretch"
+                        Command="{Binding HolidaysCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Cog" />
-                            <TextBlock Margin="10,0" Text="Settings" />
+                            <materialDesign:PackIcon Kind="Island" />
+                            <TextBlock Margin="10,0" Text="Holidays" />
                         </StackPanel>
                     </Button>
                     <Button

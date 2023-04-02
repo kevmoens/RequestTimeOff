@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RequestTimeOff.Models
@@ -16,11 +17,15 @@ namespace RequestTimeOff.Models
         {
             Database.Migrate();
         }
-
+        public RequestTimeOffContext()
+        {
+            
+        }
+        public DbSet<Department> Departments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<TimeOff> TimeOffs { get; set; }
         public DbSet<Holiday> Holidays { get; set; }
-
+        
         public bool AddHoliday(Holiday holiday)
         {
             try
@@ -61,6 +66,7 @@ namespace RequestTimeOff.Models
                 return false;
             }
         }
+
 
         public List<Holiday> HolidayQuery(Expression<Func<Holiday, bool>> expression)
         {
@@ -159,6 +165,55 @@ namespace RequestTimeOff.Models
         public List<User> UserQuery(Expression<Func<User, bool>> expression)
         {
             return Users.Where(expression).ToList();
+        }
+
+        public bool AddDepartment(Department department)
+        {
+
+            try
+            {
+                Departments.Add(department);
+                SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public bool UpdateDepartment(Department department)
+        {
+
+            try
+            {
+                Departments.Update(department);
+                SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public List<Department> DepartmentQuery(Expression<Func<Department, bool>> expression)
+        {
+            return Departments.Where(expression).ToList();
+        }
+        public bool RemoveDepartment(Department department)
+        {
+
+            try
+            {
+                Departments.Remove(department);
+                SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

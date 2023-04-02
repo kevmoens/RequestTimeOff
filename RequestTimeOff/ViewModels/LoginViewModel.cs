@@ -42,7 +42,7 @@ namespace RequestTimeOff.ViewModels
         public ICommand LoginCommand { get; set; }
         public void OnLogin(PasswordBox passwordBox)
         {
-            var user = _requestTimeOffRepository.UserQuery(u => (u.Username ?? "").ToUpper() == (passwordBox.Password ?? "").ToUpper()).FirstOrDefault();
+            var user = _requestTimeOffRepository.UserQuery(u => (u.Username ?? "").ToUpper() == (Username ?? "").ToUpper()).FirstOrDefault();
             if (user == null)
             {
                 MessageBox.Show("Invalid Username");

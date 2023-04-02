@@ -45,9 +45,13 @@ namespace RequestTimeOff.ViewModels
         public ICommand EditCommand { get; set; }
         private ObservableCollection<User> _users;
         public ObservableCollection<User> Users { get { return _users; } set { _users = value; OnPropertyChanged(); } }
+        private ObservableCollection<Department> _departments;
+        public ObservableCollection<Department> Departments { get { return _departments; } set { _departments = value; OnPropertyChanged(); } }
         public void OnLoaded()
         {
-            Users = new ObservableCollection<User>(_requestTimeOffRepository.UserQuery(u => true));
+            Users = new ObservableCollection<User>(_requestTimeOffRepository.UserQuery(u => true).OrderBy(u => u.Username));
+            Departments = new ObservableCollection<Department>(_requestTimeOffRepository.DepartmentQuery(d => true).OrderBy(d => d.Dept));
+                
         }
 
         private void OnEdit(User user)
