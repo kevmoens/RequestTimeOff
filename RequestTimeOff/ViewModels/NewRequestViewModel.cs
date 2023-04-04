@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Requests;
 using RequestTimeOff.MVVM;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
@@ -25,19 +27,28 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        private Session _session;
         private readonly INavigationService _navigationService;
-        public NewRequestViewModel(INavigationService navigationService)
+        private ITimeOffDateRange _timeOffDateRange;
+        private IValidateAdd _validateAdd;
+        private IRequestTimeOffRepository _requestTimeOffRepository;
+        public NewRequestViewModel(Session session, INavigationService navigationService, ITimeOffDateRange timeOffDateRange, IValidateAdd validateAdd, IRequestTimeOffRepository requestTimeOffRepository)
         {
+            _session = session;
             _navigationService = navigationService;
+            _timeOffDateRange = timeOffDateRange;
+            _validateAdd = validateAdd;
+            _requestTimeOffRepository = requestTimeOffRepository;
             LoadValues();
             AddCommand = new DelegateCommand(OnAdd);
             SaveCommand = new DelegateCommand(OnSave);
             BackCommand = new DelegateCommand(OnBack);
+            RemoveItemCommand = new DelegateCommand<TimeOff>(OnRemoveItem);
         }
         public ICommand AddCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand RemoveItemCommand { get; set; }
 
         private ObservableCollection<TimeOffTypeDisplay> _timeOffTypes;
 
@@ -54,6 +65,15 @@ namespace RequestTimeOff.ViewModels
             set { _timeOffRanges = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<int> _reoccurrances = new ObservableCollection<int>();
+
+        public ObservableCollection<int> Reoccurrances
+        {
+            get { return _reoccurrances; }
+            set { _reoccurrances = value; OnPropertyChanged(); }
+        }
+
+
         private TimeOffType _type = TimeOffType.Vacation;
 
         public TimeOffType Type
@@ -68,9 +88,9 @@ namespace RequestTimeOff.ViewModels
             get { return _range; }
             set { _range = value; OnPropertyChanged(); }
         }
-        private DateTimeOffset _selectedDate;
+        private DateTime _selectedDate = DateTime.Now.Date;
 
-        public DateTimeOffset SelectedDate
+        public DateTime SelectedDate
         {
             get { return _selectedDate; }
             set { _selectedDate = value; OnPropertyChanged(); }
@@ -82,15 +102,6 @@ namespace RequestTimeOff.ViewModels
             get { return _isReoccurrance; }
             set { _isReoccurrance = value; OnPropertyChanged(); }
         }
-
-        private ObservableCollection<int> _reoccurrances = new ObservableCollection<int>();
-
-        public ObservableCollection<int> Reoccurrances
-        {
-            get { return _reoccurrances; }
-            set { _reoccurrances = value; OnPropertyChanged(); }
-        }
-
         private int _reoccurance = 1;
 
         public int Reoccurance
@@ -162,15 +173,66 @@ namespace RequestTimeOff.ViewModels
 
         public void OnAdd()
         {
+            if (ValidateAdd() == false)
+            {
+                return;
+            }
 
+            _timeOffDateRange.SelectedDate = SelectedDate;
+            _timeOffDateRange.Reoccurance = IsReoccurrance ? Reoccurance : 1;
+            var dates = _timeOffDateRange.GetDates();
+
+            _validateAdd.NewDates = dates;
+            string message = _validateAdd.ValidateDates();
+            if (string.IsNullOrEmpty(message) == false)
+            {
+                MessageBox.Show(message);
+                return;
+            }   
+
+            foreach (var date in dates)
+            {
+                TotalHours += Range.Hours();
+                TimeOff timeOff = new TimeOff();
+                timeOff.Date = date;
+                timeOff.Type = Type; 
+                timeOff.Range = Range;
+                timeOff.Username = _session.User.Username;
+                Requests.Add(timeOff);
+            }
         }
+
+        private bool ValidateAdd()
+        {
+            _validateAdd.SelectedDate = SelectedDate;
+            _validateAdd.ExistingRequests = Requests; 
+            string message = _validateAdd.ValidateInput();
+            if (string.IsNullOrEmpty(message) == false)
+            {
+                MessageBox.Show(message);
+                return false;
+            }
+            return true;
+        }
+
         public void OnSave()
         {
+            foreach (var req in Requests)
+            {
+                req.Description = Description;
+                _requestTimeOffRepository.AddTimeOff(req);
+            }
+            _navigationService.ViewNavigateTo("HomePage");
         }
         public void OnBack()
         {
             _navigationService.ViewNavigateTo("HomePage");
         }
 
+        public void OnRemoveItem(TimeOff timeOff)
+        {
+            TotalHours -= timeOff.Range.Hours();
+            Requests.Remove(timeOff);
+        }
     }
 }

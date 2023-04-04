@@ -5,6 +5,7 @@ using NLog.Extensions.Logging;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.HomePages;
+using RequestTimeOff.Models.Requests;
 using RequestTimeOff.Models.Sessions;
 using RequestTimeOff.MVVM;
 using RequestTimeOff.ViewModels;
@@ -92,6 +93,10 @@ namespace RequestTimeOff
             services.AddTransient<ISessionLoad, SessionLoad>();
             services.AddSingleton<ISystemDateTime, SystemDateTime>();
             services.AddTransient<IUserYearInfo, UserYearInfo>();
+
+            services.AddTransient<ITimeOffDateRange, TimeOffDateRange>();
+            services.AddTransient<IValidateAdd, ValidateAdd>();
+
             services.AddLogging(builder => builder.AddNLog());
             _serviceProvider = services.BuildServiceProvider();
 

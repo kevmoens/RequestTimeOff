@@ -8,9 +8,11 @@
     xmlns:local="clr-namespace:RequestTimeOff.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="_this"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
     <GroupBox Margin="16" Header="New Request">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
@@ -58,7 +60,7 @@
                         materialDesign:HintAssist.Hint="Pick Date"
                         CalendarStyle="{DynamicResource CalendarStyle1}"
                         Foreground="Black"
-                        SelectedDate="{Binding SelectedDate}"
+                        SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                     <CheckBox
                         x:Name="IsReoccurrance"
@@ -101,17 +103,12 @@
                                     Grid.Column="1"
                                     Margin="5"
                                     VerticalAlignment="Center"
-                                    Text="{Binding Vals[hrs]}" />
-                                <TextBlock
-                                    Grid.Column="2"
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding Vals[description]}" />
+                                    Text="{Binding Range}" />
                                 <TextBlock
                                     Grid.Column="3"
                                     Margin="5"
                                     VerticalAlignment="Center"
-                                    Text="{Binding Vals[sched_date]}" />
+                                    Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
                                 <TextBlock
                                     Grid.Column="4"
                                     Margin="5"
@@ -160,7 +157,7 @@
                     <TextBlock Margin="5" Text="{Binding TotalHours}" />
                 </StackPanel>
 
-                <TextBox Text="{Binding Description}" />
+                <TextBox materialDesign:HintAssist.Hint="Description" Text="{Binding Description}" />
                 <StackPanel Orientation="Horizontal">
                     <Button Margin="0,5,5,5" Command="{Binding SaveCommand}">
                         <StackPanel Orientation="Horizontal">

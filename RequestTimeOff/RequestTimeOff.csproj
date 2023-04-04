@@ -75,6 +75,7 @@
     <Compile Include="Migrations\20230402165918_UseDateTimeOffset.designer.cs">
       <DependentUpon>20230402165918_UseDateTimeOffset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230403200523_CleanupLeftOverHrsField.cs" />
     <Compile Include="Migrations\RequestTimeOffContextModelSnapshot.cs" />
     <Compile Include="Models\Date\ISystemDateTime.cs" />
     <Compile Include="Models\Date\SystemDateTime.cs" />
@@ -83,8 +84,12 @@
     <Compile Include="Models\HomePages\IUserYearInfo.cs" />
     <Compile Include="Models\HomePages\UserYearInfo.cs" />
     <Compile Include="Models\IRequestTimeOffRepository.cs" />
+    <Compile Include="Models\Requests\ITimeOffDateRange.cs" />
+    <Compile Include="Models\Requests\IValidateAdd.cs" />
+    <Compile Include="Models\Requests\TimeOffDateRange.cs" />
     <Compile Include="Models\Requests\TimeOffRangeDisplay.cs" />
     <Compile Include="Models\Requests\TimeOffTypeDisplay.cs" />
+    <Compile Include="Models\Requests\ValidateAdd.cs" />
     <Compile Include="Models\RequestTimeOffContext.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Sessions\ISessionLoad.cs" />
