@@ -18,10 +18,12 @@ namespace RequestTimeOff.Models.Requests
 
         private ISystemDateTime _systemDateTime;
         private IRequestTimeOffRepository _requestTimeOffRepository;
-        public ValidateAdd(ISystemDateTime systemDateTime, IRequestTimeOffRepository requestTimeOffRepository)
+        private Session _session;
+        public ValidateAdd(ISystemDateTime systemDateTime, IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _systemDateTime = systemDateTime;
             _requestTimeOffRepository = requestTimeOffRepository;
+            _session = session;
         }
         public string ValidateInput()
         {
@@ -49,6 +51,10 @@ namespace RequestTimeOff.Models.Requests
             foreach (var date in NewDates)
             {
                 if (ExistingRequests.Any(r => r.Date == date))
+                {
+                    return $"Unable to add a duplicate date {date.Date.ToShortDateString()}";
+                }
+                if (_requestTimeOffRepository.TimeOffQuery(t => t.Username == _session.User.Username && t.Date == date).Any())
                 {
                     return $"Unable to add a duplicate date {date.Date.ToShortDateString()}";
                 }

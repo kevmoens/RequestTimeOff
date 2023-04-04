@@ -109,11 +109,6 @@
                                     Margin="5"
                                     VerticalAlignment="Center"
                                     Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
-                                <TextBlock
-                                    Grid.Column="4"
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding Vals[sched_date_weekday]}" />
                                 <Button
                                     Grid.Column="5"
                                     Margin="2"

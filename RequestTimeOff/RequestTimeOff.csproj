@@ -102,6 +102,9 @@
     <Compile Include="MVVM\INavigationAware.cs" />
     <Compile Include="MVVM\IPage.cs" />
     <Compile Include="MVVM\PubSub.cs" />
+    <Compile Include="UserControls\CalendarCell.xaml.cs">
+      <DependentUpon>CalendarCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CalendarViewModel.cs" />
     <Compile Include="ViewModels\DepartmentsViewModel.cs" />
     <Compile Include="ViewModels\HolidaysViewModel.cs" />
@@ -155,6 +158,10 @@
     <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\CalendarCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
