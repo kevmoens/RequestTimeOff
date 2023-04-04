@@ -8,9 +8,9 @@ namespace RequestTimeOff.Models.Sessions
 {
     public class SessionLoad : ISessionLoad
     {
-        private Models.Session _session;
-        private IRequestTimeOffRepository _requestTimeOffRepository;
-        public SessionLoad(Models.Session session, IRequestTimeOffRepository requestTimeOffRepository)
+        private readonly Session _session;
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        public SessionLoad(Session session, IRequestTimeOffRepository requestTimeOffRepository)
         {
             _session = session;
             _requestTimeOffRepository = requestTimeOffRepository;

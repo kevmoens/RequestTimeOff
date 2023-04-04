@@ -18,13 +18,22 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public SettingsViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
-        {
-            _serviceProvider = serviceProvider;
-            _requestTimeOffRepository = requestTimeOffRepository;
+        //private readonly IServiceProvider _serviceProvider;
+        //private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        //public SettingsViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        //{
+        //    _serviceProvider = serviceProvider;
+        //    _requestTimeOffRepository = requestTimeOffRepository;
 
+        //}
+
+        private string _password;
+
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; OnPropertyChanged(); }
         }
+
     }
 }

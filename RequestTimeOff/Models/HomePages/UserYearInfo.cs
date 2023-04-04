@@ -19,9 +19,9 @@ namespace RequestTimeOff.Models.HomePages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private Session _session;
-        private IRequestTimeOffRepository _requestTimeOffRepository;
-        private ILogger<UserYearInfo> _logger;
+        private readonly Session _session;
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly ILogger<UserYearInfo> _logger;
         public UserYearInfo(Session session, IRequestTimeOffRepository requestTimeOffRepository, ILogger<UserYearInfo> logger)
         {
             _session = session;
@@ -65,16 +65,7 @@ namespace RequestTimeOff.Models.HomePages
             {
                 await Task.Run(() =>
                 {
-                    List<TimeOff> requests = new List<TimeOff>();
-                    try
-                    {
-
-                    requests = _requestTimeOffRepository.TimeOffQuery(t => firstOfYear <= t.Date && t.Date <= lastOfYear);
-                    } 
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, "ChangeYear");
-                    }
+                    List<TimeOff> requests = _requestTimeOffRepository.TimeOffQuery(new Func<TimeOff, bool>((t) => { return firstOfYear <= t.Date && t.Date <= lastOfYear; }));
                     Schedule = new ObservableCollection<TimeOff>(requests);
 
                     var sickReqs = requests.Where(t => t.Type == TimeOffType.Sick).ToList();

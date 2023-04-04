@@ -14,7 +14,7 @@ namespace RequestTimeOff.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null) return Visibility.Hidden;
-            if (value is int && (int)value == DateTime.Today.Year)
+            if (value is int @year && @year == DateTime.Today.Year)
             {
                 return Visibility.Visible;
             }

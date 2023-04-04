@@ -24,11 +24,9 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public DepartmentsViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public DepartmentsViewModel(IRequestTimeOffRepository requestTimeOffRepository)
         {
-            _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangedCommand = new DelegateCommand<Department>(OnChanged);

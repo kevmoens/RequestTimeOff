@@ -9,10 +9,10 @@ namespace RequestTimeOff.Models
 {
     public interface IRequestTimeOffRepository
     {
-        List<Holiday> HolidayQuery(Expression<Func<Holiday, bool>> expression);
-        List<TimeOff> TimeOffQuery(Expression<Func<TimeOff, bool>> expression);
-        List<User> UserQuery(Expression<Func<User, bool>> expression);
-        List<Department> DepartmentQuery(Expression<Func<Department, bool>> expression);
+        List<Holiday> HolidayQuery(Func<Holiday, bool> expression);
+        List<TimeOff> TimeOffQuery(Func<TimeOff, bool> expression);
+        List<User> UserQuery(Func<User, bool> expression);
+        List<Department> DepartmentQuery(Func<Department, bool> expression);
 
         bool AddHoliday(Holiday holiday);
         bool RemoveHoliday(Holiday holiday);

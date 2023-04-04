@@ -24,11 +24,11 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private readonly IServiceProvider _serviceProvider;
+        private readonly INavigationService _navigationService;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public UserEditViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public UserEditViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository)
         {
-            _serviceProvider = serviceProvider;
+            _navigationService = navigationService;
             _requestTimeOffRepository = requestTimeOffRepository;
             SaveCommand = new DelegateCommand(OnSave);
             BackCommand = new DelegateCommand(OnBack);
@@ -94,10 +94,7 @@ namespace RequestTimeOff.ViewModels
         }
         private void OnBack()
         {
-            ViewNavigation viewNav = new ViewNavigation();
-            var view = _serviceProvider.GetService<Users>();
-            viewNav.Content = view;
-            ViewNavigationPubSub.Instance.Publish(viewNav);
+            _navigationService.ViewNavigateTo("Users");
         }
     }
 

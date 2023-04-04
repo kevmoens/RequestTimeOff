@@ -1,4 +1,5 @@
-﻿using RequestTimeOff.ViewModels;
+﻿using RequestTimeOff.MVVM;
+using RequestTimeOff.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace RequestTimeOff.Views
     /// <summary>
     /// Interaction logic for UserEdit.xaml
     /// </summary>
-    public partial class UserEdit : UserControl
+    public partial class UserEdit : UserControl, IPage
     {
         public UserEdit(UserEditViewModel viewModel) : this()
         {

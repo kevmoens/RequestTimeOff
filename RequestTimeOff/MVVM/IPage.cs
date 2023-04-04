@@ -8,6 +8,5 @@ namespace RequestTimeOff.MVVM
 {
     public interface IPage
     {
-        INavigationAware ViewModel { get; set; }
     }
 }

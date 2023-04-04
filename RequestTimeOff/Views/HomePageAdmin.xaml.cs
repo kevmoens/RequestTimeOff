@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RequestTimeOff.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace RequestTimeOff.Views
     /// <summary>
     /// Interaction logic for HomePageAdmin.xaml
     /// </summary>
-    public partial class HomePageAdmin : UserControl
+    public partial class HomePageAdmin : UserControl, IPage
     {
         public HomePageAdmin()
         {

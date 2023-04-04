@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,14 @@ namespace RequestTimeOff.Models
     public class RequestTimeOffContext : DbContext, IRequestTimeOffRepository
     {
 
-        public RequestTimeOffContext(DbContextOptions<RequestTimeOffContext> options)
+        public RequestTimeOffContext(DbContextOptions<RequestTimeOffContext> options,ILogger<RequestTimeOffContext> logger)
             : base(options)
         {
+            _logger = logger;
             Database.Migrate();
         }
-        public RequestTimeOffContext()
-        {
-            
-        }
+        private readonly ILogger<RequestTimeOffContext> _logger;
+
         public DbSet<Department> Departments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<TimeOff> TimeOffs { get; set; }
@@ -35,6 +35,7 @@ namespace RequestTimeOff.Models
                 return true;
             } catch (Exception ex)
             {
+                _logger.LogError(ex, "AddHoliday");
                 return false;
             }
         }
@@ -49,6 +50,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "AddTimeOff");
                 return false;
             }
         }
@@ -63,12 +65,13 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "AddUser");
                 return false;
             }
         }
 
 
-        public List<Holiday> HolidayQuery(Expression<Func<Holiday, bool>> expression)
+        public List<Holiday> HolidayQuery(Func<Holiday, bool> expression)
         {
             return Holidays.Where(expression).ToList();
         }
@@ -83,6 +86,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "RemoveHoliday");
                 return false;
             }
         }
@@ -97,6 +101,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "RemoveTimeOff");
                 return false;
             }
         }
@@ -111,11 +116,12 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "RemoveUser");
                 return false;
             }
         }
 
-        public List<TimeOff> TimeOffQuery(Expression<Func<TimeOff, bool>> expression)
+        public List<TimeOff> TimeOffQuery(Func<TimeOff, bool> expression)
         {
             return TimeOffs.Where(expression).ToList();
         }
@@ -130,6 +136,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "UpdateHoliday");
                 return false;
             }
         }
@@ -144,6 +151,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "UpdateTimeOff");
                 return false;
             }
         }
@@ -158,11 +166,12 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "UpdateUser");
                 return false;
             }
         }
 
-        public List<User> UserQuery(Expression<Func<User, bool>> expression)
+        public List<User> UserQuery(Func<User, bool> expression)
         {
             return Users.Where(expression).ToList();
         }
@@ -178,6 +187,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "AddDepartment");
                 return false;
             }
         }
@@ -194,10 +204,11 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "UpdateDepartment");
                 return false;
             }
         }
-        public List<Department> DepartmentQuery(Expression<Func<Department, bool>> expression)
+        public List<Department> DepartmentQuery(Func<Department, bool> expression)
         {
             return Departments.Where(expression).ToList();
         }
@@ -212,6 +223,7 @@ namespace RequestTimeOff.Models
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "RemoveDepartment");
                 return false;
             }
         }

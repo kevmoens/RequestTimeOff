@@ -19,13 +19,21 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public CalendarViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
-        {
-            _serviceProvider = serviceProvider;
-            _requestTimeOffRepository = requestTimeOffRepository;
+        //private readonly IServiceProvider _serviceProvider;
+        //private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        //public CalendarViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        //{
+        //    _serviceProvider = serviceProvider;
+        //    _requestTimeOffRepository = requestTimeOffRepository;
 
+        //}
+
+        private int _year;
+
+        public int Year
+        {
+            get { return _year; }
+            set { _year = value; OnPropertyChanged(); }
         }
 
     }

@@ -26,14 +26,11 @@ namespace RequestTimeOff.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private readonly INavigationService _navigationService;
-        private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly Session _session;
-        private readonly PubSubToken _viewNavigationToken;
-        public HomeViewModel(INavigationService navigationService, IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository, Session session)
+        public HomeViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _navigationService = navigationService;
-            _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;
             _session = session;
             LoadedCommand = new DelegateCommand(OnLoaded);
@@ -41,7 +38,7 @@ namespace RequestTimeOff.ViewModels
             CalendarCommand = new DelegateCommand(OnCalendar);
             HolidaysCommand = new DelegateCommand(OnHolidays);
             SignoutCommand = new DelegateCommand(OnSignout);
-            _viewNavigationToken = ViewNavigationPubSub.Instance.Subscribe(OnViewNavigation);
+            ViewNavigationPubSub.Instance.Subscribe(OnViewNavigation);
         }
 
 
@@ -50,8 +47,10 @@ namespace RequestTimeOff.ViewModels
         public ICommand CalendarCommand { get; set; }
         public ICommand HolidaysCommand { get; set; }
         public ICommand SignoutCommand { get; set; }
-        private int _PendingRequests;
 
+        public Session Session { get { return _session; } }
+
+        private int _PendingRequests;
         public int PendingRequests
         {
             get { return _PendingRequests; }
@@ -77,26 +76,20 @@ namespace RequestTimeOff.ViewModels
         {
             PendingRequests = _requestTimeOffRepository.TimeOffQuery(t => t.Approved == false && t.Declined == false).Count;
 
-            ViewNavigation viewNav = new ViewNavigation();
-            var view = _serviceProvider.GetService<HomePage>();
-            viewNav.Content = view;
-            ViewNavigationPubSub.Instance.Publish(viewNav);
+            _navigationService.ViewNavigateTo("HomePage");
         }
         private void OnHome()
         {
-            ViewNavigation viewNav = new ViewNavigation();
-            var view = _serviceProvider.GetService<HomePage>();
-            viewNav.Content = view;
-            ViewNavigationPubSub.Instance.Publish(viewNav);
+            _navigationService.ViewNavigateTo("HomePage");
         }
         private void OnCalendar()
         {
-            DisplayContent = _serviceProvider.GetService<Views.Calendar>();
+            _navigationService.ViewNavigateTo("Calendar");
             HamburgerOpen = false;
         }
         private void OnHolidays()
         {
-            DisplayContent = _serviceProvider.GetService<Holidays>();
+            _navigationService.ViewNavigateTo("Holidays");
             HamburgerOpen = false;
         }
 
@@ -111,9 +104,8 @@ namespace RequestTimeOff.ViewModels
             {
                 return;
             }
-            var viewModel = view.Content.DataContext as INavigationAware;
             DisplayContent = view.Content;
-            if (viewModel != null)
+            if (view.Content.DataContext is INavigationAware viewModel)
             {
                 viewModel.OnNavigatedTo(view.Parameters);
             }

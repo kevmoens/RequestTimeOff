@@ -27,7 +27,7 @@ namespace RequestTimeOff.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly Session _session;
-        private ISessionLoad _sessionLoad;
+        private readonly ISessionLoad _sessionLoad;
         public LoginViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository, Session session, ISessionLoad sessionLoad)
         {
             _navigationService = navigationService;

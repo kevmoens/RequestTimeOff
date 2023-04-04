@@ -10,6 +10,8 @@ namespace RequestTimeOff.MVVM
     {
         void NavigateTo(string pageKey);
         void NavigateTo(string pageKey, Dictionary<string, object> parameters);
+        void ViewNavigateTo(string pageKey);
+        void ViewNavigateTo(string pageKey, Dictionary<string, object> parameters);
         void GoBack();
     }
 }

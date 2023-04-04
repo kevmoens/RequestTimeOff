@@ -25,11 +25,11 @@ namespace RequestTimeOff.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        private readonly IServiceProvider _serviceProvider;
-        public UsersViewModel(IRequestTimeOffRepository requestTimeOffRepository, IServiceProvider serviceProvider)
+        private readonly INavigationService _navigationService;
+        public UsersViewModel(IRequestTimeOffRepository requestTimeOffRepository, INavigationService navigationService)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
-            _serviceProvider = serviceProvider;
+            _navigationService = navigationService;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangedCommand = new DelegateCommand<User>(OnChanged);
             AddCommand = new DelegateCommand(OnAdd);
@@ -56,11 +56,7 @@ namespace RequestTimeOff.ViewModels
 
         private void OnEdit(User user)
         {
-            ViewNavigation viewNav = new ViewNavigation();
-            var view = _serviceProvider.GetService<UserEdit>();
-            viewNav.Content = view;
-            viewNav.Parameters = new Dictionary<string, object> { { "User", user } };
-            ViewNavigationPubSub.Instance.Publish(viewNav);
+            _navigationService.ViewNavigateTo("UserEdit", new Dictionary<string, object> { { "User", user } });
         }
 
         private void OnDelete(User user)
@@ -76,10 +72,7 @@ namespace RequestTimeOff.ViewModels
 
         private void OnAdd()
         {
-            ViewNavigation viewNav = new ViewNavigation();
-            var view = _serviceProvider.GetService<UserEdit>();
-            viewNav.Content = view;
-            ViewNavigationPubSub.Instance.Publish(viewNav);
+            _navigationService.ViewNavigateTo("UserEdit");
         }
     }
 

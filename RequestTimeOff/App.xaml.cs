@@ -57,6 +57,8 @@ namespace RequestTimeOff
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<NewRequest>();
+            services.AddSingleton<NewRequestViewModel>();
             services.AddSingleton<PendingRequests>();
             services.AddSingleton<PendingRequestsViewModel>();
             services.AddSingleton<Settings>();
@@ -67,9 +69,19 @@ namespace RequestTimeOff
             services.AddSingleton<UsersViewModel>();
             
             services.AddByName<IPage>()
-                .Add<Login>("Login")
+                .Add<Calendar>("Calendar")
+                .Add<Departments>("Departments")
+                .Add<Holidays>("Holidays")
                 .Add<Home>("Home")
                 .Add<HomeAdmin>("HomeAdmin")
+                .Add<HomePage>("HomePage")
+                .Add<HomePageAdmin>("HomePageAdmin")
+                .Add<Login>("Login")
+                .Add<NewRequest>("NewRequest")
+                .Add<PendingRequests>("PendingRequests")
+                .Add<Settings>("Settings")
+                .Add<UserEdit>("UserEdit")
+                .Add<Users>("Users")
                 .Build();
 
             services.AddSingleton<IRequestTimeOffRepository, RequestTimeOffContext>();

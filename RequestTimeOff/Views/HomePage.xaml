@@ -120,7 +120,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"
-                    Text="{Binding Session.User.VacHours}" />
+                    Text="{Binding Session.User.VacHrs}" />
                 <TextBlock
                     Grid.Row="2"
                     Margin="30,0"
@@ -128,7 +128,7 @@
                 <TextBlock
                     Grid.Row="2"
                     Grid.Column="1"
-                    Text="{Binding Session.User.SickHours}" />
+                    Text="{Binding Session.User.SickHrs}" />
 
                 <TextBlock
                     Grid.Row="3"

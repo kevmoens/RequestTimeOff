@@ -35,10 +35,5 @@ namespace RequestTimeOff.Views
             InitializeComponent();
 
         }
-
-
-        public INavigationAware ViewModel { get; set; }
-
-
     }
 }

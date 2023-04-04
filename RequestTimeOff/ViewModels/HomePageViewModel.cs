@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.HomePages;
 using RequestTimeOff.MVVM;
+using RequestTimeOff.MVVM.Events;
+using RequestTimeOff.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,18 +28,18 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private readonly IServiceProvider _serviceProvider;
+        private readonly INavigationService _navigationService;
         private readonly Session _session;
-        private ISystemDateTime _systemDateTime;
+        private readonly ISystemDateTime _systemDateTime;
         private IUserYearInfo _userYearInfo;
-        private ILogger<HomePageViewModel> _logger;
-        public HomePageViewModel(IServiceProvider serviceProvider,
+        private readonly ILogger<HomePageViewModel> _logger;
+        public HomePageViewModel(INavigationService navigationService,
                                  Session session,
                                  ISystemDateTime systemDateTime,
                                  IUserYearInfo userYearInfo,
                                  ILogger<HomePageViewModel> logger)
         {
-            _serviceProvider = serviceProvider;
+            _navigationService = navigationService;
             _session = session;
             _systemDateTime = systemDateTime;
             _userYearInfo = userYearInfo;
@@ -96,7 +99,7 @@ namespace RequestTimeOff.ViewModels
         }
         private void OnNewRequest()
         {
-
+            _navigationService.ViewNavigateTo("NewRequest");
         }
     }
 }

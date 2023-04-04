@@ -22,7 +22,7 @@ namespace RequestTimeOff.Converters
 
             if (values.Length == 3 && values[0] != null)
             {
-                TimeOffType type = (TimeOffType)values[0];
+                //TimeOffType type = (TimeOffType)values[0];
                 bool approved = (bool)values[1];
                 bool declined = (bool)values[2];
 

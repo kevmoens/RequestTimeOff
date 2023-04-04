@@ -22,11 +22,9 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private readonly IServiceProvider _serviceProvider;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public HolidaysViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
+        public HolidaysViewModel(IRequestTimeOffRepository requestTimeOffRepository)
         {
-            _serviceProvider = serviceProvider;
             _requestTimeOffRepository = requestTimeOffRepository;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangedCommand = new DelegateCommand<Holiday>(OnChanged);

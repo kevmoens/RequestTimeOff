@@ -73,6 +73,7 @@
                             <TextBlock Margin="10,0" Text="Settings" />
                         </StackPanel>
                     </Button>
+                    
                     <Button
                         Width="200"
                         Margin="16,4"
@@ -95,11 +96,11 @@
                     Padding="16"
                     materialDesign:ElevationAssist.Elevation="Dp4"
                     Mode="PrimaryMid">
-                    <DockPanel>
+                    <Grid>
                         <ToggleButton
                             x:Name="MenuToggleButton"
                             AutomationProperties.Name="HamburgerToggleButton"
-                            DockPanel.Dock="Left"
+                            HorizontalAlignment="Left"
                             IsChecked="{Binding HamburgerOpen}"
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                         <TextBlock
@@ -107,7 +108,12 @@
                             VerticalAlignment="Center"
                             Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                             Text="Request Time Off" />
-                    </DockPanel>
+                        <TextBlock
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Style="{DynamicResource MaterialDesignBody1TextBlock}"
+                            Text="{Binding Session.User.FullName}" />
+                    </Grid>
                 </materialDesign:ColorZone>
                 <ContentControl Grid.Row="1" Content="{Binding DisplayContent}" />
             </Grid>

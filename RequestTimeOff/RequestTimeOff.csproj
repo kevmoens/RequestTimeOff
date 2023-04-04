@@ -83,6 +83,8 @@
     <Compile Include="Models\HomePages\IUserYearInfo.cs" />
     <Compile Include="Models\HomePages\UserYearInfo.cs" />
     <Compile Include="Models\IRequestTimeOffRepository.cs" />
+    <Compile Include="Models\Requests\TimeOffRangeDisplay.cs" />
+    <Compile Include="Models\Requests\TimeOffTypeDisplay.cs" />
     <Compile Include="Models\RequestTimeOffContext.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Sessions\ISessionLoad.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\NewRequestViewModel.cs" />
     <Compile Include="ViewModels\PendingRequestsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
@@ -132,6 +135,9 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\WPFNavigationService.cs" />
+    <Compile Include="Views\NewRequest.xaml.cs">
+      <DependentUpon>NewRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PendingRequests.xaml.cs">
       <DependentUpon>PendingRequests.xaml</DependentUpon>
     </Compile>
@@ -190,6 +196,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\NewRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PendingRequests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
