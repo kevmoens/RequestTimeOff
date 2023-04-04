@@ -27,7 +27,6 @@ namespace RequestTimeOff.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Username = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
-                    Hrs = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Approved = table.Column<bool>(nullable: false),
                     Declined = table.Column<bool>(nullable: false),

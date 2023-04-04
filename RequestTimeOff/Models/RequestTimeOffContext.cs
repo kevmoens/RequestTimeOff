@@ -28,46 +28,46 @@ namespace RequestTimeOff.Models
         
         public bool AddHoliday(Holiday holiday)
         {
-            try
-            {
-                Holidays.Add(holiday);
-                SaveChanges();
-                return true;
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex, "AddHoliday");
-                return false;
-            }
+            //try
+            //{
+            Holidays.Add(holiday);
+            SaveChanges();
+            return true;
+            //} catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "AddHoliday");
+            //    return false;
+            //}
         }
 
         public bool AddTimeOff(TimeOff timeOff)
         {
-            try
-            {
-                TimeOffs.Add(timeOff);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "AddTimeOff");
-                return false;
-            }
+            //try
+            //{
+            TimeOffs.Add(timeOff);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "AddTimeOff");
+            //    return false;
+            //}
         }
 
         public bool AddUser(User user)
         {
-            try
-            {
-                Users.Add(user);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "AddUser");
-                return false;
-            }
+            //try
+            //{
+            Users.Add(user);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "AddUser");
+            //    return false;
+            //}
         }
 
 
@@ -78,47 +78,47 @@ namespace RequestTimeOff.Models
 
         public bool RemoveHoliday(Holiday holiday)
         {
-            try
-            {
-                Holidays.Remove(holiday);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "RemoveHoliday");
-                return false;
-            }
+            //try
+            //{
+            Holidays.Remove(holiday);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "RemoveHoliday");
+            //    return false;
+            //}
         }
 
         public bool RemoveTimeOff(TimeOff timeOff)
         {
-            try
-            {
-                TimeOffs.Remove(timeOff);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "RemoveTimeOff");
-                return false;
-            }
+            //try
+            //{
+            TimeOffs.Remove(timeOff);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "RemoveTimeOff");
+            //    return false;
+            //}
         }
 
         public bool RemoveUser(User user)
         {
-            try
-            {
-                Users.Remove(user);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "RemoveUser");
-                return false;
-            }
+            //try
+            //{
+            Users.Remove(user);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "RemoveUser");
+            //    return false;
+            //}
         }
 
         public List<TimeOff> TimeOffQuery(Func<TimeOff, bool> expression)
@@ -128,47 +128,47 @@ namespace RequestTimeOff.Models
 
         public bool UpdateHoliday(Holiday holiday)
         {
-            try
-            {
-                Holidays.Update(holiday);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "UpdateHoliday");
-                return false;
-            }
+            //try
+            //{
+            Holidays.Update(holiday);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "UpdateHoliday");
+            //    return false;
+            //}
         }
 
         public bool UpdateTimeOff(TimeOff timeOff)
         {
-            try
-            {
-                TimeOffs.Update(timeOff);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "UpdateTimeOff");
-                return false;
-            }
+            //try
+            //{
+            TimeOffs.Update(timeOff);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "UpdateTimeOff");
+            //    return false;
+            //}
         }
 
         public bool UpdateUser(User user)
         {
-            try
-            {
-                Users.Update(user);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "UpdateUser");
-                return false;
-            }
+            //try
+            //{
+            Users.Update(user);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "UpdateUser");
+            //    return false;
+            //}
         }
 
         public List<User> UserQuery(Func<User, bool> expression)
@@ -179,34 +179,34 @@ namespace RequestTimeOff.Models
         public bool AddDepartment(Department department)
         {
 
-            try
-            {
-                Departments.Add(department);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "AddDepartment");
-                return false;
-            }
+            //try
+            //{
+            Departments.Add(department);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "AddDepartment");
+            //    return false;
+            //}
         }
 
 
         public bool UpdateDepartment(Department department)
         {
 
-            try
-            {
-                Departments.Update(department);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "UpdateDepartment");
-                return false;
-            }
+            //try
+            //{
+            Departments.Update(department);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "UpdateDepartment");
+            //    return false;
+            //}
         }
         public List<Department> DepartmentQuery(Func<Department, bool> expression)
         {
@@ -215,17 +215,17 @@ namespace RequestTimeOff.Models
         public bool RemoveDepartment(Department department)
         {
 
-            try
-            {
-                Departments.Remove(department);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "RemoveDepartment");
-                return false;
-            }
+            //try
+            //{
+            Departments.Remove(department);
+            SaveChanges();
+            return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "RemoveDepartment");
+            //    return false;
+            //}
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
