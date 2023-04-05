@@ -37,6 +37,7 @@ namespace RequestTimeOff.ViewModels
                                  Session session,
                                  ISystemDateTime systemDateTime,
                                  IUserYearInfo userYearInfo,
+                                 UserCalendar userCalendar,
                                  ILogger<HomePageViewModel> logger)
         {
             _navigationService = navigationService;
@@ -44,6 +45,7 @@ namespace RequestTimeOff.ViewModels
             _systemDateTime = systemDateTime;
             _userYearInfo = userYearInfo;
             _logger = logger;
+            _userCalendar = userCalendar;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangeYearCommand = new DelegateCommand<int>(OnChangeYear);
             NewRequestOffCommand = new DelegateCommand(OnNewRequest);
@@ -52,6 +54,8 @@ namespace RequestTimeOff.ViewModels
         public ICommand ChangeYearCommand { get; set; }
         public ICommand NewRequestOffCommand { get; set; }
         public Session Session { get { return _session; } }
+        private readonly UserCalendar _userCalendar;
+        public UserCalendar UserCalendar { get { return _userCalendar; } }
 
         private int _prevYear;
 
@@ -71,7 +75,14 @@ namespace RequestTimeOff.ViewModels
         {
             get { return _nextYear; }
             set { _nextYear = value; OnPropertyChanged(); }
-        }        
+        }
+        private int _selectedYear;
+
+        public int SelectedYear
+        {
+            get { return _selectedYear; }
+            set { _selectedYear = value; OnPropertyChanged(); }
+        }
 
         public IUserYearInfo UserYearInfo
         {
@@ -90,6 +101,7 @@ namespace RequestTimeOff.ViewModels
         {
             try
             {
+                SelectedYear = year;
                 await UserYearInfo.ChangeYear(year);
             }
             catch (Exception ex)

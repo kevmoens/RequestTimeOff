@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using RequestTimeOff.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,15 @@ namespace RequestTimeOff.Models
 {
     public class RequestTimeOffContext : DbContext, IRequestTimeOffRepository
     {
-
-        public RequestTimeOffContext(DbContextOptions<RequestTimeOffContext> options,ILogger<RequestTimeOffContext> logger)
+        private readonly SemaphoreSlim _departmentLock = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim _userLock = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim _timeoffLock = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim _holidayLock = new SemaphoreSlim(1);
+        public RequestTimeOffContext(DbContextOptions<RequestTimeOffContext> options)
             : base(options)
         {
-            _logger = logger;
             Database.Migrate();
         }
-        private readonly ILogger<RequestTimeOffContext> _logger;
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<User> Users { get; set; }
@@ -28,105 +30,254 @@ namespace RequestTimeOff.Models
         
         public bool AddHoliday(Holiday holiday)
         {
-            Holidays.Add(holiday);
-            SaveChanges();
+            _holidayLock.Wait();
+            try
+            {
+                Holidays.Add(holiday);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _holidayLock.Release(); }
             return true;
         }
 
         public bool AddTimeOff(TimeOff timeOff)
         {
-            TimeOffs.Add(timeOff);
-            SaveChanges();
+            _timeoffLock.Wait();
+            try
+            {
+                TimeOffs.Add(timeOff);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _timeoffLock.Release(); }
             return true;
         }
 
         public bool AddUser(User user)
         {
-            Users.Add(user);
-            SaveChanges();
+            _userLock.Wait();
+            try
+            {
+                Users.Add(user);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _userLock.Release(); }
             return true;
         }
 
 
         public List<Holiday> HolidayQuery(Func<Holiday, bool> expression)
         {
-            return Holidays.Where(expression).ToList();
+            _holidayLock.Wait();
+            try
+            {
+                return Holidays.Where(expression).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _holidayLock.Release(); }
         }
 
         public bool RemoveHoliday(Holiday holiday)
         {
-            Holidays.Remove(holiday);
-            SaveChanges();
+            _holidayLock.Wait();
+            try
+            {
+                Holidays.Remove(holiday);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _holidayLock.Release(); }
             return true;
         }
 
         public bool RemoveTimeOff(TimeOff timeOff)
         {
-            TimeOffs.Remove(timeOff);
-            SaveChanges();
+            _timeoffLock.Wait();
+            try
+            {
+                TimeOffs.Remove(timeOff);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _timeoffLock.Release(); }
             return true;
         }
 
         public bool RemoveUser(User user)
         {
-            Users.Remove(user);
-            SaveChanges();
+            _userLock.Wait();
+            try
+            {
+                Users.Remove(user);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _userLock.Release(); }
             return true;
         }
 
         public List<TimeOff> TimeOffQuery(Func<TimeOff, bool> expression)
         {
-            return TimeOffs.Where(expression).ToList();
+            _timeoffLock.Wait();
+            try
+            {
+                return TimeOffs.Where(expression).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _timeoffLock.Release(); }
         }
 
         public bool UpdateHoliday(Holiday holiday)
         {
-            Holidays.Update(holiday);
-            SaveChanges();
+            _holidayLock.Wait();
+            try
+            {
+                Holidays.Update(holiday);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _holidayLock.Release(); }
+       
             return true;
         }
 
         public bool UpdateTimeOff(TimeOff timeOff)
         {
-            TimeOffs.Update(timeOff);
-            SaveChanges();
+            _timeoffLock.Wait();
+            try
+            {
+                TimeOffs.Update(timeOff);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _timeoffLock.Release(); }
             return true;
         }
 
         public bool UpdateUser(User user)
         {
-            Users.Update(user);
-            SaveChanges();
+            _userLock.Wait();
+            try
+            {
+                Users.Update(user);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _userLock.Release(); }
             return true;
         }
 
         public List<User> UserQuery(Func<User, bool> expression)
         {
-            return Users.Where(expression).ToList();
+            _userLock.Wait();
+            try
+            {
+                return Users.Where(expression).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+            finally { _userLock.Release(); }
         }
 
         public bool AddDepartment(Department department)
         {
-            Departments.Add(department);
-            SaveChanges();
+            _departmentLock.Wait();
+            try
+            {
+                Departments.Add(department);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            { _departmentLock.Release(); }
             return true;
         }
 
 
         public bool UpdateDepartment(Department department)
         {
-            Departments.Update(department);
-            SaveChanges();
+            _departmentLock.Wait();
+            try
+            {
+                Departments.Update(department);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            { _departmentLock.Release(); }
             return true;
         }
         public List<Department> DepartmentQuery(Func<Department, bool> expression)
         {
-            return Departments.Where(expression).ToList();
+            _departmentLock.Wait();
+            try
+            {
+                return Departments.Where(expression).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            { _departmentLock.Release(); }
         }
         public bool RemoveDepartment(Department department)
         {
-            Departments.Remove(department);
-            SaveChanges();
+            _departmentLock.Wait();
+            try
+            {
+                Departments.Remove(department);
+                SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            { _departmentLock.Release(); }
             return true;
         }
 

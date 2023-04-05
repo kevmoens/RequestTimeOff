@@ -1,5 +1,6 @@
 ﻿using RequestTimeOff.Models;
 using RequestTimeOff.MVVM;
+using RequestTimeOff.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
 {
-    public class CalendarViewModel : INotifyPropertyChanged
+    public class UserCalendarViewModel : INotifyPropertyChanged
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,9 +23,11 @@ namespace RequestTimeOff.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        public CalendarViewModel(IRequestTimeOffRepository requestTimeOffRepository)
+        private readonly Session _session;
+        public UserCalendarViewModel(IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
+            _session = session;
             LoadedCommand = new DelegateCommand(OnLoaded);
             PreviousCommand = new DelegateCommand(OnPrevious);
             NextCommand = new DelegateCommand(OnNext);
@@ -160,7 +163,7 @@ namespace RequestTimeOff.ViewModels
         private ObservableCollection<TimeOff> _timeOffs14;
         private ObservableCollection<TimeOff> _timeOffs15;
         private ObservableCollection<TimeOff> _timeOffs16;
-        
+
         private ObservableCollection<TimeOff> _timeOffs20;
         private ObservableCollection<TimeOff> _timeOffs21;
         private ObservableCollection<TimeOff> _timeOffs22;
@@ -168,7 +171,7 @@ namespace RequestTimeOff.ViewModels
         private ObservableCollection<TimeOff> _timeOffs24;
         private ObservableCollection<TimeOff> _timeOffs25;
         private ObservableCollection<TimeOff> _timeOffs26;
-        
+
         private ObservableCollection<TimeOff> _timeOffs30;
         private ObservableCollection<TimeOff> _timeOffs31;
         private ObservableCollection<TimeOff> _timeOffs32;
@@ -176,7 +179,7 @@ namespace RequestTimeOff.ViewModels
         private ObservableCollection<TimeOff> _timeOffs34;
         private ObservableCollection<TimeOff> _timeOffs35;
         private ObservableCollection<TimeOff> _timeOffs36;
-        
+
         private ObservableCollection<TimeOff> _timeOffs40;
         private ObservableCollection<TimeOff> _timeOffs41;
         private ObservableCollection<TimeOff> _timeOffs42;
@@ -211,7 +214,7 @@ namespace RequestTimeOff.ViewModels
         public ObservableCollection<TimeOff> TimeOffs24 { get { return _timeOffs24; } set { _timeOffs24 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs25 { get { return _timeOffs25; } set { _timeOffs25 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs26 { get { return _timeOffs26; } set { _timeOffs26 = value; OnPropertyChanged(); } }
-        
+
         public ObservableCollection<TimeOff> TimeOffs30 { get { return _timeOffs30; } set { _timeOffs30 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs31 { get { return _timeOffs31; } set { _timeOffs31 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs32 { get { return _timeOffs32; } set { _timeOffs32 = value; OnPropertyChanged(); } }
@@ -219,7 +222,7 @@ namespace RequestTimeOff.ViewModels
         public ObservableCollection<TimeOff> TimeOffs34 { get { return _timeOffs34; } set { _timeOffs34 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs35 { get { return _timeOffs35; } set { _timeOffs35 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs36 { get { return _timeOffs36; } set { _timeOffs36 = value; OnPropertyChanged(); } }
-        
+
         public ObservableCollection<TimeOff> TimeOffs40 { get { return _timeOffs40; } set { _timeOffs40 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs41 { get { return _timeOffs41; } set { _timeOffs41 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs42 { get { return _timeOffs42; } set { _timeOffs42 = value; OnPropertyChanged(); } }
@@ -227,7 +230,7 @@ namespace RequestTimeOff.ViewModels
         public ObservableCollection<TimeOff> TimeOffs44 { get { return _timeOffs44; } set { _timeOffs44 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs45 { get { return _timeOffs45; } set { _timeOffs45 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs46 { get { return _timeOffs46; } set { _timeOffs46 = value; OnPropertyChanged(); } }
-        
+
         public ObservableCollection<TimeOff> TimeOffs50 { get { return _timeOffs50; } set { _timeOffs50 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs51 { get { return _timeOffs51; } set { _timeOffs51 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs52 { get { return _timeOffs52; } set { _timeOffs52 = value; OnPropertyChanged(); } }
@@ -235,7 +238,7 @@ namespace RequestTimeOff.ViewModels
         public ObservableCollection<TimeOff> TimeOffs54 { get { return _timeOffs54; } set { _timeOffs54 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs55 { get { return _timeOffs55; } set { _timeOffs55 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs56 { get { return _timeOffs56; } set { _timeOffs56 = value; OnPropertyChanged(); } }
-        
+
         public ObservableCollection<TimeOff> TimeOffs60 { get { return _timeOffs60; } set { _timeOffs60 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs61 { get { return _timeOffs61; } set { _timeOffs61 = value; OnPropertyChanged(); } }
         private void SetDate(int pos, int? day)
@@ -286,16 +289,16 @@ namespace RequestTimeOff.ViewModels
         {
             switch (pos)
             {
-                case 0:  TimeOffs10 = new ObservableCollection<TimeOff>(offs); break;
-                case 1:  TimeOffs11 = new ObservableCollection<TimeOff>(offs); break;
-                case 2:  TimeOffs12 = new ObservableCollection<TimeOff>(offs); break;
-                case 3:  TimeOffs13 = new ObservableCollection<TimeOff>(offs); break;
-                case 4:  TimeOffs14 = new ObservableCollection<TimeOff>(offs); break;
-                case 5:  TimeOffs15 = new ObservableCollection<TimeOff>(offs); break;
-                case 6:  TimeOffs16 = new ObservableCollection<TimeOff>(offs); break;
-                case 7:  TimeOffs20 = new ObservableCollection<TimeOff>(offs); break;
-                case 8:  TimeOffs21 = new ObservableCollection<TimeOff>(offs); break;
-                case 9:  TimeOffs22 = new ObservableCollection<TimeOff>(offs); break;
+                case 0: TimeOffs10 = new ObservableCollection<TimeOff>(offs); break;
+                case 1: TimeOffs11 = new ObservableCollection<TimeOff>(offs); break;
+                case 2: TimeOffs12 = new ObservableCollection<TimeOff>(offs); break;
+                case 3: TimeOffs13 = new ObservableCollection<TimeOff>(offs); break;
+                case 4: TimeOffs14 = new ObservableCollection<TimeOff>(offs); break;
+                case 5: TimeOffs15 = new ObservableCollection<TimeOff>(offs); break;
+                case 6: TimeOffs16 = new ObservableCollection<TimeOff>(offs); break;
+                case 7: TimeOffs20 = new ObservableCollection<TimeOff>(offs); break;
+                case 8: TimeOffs21 = new ObservableCollection<TimeOff>(offs); break;
+                case 9: TimeOffs22 = new ObservableCollection<TimeOff>(offs); break;
                 case 10: TimeOffs23 = new ObservableCollection<TimeOff>(offs); break;
                 case 11: TimeOffs24 = new ObservableCollection<TimeOff>(offs); break;
                 case 12: TimeOffs25 = new ObservableCollection<TimeOff>(offs); break;
@@ -350,8 +353,8 @@ namespace RequestTimeOff.ViewModels
         private void LoadMonth()
         {
             DateTime currDate = new DateTime(Year, Month, 1);
-            MonthName = currDate.ToString("MMMM");
             Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(h => h.Date.Year == Year && h.Date.Month == Month));
+            MonthName = currDate.ToString("MMMM");
             bool weekDayStarted = false;
             for (int i = 0; i <= 36; i++)
             {
@@ -360,7 +363,8 @@ namespace RequestTimeOff.ViewModels
                     if (currDate.DayOfWeek == GetDayOfWeek(i))
                     {
                         weekDayStarted = true;
-                    } else
+                    }
+                    else
                     {
                         SetDate(i, null);
                         SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
@@ -376,7 +380,7 @@ namespace RequestTimeOff.ViewModels
                 }
 
                 SetDate(i, currDate.Day);
-                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate));
+                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate && t.Username == _session.User.Username));
 
                 currDate = currDate.AddDays(1);
             }
@@ -385,8 +389,8 @@ namespace RequestTimeOff.ViewModels
         {
             switch (pos % 7)
             {
-                case 0: return DayOfWeek.Sunday; 
-                case 1: return DayOfWeek.Monday; 
+                case 0: return DayOfWeek.Sunday;
+                case 1: return DayOfWeek.Monday;
                 case 2: return DayOfWeek.Tuesday;
                 case 3: return DayOfWeek.Wednesday;
                 case 4: return DayOfWeek.Thursday;

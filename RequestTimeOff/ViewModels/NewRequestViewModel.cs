@@ -27,11 +27,11 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private Session _session;
+        private readonly Session _session;
         private readonly INavigationService _navigationService;
-        private ITimeOffDateRange _timeOffDateRange;
-        private IValidateAdd _validateAdd;
-        private IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly ITimeOffDateRange _timeOffDateRange;
+        private readonly IValidateAdd _validateAdd;
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         public NewRequestViewModel(Session session, INavigationService navigationService, ITimeOffDateRange timeOffDateRange, IValidateAdd validateAdd, IRequestTimeOffRepository requestTimeOffRepository)
         {
             _session = session;
@@ -193,11 +193,13 @@ namespace RequestTimeOff.ViewModels
             foreach (var date in dates)
             {
                 TotalHours += Range.Hours();
-                TimeOff timeOff = new TimeOff();
-                timeOff.Date = date;
-                timeOff.Type = Type; 
-                timeOff.Range = Range;
-                timeOff.Username = _session.User.Username;
+                TimeOff timeOff = new TimeOff
+                {
+                    Date = date,
+                    Type = Type,
+                    Range = Range,
+                    Username = _session.User.Username
+                };
                 Requests.Add(timeOff);
             }
         }

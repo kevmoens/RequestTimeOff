@@ -64,6 +64,8 @@ namespace RequestTimeOff
             services.AddSingleton<PendingRequestsViewModel>();
             services.AddSingleton<Settings>();
             services.AddSingleton<SettingsViewModel>();
+            services.AddSingleton<UserCalendar>();
+            services.AddSingleton<UserCalendarViewModel>();
             services.AddSingleton<UserEdit>();
             services.AddSingleton<UserEditViewModel>();
             services.AddSingleton<Users>();

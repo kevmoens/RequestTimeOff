@@ -18,15 +18,14 @@ using System.Windows.Shapes;
 namespace RequestTimeOff.UserControls
 {
     /// <summary>
-    /// Interaction logic for CalendarCell.xaml
+    /// Interaction logic for UserCalendarCell.xaml
     /// </summary>
-    public partial class CalendarCell : UserControl
+    public partial class UserCalendarCell : UserControl
     {
-        public CalendarCell()
+        public UserCalendarCell()
         {
             InitializeComponent();
         }
-
 
 
         public int? DisplayDate
@@ -37,8 +36,7 @@ namespace RequestTimeOff.UserControls
 
         // Using a DependencyProperty as the backing store for DisplayDate.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DisplayDateProperty =
-            DependencyProperty.Register("DisplayDate", typeof(int?), typeof(CalendarCell), new PropertyMetadata());
-
+            DependencyProperty.Register("DisplayDate", typeof(int?), typeof(UserCalendarCell), new PropertyMetadata());
 
 
         public ObservableCollection<TimeOff> TimeOffs
@@ -49,7 +47,7 @@ namespace RequestTimeOff.UserControls
 
         // Using a DependencyProperty as the backing store for TimeOffs.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TimeOffsProperty =
-            DependencyProperty.Register("TimeOffs", typeof(ObservableCollection<TimeOff>), typeof(CalendarCell), new PropertyMetadata());
+            DependencyProperty.Register("TimeOffs", typeof(ObservableCollection<TimeOff>), typeof(UserCalendarCell), new PropertyMetadata());
 
 
 
@@ -61,8 +59,7 @@ namespace RequestTimeOff.UserControls
 
         // Using a DependencyProperty as the backing store for TimeOffs.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HolidaysProperty =
-            DependencyProperty.Register("Holidays", typeof(ObservableCollection<Holiday>), typeof(CalendarCell), new PropertyMetadata());
-
+            DependencyProperty.Register("Holidays", typeof(ObservableCollection<Holiday>), typeof(UserCalendarCell), new PropertyMetadata());
 
     }
 }

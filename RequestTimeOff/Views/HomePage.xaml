@@ -5,6 +5,7 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:converters="clr-namespace:RequestTimeOff.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gauge="clr-namespace:CircularGauge;assembly=CircularGauge"
     xmlns:local="clr-namespace:RequestTimeOff.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,6 +20,165 @@
     <UserControl.Resources>
         <converters:CurrentYearVisibilityConverter x:Key="CurrentYearVisibilityConverter" />
         <converters:RTEColorConverter x:Key="RTEColorConverter" />
+
+
+        <gauge:ImageOffsetConverter x:Key="imageOffsetConverter" />
+        <gauge:RadiusToDiameterConverter x:Key="radiusToDiameterConverter" />
+        <gauge:PointerCenterConverter x:Key="pointerCenterConverter" />
+        <gauge:RangeIndicatorLightPositionConverter x:Key="rangeIndicatorLightPositionConverter" />
+        <gauge:SizeConverter x:Key="sizeConverter" />
+        <gauge:BackgroundColorConverter x:Key="backgroundColorConverter" />
+        <gauge:GlassEffectWidthConverter x:Key="glassEffectWidthConverter" />
+        <gauge:ColorToSolidColorBrushConverter x:Key="colorToSolidColorBrushConverter" />
+
+
+        <Style TargetType="gauge:CircularGaugeControl">
+            <Setter Property="ResetPointerOnStartUp" Value="True" />
+            <Setter Property="ScaleValuePrecision" Value="5" />
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0.321" Color="#FFA3AFD6" />
+                        <GradientStop Offset="0.674" Color="#FF8399A9" />
+                        <GradientStop Offset="0.375" Color="#FF718597" />
+                        <GradientStop Offset="1" Color="#FF617584" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RangeIndicatorThickness" Value="5" />
+            <Setter Property="GaugeBackgroundColor" Value="Black" />
+            <Setter Property="BelowOptimalRangeColor" Value="Yellow" />
+            <Setter Property="OptimalRangeColor" Value="Green" />
+            <Setter Property="AboveOptimalRangeColor" Value="Red" />
+            <Setter Property="DialTextColor" Value="White" />
+            <Setter Property="DialTextFontSize" Value="8" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="gauge:CircularGaugeControl">
+                        <!--  Root Grid  -->
+                        <Grid
+                            x:Name="LayoutRoot"
+                            Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Radius, Converter={StaticResource radiusToDiameterConverter}}"
+                            Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Radius, Converter={StaticResource radiusToDiameterConverter}}">
+
+
+                            <!--<Ellipse x:Name="OuterFrame" StrokeThickness="16"
+                                   Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Radius, Converter={StaticResource radiusToDiameterConverter}}"
+                                   Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Radius, Converter={StaticResource radiusToDiameterConverter}}"
+                                   Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=GaugeBackgroundColor, Converter={StaticResource backgroundColorConverter}}">
+
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF636060" Offset="1"/>
+                                        <GradientStop Color="#FF5F5C5C" Offset="0"/>
+                                        <GradientStop Color="#FFEEDEDE" Offset="0.35"/>
+                                        <GradientStop Color="#FFA09595" Offset="0.705"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>-->
+
+
+                            <!--  Gauge Image  -->
+                            <!--<Image Source="{TemplateBinding ImageSource}"
+                                 Width="{Binding RelativeSource={RelativeSource TemplatedParent},
+                              Path=ImageSize, Converter={StaticResource sizeConverter}, ConverterParameter=Width }"
+
+                                 Height="{Binding RelativeSource={RelativeSource TemplatedParent},
+                              Path=ImageSize, Converter={StaticResource sizeConverter}, ConverterParameter=Height }"
+
+                                 RenderTransform="{Binding RelativeSource={RelativeSource TemplatedParent},
+                              Path=ImageOffset, Converter={StaticResource imageOffsetConverter}}">
+
+                            </Image>-->
+
+                            <!--  Dial Text  -->
+                            <!--<TextBlock Text="{TemplateBinding DialText}"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                                     Foreground="{Binding RelativeSource={RelativeSource TemplatedParent},
+                              Path=DialTextColor, Converter={StaticResource colorToSolidColorBrushConverter}}"
+                                     FontSize="{TemplateBinding DialTextFontSize}"
+                                     FontWeight="Bold"
+
+                                RenderTransform="{Binding RelativeSource={RelativeSource TemplatedParent},
+                              Path=DialTextOffset, Converter={StaticResource rangeIndicatorLightPositionConverter}}">
+
+                            </TextBlock>-->
+
+                            <!--  Pointer  -->
+                            <Path x:Name="Pointer" RenderTransform="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PointerLength, Converter={StaticResource pointerCenterConverter}}">
+                                <!--
+                                    Stroke="#FFE91C1C" StrokeThickness="2"
+                                    Width="{TemplateBinding PointerLength}"
+                                    Height="{TemplateBinding PointerThickness}" HorizontalAlignment="Center"
+                                    Data="M1,1 L1,10 L156,6 z" Stretch="Fill"  RenderTransformOrigin="0,0.5"
+                                -->
+                                <!--<Path.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF890A0A" Offset="0.197"/>
+                                        <GradientStop Color="#FFC40808" Offset="1"/>
+                                        <GradientStop Color="#FFE32323" Offset="0.61"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>-->
+
+                            </Path>
+
+
+                            <!--  Pointer Cap  -->
+                            <Ellipse
+                                x:Name="PointerCap"
+                                Width="{TemplateBinding PointerCapRadius}"
+                                Height="{TemplateBinding PointerCapRadius}"
+                                Opacity="1"
+                                StrokeThickness="4">
+                                <!--<Ellipse.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF000000" Offset="0.675"/>
+                                        <GradientStop Color="#FFC1B5B5" Offset="0.031"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF152029" Offset="0.846"/>
+                                        <GradientStop Color="#FF140204" Offset="0.342"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>-->
+                            </Ellipse>
+
+                            <!--  Range indicator light  -->
+                            <Ellipse
+                                x:Name="RangeIndicatorLight"
+                                Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RangeIndicatorLightRadius, Converter={StaticResource radiusToDiameterConverter}}"
+                                Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RangeIndicatorLightRadius, Converter={StaticResource radiusToDiameterConverter}}"
+                                RenderTransform="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=RangeIndicatorLightOffset, Converter={StaticResource rangeIndicatorLightPositionConverter}}">
+                                <!--  Range indicator light off position effect  -->
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Offset="0.2" Color="LightGray" />
+                                        <GradientStop Offset="0.5" Color="Gray" />
+                                        <GradientStop Offset="0.8" Color="Black" />
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <!--  Glass effect ellipse  -->
+                            <!--<Path x:Name="GlassEffect" StrokeThickness="1" Stretch="Fill" VerticalAlignment="Bottom"
+                                Height="{TemplateBinding Radius}"
+                                Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Radius, Converter={StaticResource glassEffectWidthConverter}}"
+                                Opacity="0.18" Data="M265.99997,151.00005 C263.99994,194.00003 209.55908,259 135.00064,259 C60.442207,259 11,200.00003 5.9999995,157.00005 C5.0181994,148.55656 73.000877,112.00006 137.00053,112.00007 C199.00887,112.00008 266.72015,135.5164 265.99997,151.00005 z">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#68FCFCFC"/>
+                                        <GradientStop Color="#FFF8FCF8" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>-->
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
 
@@ -46,7 +206,7 @@
             Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -92,7 +252,36 @@
                 Grid.Row="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                BorderThickness="2" />
+                BorderThickness="2">
+                <Viewbox>
+
+                    <gauge:CircularGaugeControl
+                        x:Name="myGauge1"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        AboveOptimalRangeColor="Yellow"
+                        Background="Transparent"
+                        BelowOptimalRangeColor="Red"
+                        DialBorderThickness="0"
+                        GaugeBackgroundColor="Transparent"
+                        MajorDivisionsCount="10"
+                        MajorTickColor="Transparent"
+                        MaxValue="192"
+                        MinValue="0"
+                        MinorDivisionsCount="5"
+                        MinorTickColor="Transparent"
+                        OptimalRangeEndValue="{Binding Session.User.VacHrs}"
+                        OptimalRangeStartValue="0"
+                        PointerCapRadius="0"
+                        PointerLength="0"
+                        Radius="150"
+                        ScaleLabelForeground="Transparent"
+                        ScaleRadius="0"
+                        ScaleStartAngle="270"
+                        ScaleSweepAngle="360" />
+                </Viewbox>
+
+            </Border>
 
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -170,7 +359,7 @@
                 </Button>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="2">
-                <StackPanel />
+                <ContentControl Content="{Binding UserCalendar}" />
             </Grid>
             <Grid Grid.Row="2" Grid.ColumnSpan="3">
 
@@ -178,6 +367,12 @@
                     Margin="0"
                     HorizontalContentAlignment="Stretch"
                     ItemsSource="{Binding UserYearInfo.Schedule}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="Padding" Value="0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -206,11 +401,27 @@
                                     FontSize="10"
                                     FontWeight="Bold"
                                     Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
-                                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0">
-                                    <TextBlock  Text="Hours" FontSize="10" Margin="0" Padding="0"/>
-                                    <TextBlock Margin="7 0 0 0" Text="{Binding Range}" FontSize="10"  Padding="0"/>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    Margin="0"
+                                    Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0"
+                                        Padding="0"
+                                        FontSize="10"
+                                        Text="Hours" />
+                                    <TextBlock
+                                        Margin="7,0,0,0"
+                                        Padding="0"
+                                        FontSize="10"
+                                        Text="{Binding Range}" />
                                 </StackPanel>
-                                <TextBlock Grid.Column="2" FontSize="10" Text="{Binding Type}" Margin="0" Padding="0"/>
+                                <TextBlock
+                                    Grid.Column="2"
+                                    Margin="0"
+                                    Padding="0"
+                                    FontSize="10"
+                                    Text="{Binding Type}" />
                                 <!--
                                 <TextBlock Grid.Column="3" FontSize="10"  Text="{Binding Vals[ApptDescription]}" Margin="0" Padding="0"/>
                                 <materialDesign:PackIcon
@@ -223,7 +434,14 @@
                                         Height="10"
                                         Width="10" />
                                 -->
-                                <TextBlock Grid.Row="1" Grid.ColumnSpan="5" Text="{Binding Reason}" FontSize="10" TextWrapping="WrapWithOverflow" Margin="0" Padding="0"/>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="5"
+                                    Margin="0"
+                                    Padding="0"
+                                    FontSize="10"
+                                    Text="{Binding Reason}"
+                                    TextWrapping="WrapWithOverflow" />
 
                             </Grid>
                         </DataTemplate>

@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="RequestTimeOff.UserControls.UserCalendarCell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:RequestTimeOff.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:RequestTimeOff.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="_this"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:UserCalendarCellBorderColorConverter x:Key="UserCalendarCellBorderColorConverter" />
+    </UserControl.Resources>
+    <Border BorderThickness="3">
+        <Border.BorderBrush>
+            <MultiBinding Converter="{StaticResource UserCalendarCellBorderColorConverter}">
+                <Binding ElementName="_this" Path="TimeOffs" />
+                <Binding ElementName="_this" Path="Holidays" />
+                <Binding ElementName="_this" Path="DisplayDate" />
+            </MultiBinding>
+        </Border.BorderBrush>
+        <Grid>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding DisplayDate, ElementName=_this}" />
+        </Grid>
+    </Border>
+</UserControl>
+
