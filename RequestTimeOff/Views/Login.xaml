@@ -41,7 +41,7 @@
             Margin="3"
             HorizontalAlignment="Stretch"
             materialDesign:HintAssist.Hint="Username"
-            Text="{Binding Username}" />
+            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
         <PasswordBox
             x:Name="passwordBox"
             Grid.Row="3"
@@ -57,6 +57,7 @@
             Margin="3"
             Command="{Binding LoginCommand}"
             CommandParameter="{Binding ElementName=passwordBox}"
-            Content="Login" />
+            Content="Login"
+            IsDefault="True" />
     </Grid>
 </Page>
