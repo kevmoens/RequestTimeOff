@@ -37,6 +37,7 @@ namespace RequestTimeOff.ViewModels
             HomeCommand = new DelegateCommand(OnHome);
             CalendarCommand = new DelegateCommand(OnCalendar);
             HolidaysCommand = new DelegateCommand(OnHolidays);
+            SettingsCommand = new DelegateCommand(OnSettings);
             SignoutCommand = new DelegateCommand(OnSignout);
             ViewNavigationPubSub.Instance.Subscribe(OnViewNavigation);
         }
@@ -46,6 +47,7 @@ namespace RequestTimeOff.ViewModels
         public ICommand HomeCommand { get; set; }
         public ICommand CalendarCommand { get; set; }
         public ICommand HolidaysCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
         public ICommand SignoutCommand { get; set; }
 
         public Session Session { get { return _session; } }
@@ -92,7 +94,11 @@ namespace RequestTimeOff.ViewModels
             _navigationService.ViewNavigateTo("Holidays");
             HamburgerOpen = false;
         }
-
+        private void OnSettings()
+        {
+            _navigationService.ViewNavigateTo("Settings");
+            HamburgerOpen = false;
+        }
         public void OnSignout()
         {
             _navigationService.GoBack();

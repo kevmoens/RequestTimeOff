@@ -303,9 +303,9 @@
                     <Viewbox Grid.Row="1" Grid.Column="1">
                         <gauge:CircularGaugeControl
                             x:Name="myGauge2"
-                            AboveOptimalRangeColor="Yellow"
+                            AboveOptimalRangeColor="Red"
                             Background="Transparent"
-                            BelowOptimalRangeColor="Yellow"
+                            BelowOptimalRangeColor="Red"
                             DialBorderThickness="0"
                             Foreground="Transparent"
                             GaugeBackgroundColor="Transparent"
@@ -315,7 +315,7 @@
                             MinValue="0"
                             MinorDivisionsCount="5"
                             MinorTickColor="Transparent"
-                            OptimalRangeColor="Yellow"
+                            OptimalRangeColor="Red"
                             OptimalRangeEndValue="999"
                             OptimalRangeStartValue="0"
                             PointerCapRadius="0"

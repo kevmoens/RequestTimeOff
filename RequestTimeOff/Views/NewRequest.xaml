@@ -59,7 +59,6 @@
                         Margin="4"
                         materialDesign:HintAssist.Hint="Pick Date"
                         CalendarStyle="{DynamicResource CalendarStyle1}"
-                        Foreground="Black"
                         SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                     <CheckBox

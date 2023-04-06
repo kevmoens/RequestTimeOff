@@ -74,7 +74,7 @@
                         <DatePicker
                         Margin="0,8,0,0"
                         HorizontalAlignment="Stretch"
-                        SelectedDate="{Binding NewHoliday}" />
+                        SelectedDate="{Binding NewHoliday, UpdateSourceTrigger=PropertyChanged}" />
 
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <Button

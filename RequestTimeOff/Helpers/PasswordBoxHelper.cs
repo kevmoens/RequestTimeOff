@@ -50,7 +50,7 @@ namespace RequestTimeOff.Helpers
             if (!(d is PasswordBox passwordBox))
                 return;
 
-            passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
+            //passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
 
             var newPassword = (string)e.NewValue;
 

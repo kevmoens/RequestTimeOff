@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Neleus.DependencyInjection.Extensions;
 using NLog.Extensions.Logging;
 using RequestTimeOff.Models;
@@ -99,7 +100,10 @@ namespace RequestTimeOff
             services.AddTransient<ITimeOffDateRange, TimeOffDateRange>();
             services.AddTransient<IValidateAdd, ValidateAdd>();
 
-            services.AddLogging(builder => builder.AddNLog());
+            services.AddLogging(builder => {
+                builder.SetMinimumLevel(LogLevel.Trace);
+                builder.AddNLog();
+                });
             _serviceProvider = services.BuildServiceProvider();
 
         }

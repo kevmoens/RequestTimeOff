@@ -79,7 +79,7 @@ namespace RequestTimeOff.ViewModels
         {
            PendingRequests =  _requestTimeOffRepository.TimeOffQuery(t => t.Approved == false && t.Declined == false).Count;
 
-            _navigationService.ViewNavigateTo("HomePageAdmin");
+            _navigationService.ViewNavigateTo("Calendar");
         }
 
         private void OnPendingRequests()
