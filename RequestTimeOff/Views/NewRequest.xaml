@@ -77,6 +77,21 @@
                         ItemsSource="{Binding Reoccurrances}"
                         SelectedValue="{Binding Reoccurance}" />
                 </StackPanel>
+                <StackPanel
+                    Margin="5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
+                    <Button
+                        Margin="2"
+                        Command="{Binding AddCommand}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniButton">
+                        <materialDesign:PackIcon
+                            Width="24"
+                            Height="24"
+                            Kind="Plus" />
+                    </Button>
+                </StackPanel>
                 <ListView
                     Margin="5,0"
                     HorizontalAlignment="Stretch"
@@ -126,23 +141,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackPanel
-                    Grid.Row="2"
-                    Grid.Column="3"
-                    Margin="5"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top">
-                    <Button
-                        Margin="2"
-                        Command="{Binding AddCommand}"
-                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniButton">
-                        <materialDesign:PackIcon
-                            Width="24"
-                            Height="24"
-                            Kind="Plus" />
-                    </Button>
-                </StackPanel>
                 <StackPanel
                     Grid.Row="4"
                     Grid.Column="1"

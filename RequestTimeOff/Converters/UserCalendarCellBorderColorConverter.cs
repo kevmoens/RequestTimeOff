@@ -25,8 +25,8 @@ namespace RequestTimeOff.Converters
                 }
             }
 
-            if (!(value[0] is ObservableCollection<TimeOff> timeOffs)) return new SolidColorBrush(Colors.LightGray);
-            if (timeOffs.Count == 0) return new SolidColorBrush(Colors.LightGray);
+            if (!(value[0] is ObservableCollection<TimeOff> timeOffs)) return new SolidColorBrush(Colors.Transparent);
+            if (timeOffs.Count == 0) return new SolidColorBrush(Colors.Transparent);
             if (timeOffs.Count == 1)
             {
                 if (timeOffs[0].Type == TimeOffType.Sick)
@@ -42,7 +42,7 @@ namespace RequestTimeOff.Converters
             {
                 return new SolidColorBrush(Colors.Purple);
             }
-            return new SolidColorBrush(Colors.LightGray);
+            return new SolidColorBrush(Colors.Transparent);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

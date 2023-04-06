@@ -65,7 +65,10 @@ namespace RequestTimeOff.Models.HomePages
             {
                 await Task.Run(() =>
                 {
-                    List<TimeOff> requests = _requestTimeOffRepository.TimeOffQuery(new Func<TimeOff, bool>((t) => { return firstOfYear <= t.Date && t.Date <= lastOfYear; }));
+                    List<TimeOff> requests = _requestTimeOffRepository
+                        .TimeOffQuery(new Func<TimeOff, bool>((t) => { return firstOfYear <= t.Date && t.Date <= lastOfYear; }))
+                        .OrderBy(t => t.Date)
+                        .ToList();
                     Schedule = new ObservableCollection<TimeOff>(requests);
 
                     var sickReqs = requests.Where(t => t.Type == TimeOffType.Sick).ToList();

@@ -20,7 +20,7 @@
     <UserControl.Resources>
         <converters:CurrentYearVisibilityConverter x:Key="CurrentYearVisibilityConverter" />
         <converters:RTEColorConverter x:Key="RTEColorConverter" />
-
+        <converters:HomePageCircularGaugeScaleSweepAngleConverter x:Key="HomePageCircularGaugeScaleSweepAngleConverter"/>
 
         <gauge:ImageOffsetConverter x:Key="imageOffsetConverter" />
         <gauge:RadiusToDiameterConverter x:Key="radiusToDiameterConverter" />
@@ -253,33 +253,89 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 BorderThickness="2">
-                <Viewbox>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.RowSpan="3" Grid.ColumnSpan="3">
 
-                    <gauge:CircularGaugeControl
-                        x:Name="myGauge1"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        AboveOptimalRangeColor="Yellow"
-                        Background="Transparent"
-                        BelowOptimalRangeColor="Red"
-                        DialBorderThickness="0"
-                        GaugeBackgroundColor="Transparent"
-                        MajorDivisionsCount="10"
-                        MajorTickColor="Transparent"
-                        MaxValue="192"
-                        MinValue="0"
-                        MinorDivisionsCount="5"
-                        MinorTickColor="Transparent"
-                        OptimalRangeEndValue="{Binding Session.User.VacHrs}"
-                        OptimalRangeStartValue="0"
-                        PointerCapRadius="0"
-                        PointerLength="0"
-                        Radius="150"
-                        ScaleLabelForeground="Transparent"
-                        ScaleRadius="0"
-                        ScaleStartAngle="270"
-                        ScaleSweepAngle="360" />
-                </Viewbox>
+                        <gauge:CircularGaugeControl
+                            x:Name="myGauge1"
+                            AboveOptimalRangeColor="Green"
+                            Background="Transparent"
+                            BelowOptimalRangeColor="Green"
+                            BorderThickness="3"
+                            DialBorderThickness="0"
+                            GaugeBackgroundColor="Transparent"
+                            MajorDivisionsCount="10"
+                            MajorTickColor="Transparent"
+                            MaxValue="1000"
+                            MinValue="0"
+                            MinorDivisionsCount="5"
+                            MinorTickColor="Transparent"
+                            OptimalRangeColor="Green"
+                            OptimalRangeEndValue="999"
+                            OptimalRangeStartValue="0"
+                            PointerCapRadius="0"
+                            PointerLength="0"
+                            Radius="150"
+                            RangeIndicatorThickness="15"
+                            ScaleLabelForeground="Transparent"
+                            ScaleRadius="0"
+                            ScaleStartAngle="270"
+                            >
+                            <gauge:CircularGaugeControl.ScaleSweepAngle>
+                                <MultiBinding Converter="{StaticResource HomePageCircularGaugeScaleSweepAngleConverter}">
+                                    <Binding Path="Session.User.VacHrs"/>
+                                    <Binding Path="UserYearInfo.VacRemain"/>
+                                </MultiBinding>
+                            </gauge:CircularGaugeControl.ScaleSweepAngle>
+                        </gauge:CircularGaugeControl>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.Column="1">
+                        <gauge:CircularGaugeControl
+                            x:Name="myGauge2"
+                            AboveOptimalRangeColor="Yellow"
+                            Background="Transparent"
+                            BelowOptimalRangeColor="Yellow"
+                            DialBorderThickness="0"
+                            Foreground="Transparent"
+                            GaugeBackgroundColor="Transparent"
+                            MajorDivisionsCount="10"
+                            MajorTickColor="Transparent"
+                            MaxValue="1000"
+                            MinValue="0"
+                            MinorDivisionsCount="5"
+                            MinorTickColor="Transparent"
+                            OptimalRangeColor="Yellow"
+                            OptimalRangeEndValue="999"
+                            OptimalRangeStartValue="0"
+                            PointerCapRadius="0"
+                            PointerLength="0"
+                            Radius="150"
+                            RangeIndicatorThickness="30"
+                            ScaleLabelForeground="Transparent"
+                            ScaleRadius="0"
+                            ScaleStartAngle="270"
+                            >
+                            <gauge:CircularGaugeControl.ScaleSweepAngle>
+                                <MultiBinding Converter="{StaticResource HomePageCircularGaugeScaleSweepAngleConverter}">
+                                    <Binding Path="Session.User.SickHrs"/>
+                                    <Binding Path="UserYearInfo.SickRemain"/>
+                                </MultiBinding>
+                            </gauge:CircularGaugeControl.ScaleSweepAngle>
+                        </gauge:CircularGaugeControl>
+                    </Viewbox>
+                </Grid>
+
 
             </Border>
 
@@ -368,9 +424,9 @@
                     HorizontalContentAlignment="Stretch"
                     ItemsSource="{Binding UserYearInfo.Schedule}">
                     <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-                            <Setter Property="Margin" Value="0"/>
-                            <Setter Property="Padding" Value="0"/>
+                        <Style BasedOn="{StaticResource MaterialDesignListBoxItem}" TargetType="ListViewItem">
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="Padding" Value="0" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>

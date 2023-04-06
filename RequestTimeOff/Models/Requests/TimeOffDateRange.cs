@@ -26,7 +26,8 @@ namespace RequestTimeOff.Models.Requests
         {
             DateTimeOffset currDate = SelectedDate;
             List<DateTimeOffset> result = new List<DateTimeOffset>();
-            for (int i = 1; i <= Reoccurance; i++)
+            result.Add(currDate);
+            for (int i = 1; i < Reoccurance; i++)
             {
                 currDate = GetNextDate(currDate);
                 result.Add(currDate);
