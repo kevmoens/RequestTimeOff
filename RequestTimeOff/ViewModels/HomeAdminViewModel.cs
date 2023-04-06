@@ -52,6 +52,9 @@ namespace RequestTimeOff.ViewModels
         public ICommand DepartmentsCommand { get; set; }
         public ICommand HolidaysCommand { get; set; }
         public ICommand SignoutCommand { get; set; }
+        
+        public Session Session { get { return _session; } }
+
         private int _PendingRequests;
 
         public int PendingRequests

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RequestTimeOff.Views"
+    xmlns:uc="clr-namespace:RequestTimeOff.UserControls"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Login"
@@ -26,6 +27,7 @@
             <ColumnDefinition Width="Auto" MinWidth="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <uc:MinMaxClose Grid.ColumnSpan="4"/>
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"

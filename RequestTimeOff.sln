@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33424.131
+# Visual Studio 15
+VisualStudioVersion = 15.0.33423.255
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTimeOff", "RequestTimeOff\RequestTimeOff.csproj", "{E3CB60CA-FD2D-4A1D-9621-3ED09CE5688A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTimeOff.Specflow", "RequestTimeOff.Specflow\RequestTimeOff.Specflow.csproj", "{186B3137-217F-40C1-8018-9E043CE45D0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E3CB60CA-FD2D-4A1D-9621-3ED09CE5688A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3CB60CA-FD2D-4A1D-9621-3ED09CE5688A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3CB60CA-FD2D-4A1D-9621-3ED09CE5688A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{186B3137-217F-40C1-8018-9E043CE45D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{186B3137-217F-40C1-8018-9E043CE45D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{186B3137-217F-40C1-8018-9E043CE45D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{186B3137-217F-40C1-8018-9E043CE45D0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

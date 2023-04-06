@@ -36,7 +36,7 @@ namespace RequestTimeOff.MVVM
 
         public void NavigateTo(string pageKey)
         {
-            NavigateTo(pageKey, default);
+            NavigateTo(pageKey, new Dictionary<string, object>());
         }
 
         public async void NavigateTo(string pageKey, Dictionary<string, object> parameters)
@@ -51,7 +51,7 @@ namespace RequestTimeOff.MVVM
         }
         public void ViewNavigateTo(string pageKey)
         {
-            ViewNavigateTo(pageKey, default);
+            ViewNavigateTo(pageKey, new Dictionary<string, object>());
         }
         public void ViewNavigateTo(string pageKey, Dictionary<string, object> parameters)
         {

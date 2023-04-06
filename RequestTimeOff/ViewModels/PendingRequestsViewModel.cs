@@ -1,11 +1,14 @@
 ﻿using RequestTimeOff.Models;
+using RequestTimeOff.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
 {
@@ -18,19 +21,34 @@ namespace RequestTimeOff.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        //private readonly IServiceProvider _serviceProvider;
-        //private readonly IRequestTimeOffRepository _requestTimeOffRepository;
-        //public PendingRequestsViewModel(IServiceProvider serviceProvider, IRequestTimeOffRepository requestTimeOffRepository)
-        //{
-        //    _serviceProvider = serviceProvider;
-        //    _requestTimeOffRepository = requestTimeOffRepository;
 
-        //}
-        private int _currYear;
-        public int CurrYear
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        public PendingRequestsViewModel(IRequestTimeOffRepository requestTimeOffRepository)
         {
-            get { return _currYear; }
-            set { _currYear = value; OnPropertyChanged(); }
+            _requestTimeOffRepository = requestTimeOffRepository;
+            LoadedCommand = new DelegateCommand(OnLoaded);
         }
+
+        public ICommand LoadedCommand { get; set; }
+
+        private ObservableCollection<TimeOff> _requests;
+
+        public ObservableCollection<TimeOff> Requests
+        {
+            get { return _requests; }
+            set { _requests = value; OnPropertyChanged(); }
+        }
+
+        private void OnLoaded()
+        {
+            var requests = _requestTimeOffRepository
+                .TimeOffQuery(t => t.Approved == false && t.Declined == false)
+                .OrderBy(t => t.Username)
+                .OrderBy(t => t.Date)
+                .ToList();
+            Requests = new ObservableCollection<TimeOff>(requests);
+            
+        }
+
     }
 }

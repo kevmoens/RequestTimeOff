@@ -28,6 +28,16 @@ namespace RequestTimeOff.Views
         public MainWindow()
         {
             InitializeComponent();
+            MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
+        }
+
+        private void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch { }
         }
     }
 }

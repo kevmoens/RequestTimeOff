@@ -5,16 +5,20 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RequestTimeOff"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Request Time Off"
     Width="800"
     Height="450"
     ShowsNavigationUI="False"
     Style="{StaticResource MaterialDesignWindow}"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Icon="/Views/OfficeTrak512.jpg">
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
             <b:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
 </NavigationWindow>

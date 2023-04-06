@@ -59,6 +59,7 @@
     <Compile Include="Converters\HomePageCircularGaugeScaleSweepAngleConverter.cs" />
     <Compile Include="Converters\RTEColorConverter.cs" />
     <Compile Include="Converters\UserCalendarCellBorderColorConverter.cs" />
+    <Compile Include="Converters\WindowStateConverter.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="Migrations\20230401103331_InitialCreate.cs" />
@@ -106,6 +107,9 @@
     <Compile Include="MVVM\PubSub.cs" />
     <Compile Include="UserControls\CalendarCell.xaml.cs">
       <DependentUpon>CalendarCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MinMaxClose.xaml.cs">
+      <DependentUpon>MinMaxClose.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserCalendarCell.xaml.cs">
       <DependentUpon>UserCalendarCell.xaml</DependentUpon>
@@ -168,6 +172,10 @@
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Page Include="UserControls\CalendarCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MinMaxClose.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -312,6 +320,9 @@
     <PackageReference Include="NLog.Extensions.Logging">
       <Version>5.2.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\OfficeTrak512.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
