@@ -27,11 +27,7 @@ namespace RequestTimeOff.Models.Requests
         }
         public string ValidateInput()
         {
-            if (SelectedDate == null)
-            {
-                return "Date is required";
-            }
-            if (SelectedDate < _systemDateTime.Now().Date)
+            if (SelectedDate < _systemDateTime.Now())
             {
                 return $"Date must be on or after {_systemDateTime.Now().Date.ToShortDateString()}";
             }

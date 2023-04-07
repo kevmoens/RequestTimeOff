@@ -5,6 +5,7 @@
     <TargetFramework>net48</TargetFramework>
 	  <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
 	  <ApplicationIcon>OfficeTrak.ico</ApplicationIcon>
+	  <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
