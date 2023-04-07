@@ -3,9 +3,8 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
-	<ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
-	<ApplicationIcon>OfficeTrak.ico</ApplicationIcon>
-    <nullable>enable</nullable>
+	  <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+	  <ApplicationIcon>OfficeTrak.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
