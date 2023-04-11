@@ -15,18 +15,30 @@ namespace RequestTimeOff.Specflow.Steps
     public class RequestAddValidateStepDefinitions
     {
         ValidateAdd _validateAdd;
-        ISystemDateTime _systemDateTime = Substitute.For<ISystemDateTime>();
+        readonly ISystemDateTime _systemDateTime = Substitute.For<ISystemDateTime>();
         Session _session;
-        IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
+        readonly IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
 
         [Given(@"When creating a request off record")]
         public void GivenWhenCreatingARequestOffRecord()
         {
             _validateAdd = new ValidateAdd(_systemDateTime, _requestTimeOffRepository, _session);
             _systemDateTime.Now().Returns(new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero));
+
+            HolidayQueryForNonHolidays();
+            
+            HolidayQueryForNewYearsHoliday();
+        }
+
+        private void HolidayQueryForNonHolidays()
+        {
             _requestTimeOffRepository
-                .HolidayQuery(h => h.Date == _systemDateTime.Now())
-                .ReturnsForAnyArgs(new List<Holiday>());
+                            .HolidayQuery(h => h.Date == _systemDateTime.Now())
+                            .ReturnsForAnyArgs(new List<Holiday>());
+        }
+
+        private void HolidayQueryForNewYearsHoliday()
+        {
             var holidays = new List<Holiday>
             {
                 new Holiday {
@@ -91,22 +103,8 @@ namespace RequestTimeOff.Specflow.Steps
                 }
             };
             _validateAdd = new ValidateAdd(_systemDateTime, _requestTimeOffRepository, _session);
-
-
-            _requestTimeOffRepository
-                .TimeOffQuery(h => h.Date == _systemDateTime.Now())
-                .ReturnsForAnyArgs(new List<TimeOff>());
-            var timeOffs = new List<TimeOff>
-            {
-                new TimeOff {
-                    Date = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
-                    Username = "kevin"
-                }
-            };
-            _requestTimeOffRepository
-                .TimeOffQuery(Arg.Is<Func<TimeOff, bool>>(t => t(timeOffs[0])))
-                .Returns(timeOffs);
-
+            CurrentTimeOffsOtherThanJan3();
+            CurrentTimeOffsForJan3();
 
             _validateAdd.ExistingRequests = new System.Collections.ObjectModel.ObservableCollection<TimeOff>
             {
@@ -121,6 +119,27 @@ namespace RequestTimeOff.Specflow.Steps
                     Username = "kevin"
                 }
             };
+        }
+
+        private void CurrentTimeOffsOtherThanJan3()
+        {
+            _requestTimeOffRepository
+                            .TimeOffQuery(h => h.Date == _systemDateTime.Now())
+                            .ReturnsForAnyArgs(new List<TimeOff>());
+        }
+
+        private void CurrentTimeOffsForJan3()
+        {
+            var timeOffs = new List<TimeOff>
+            {
+                new TimeOff {
+                    Date = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
+                    Username = "kevin"
+                }
+            };
+            _requestTimeOffRepository
+                .TimeOffQuery(Arg.Is<Func<TimeOff, bool>>(t => t(timeOffs[0])))
+                .Returns(timeOffs);
         }
 
         [When(@"the date is unique")]

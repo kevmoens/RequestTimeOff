@@ -13,7 +13,7 @@ namespace RequestTimeOff.Models
 {
     public class RequestTimeOffContext : DbContext, IRequestTimeOffRepository
     {
-        private readonly SemaphoreSlim _lock = new SemaphoreSlim(1,1);
+        private readonly SemaphoreSlim _lock = new(1,1);
         private readonly ILogger<RequestTimeOffContext> _logger;
         public RequestTimeOffContext(DbContextOptions<RequestTimeOffContext> options, ILogger<RequestTimeOffContext> logger)
             : base(options)

@@ -17,7 +17,7 @@ namespace RequestTimeOff.Helpers
 
         private static void OnBindPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(d is PasswordBox passwordBox))
+            if (d is not PasswordBox passwordBox)
                 return;
 
             passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
@@ -47,7 +47,7 @@ namespace RequestTimeOff.Helpers
 
         private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(d is PasswordBox passwordBox))
+            if (d is not PasswordBox passwordBox)
                 return;
 
             //passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
