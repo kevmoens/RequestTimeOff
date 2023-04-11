@@ -84,14 +84,12 @@ namespace RequestTimeOff.Specflow.Features
         [Xunit.SkippableFactAttribute(DisplayName="Date Must be after today")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestAddValidate")]
         [Xunit.TraitAttribute("Description", "Date Must be after today")]
-        [Xunit.TraitAttribute("Category", "regression")]
         public virtual void DateMustBeAfterToday()
         {
-            string[] tagsOfScenario = new string[] {
-                    "regression"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Date Must be after today", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,13 +109,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.When("the date is not set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.Then("the request returns the error \"Date must be on or after <DATE>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -127,14 +125,12 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a holiday")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestAddValidate")]
         [Xunit.TraitAttribute("Description", "Requesting a single date that is on a holiday")]
-        [Xunit.TraitAttribute("Category", "regression")]
         public virtual void RequestingASingleDateThatIsOnAHoliday()
         {
-            string[] tagsOfScenario = new string[] {
-                    "regression"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a holiday", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 12
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -154,13 +150,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
+#line 11
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 14
+#line 12
  testRunner.When("the date is on a holiday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 13
  testRunner.Then("the request returns the error \"You can\'t request off a holiday.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -170,14 +166,12 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a weekend")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestAddValidate")]
         [Xunit.TraitAttribute("Description", "Requesting a single date that is on a weekend")]
-        [Xunit.TraitAttribute("Category", "regression")]
         public virtual void RequestingASingleDateThatIsOnAWeekend()
         {
-            string[] tagsOfScenario = new string[] {
-                    "regression"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a weekend", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -197,13 +191,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 16
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 17
  testRunner.When("the date is on a weekend", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 18
  testRunner.Then("the request returns the error \"Request cannot be on a weekend.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -213,14 +207,12 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is valid")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestAddValidate")]
         [Xunit.TraitAttribute("Description", "Requesting a single date that is valid")]
-        [Xunit.TraitAttribute("Category", "regression")]
         public virtual void RequestingASingleDateThatIsValid()
         {
-            string[] tagsOfScenario = new string[] {
-                    "regression"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is valid", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 24
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -240,13 +232,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 21
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 26
+#line 22
  testRunner.When("the date is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 27
+#line 23
  testRunner.Then("the request returns the error \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
