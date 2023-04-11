@@ -1,0 +1,19 @@
+﻿﻿
+# Comments Load DemoSnippets Visual Studio Extension
+
+TAB: Specflow Demo
+
+- Gherkin Date Must be after today 
+
+Scenario: Date Must be after today
+	Given When creating a request off record
+	When the date is not set
+	Then the request returns the error "Date must be on or after <DATE>"
+
+- Step : Date Must be after today
+
+        [When(@"the date is not set")]
+        public void WhenTheDateIsNotSet()
+        {
+            _validateAdd.SelectedDate = default;
+        }
