@@ -19,11 +19,11 @@ namespace RequestTimeOff.Models.Requests
         public TimeOffDateRange(IRequestTimeOffRepository requestTimeOffRepository)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
-            _holidays = GetHolidays();
         }
 
         public List<DateTimeOffset> GetDates()
         {
+            _holidays = GetHolidays();
             DateTimeOffset currDate = SelectedDate;
             List<DateTimeOffset> result = new List<DateTimeOffset>();
             result.Add(currDate);
