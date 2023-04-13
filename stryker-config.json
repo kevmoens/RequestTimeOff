@@ -7,7 +7,11 @@
       "!**/RequestTimeOff/Extensions/**",
       "!**/RequestTimeOff/Helpers/**",
       "!**/RequestTimeOff/Migrations/**",
+	  "!**/RequestTimeOff/Models/Date/**",
+	  "!**/RequestTimeOff/Models/Sessions/**",
+	  "!**/RequestTimeOff/Models/RequestTimeOffContext.cs",
       "!**/RequestTimeOff/MVVM/**",
+	  "!**/RequestTimeOff/UserControls/**", 
       "!**/RequestTimeOff/Views/**", 
       "!**/RequestTimeOff.Specflow/**"
     ],
