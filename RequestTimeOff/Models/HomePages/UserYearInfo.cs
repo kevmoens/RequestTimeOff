@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace RequestTimeOff.Models.HomePages
 {
+    /// <summary>
+    /// When the user changes the year, this class will update the user's schedule and remaining hours.
+    /// This is used on the HomePage for the user to display year information on Guages.
+    /// </summary>
     public class UserYearInfo : INotifyPropertyChanged, IUserYearInfo
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
@@ -33,32 +37,33 @@ namespace RequestTimeOff.Models.HomePages
         public int Year
         {
             get { return _year; }
-            set { _year = value; OnPropertyChanged(); }
+            private set { _year = value; OnPropertyChanged(); }
         }
 
         private int _vacRemain;
         public int VacRemain
         {
             get { return _vacRemain; }
-            set { _vacRemain = value; OnPropertyChanged(); }
+            private set { _vacRemain = value; OnPropertyChanged(); }
         }
 
         private int _sickRemain;
         public int SickRemain
         {
             get { return _sickRemain; }
-            set { _sickRemain = value; OnPropertyChanged(); }
+            private set { _sickRemain = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<TimeOff> _schedule;
         public ObservableCollection<TimeOff> Schedule
         {
             get { return _schedule; }
-            set { _schedule = value; OnPropertyChanged(); }
+            private set { _schedule = value; OnPropertyChanged(); }
         }
 
         public async Task ChangeYear(int year)
         {
+            Year = year; ;
             var firstOfYear = GetFirstOfYear(year);
             var lastOfYear = GetLastOfYear(year);
             try

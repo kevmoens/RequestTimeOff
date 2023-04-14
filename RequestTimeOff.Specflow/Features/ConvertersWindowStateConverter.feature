@@ -2,8 +2,24 @@
 
 A short summary of the feature
 
-@tag1
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+Scenario: When the state of the window is unknown
+	Given The window state is unknown
+	When running the converter WindowStateConverter
+	Then the value is "WindowMaximize"
+
+Scenario: When the state of the window is Normal
+	Given The window state is normal
+	When running the converter WindowStateConverter
+	Then the value is "WindowMaximize"
+	
+
+Scenario: When the state of the window is Maximize
+	Given The window state is maximize
+	When running the converter WindowStateConverter
+	Then the value is "WindowRestore"
+	
+
+Scenario: The convert back is null
+	Given The convert back method gets ran
+	When running the ConvertBack on the converter
+	Then the WindowStateConverter ConvertBack result is null

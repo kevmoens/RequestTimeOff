@@ -17,3 +17,8 @@ Scenario: The current year is null
 Given the current year is null
 	When running the converter
 	Then the result is "Hidden"
+
+Scenario: The convert back is null
+	Given The convert back method gets ran
+	When running the ConvertBack on the converter
+	Then the CurrentYearVisibilityConverter ConvertBack result is null

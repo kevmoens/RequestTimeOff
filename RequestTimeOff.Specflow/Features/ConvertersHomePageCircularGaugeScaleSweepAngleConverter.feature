@@ -14,3 +14,9 @@ Given the hours are 100
 	When the remaining hours are 100
 	And the sweep angle is calculated
 	Then the sweep angle should be 0
+
+
+Scenario: The convert back is null
+	Given The convert back method gets ran
+	When running the ConvertBack on the converter
+	Then the HomePageCircularGaugeScaleSweepAngleConverter ConvertBack result is null

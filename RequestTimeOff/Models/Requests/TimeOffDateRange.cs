@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace RequestTimeOff.Models.Requests
 {
+    /// <summary>
+    /// This class is used to calculate the dates for a time off request when having a reoccurance.
+    /// It skips Holdays and weekends
+    /// </summary>
     public class TimeOffDateRange : ITimeOffDateRange
     {
         public DateTimeOffset SelectedDate { get; set; }

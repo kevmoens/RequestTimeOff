@@ -3,7 +3,7 @@
 A short summary of the feature
 
 @tag1
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+Scenario: Changing the year calculates the Year Info
+	Given The user changes the year to 2023
+	When Running the ChangeYear method
+	Then The Year Info is calculated

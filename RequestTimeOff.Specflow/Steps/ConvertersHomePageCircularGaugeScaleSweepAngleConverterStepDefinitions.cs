@@ -1,4 +1,5 @@
 using FluentAssertions;
+using RequestTimeOff.Converters;
 using System;
 using TechTalk.SpecFlow;
 
@@ -25,7 +26,7 @@ namespace RequestTimeOff.Specflow.Steps
         [When(@"the sweep angle is calculated")]
         public void WhenTheSweepAngleIsCalculated()
         {
-            var converter = new RequestTimeOff.Converters.HomePageCircularGaugeScaleSweepAngleConverter();
+            var converter = new HomePageCircularGaugeScaleSweepAngleConverter();
             _sweepAngle = (double)converter.Convert(new object[] { _hours, _remaining }, null, null, null);
         }
 
@@ -33,6 +34,25 @@ namespace RequestTimeOff.Specflow.Steps
         public void ThenTheSweepAngleShouldBe(double expected)
         {
             _sweepAngle.Should().Be(expected);
+        }
+
+
+        [Given(@"The convert back method gets ran")]
+        public void GivenTheConvertBackMethodGetsRan()
+        {
+        }
+
+        [When(@"running the ConvertBack on the converter")]
+        public void WhenRunningTheConvertBackOnTheConverter()
+        {
+        }
+
+        [Then(@"the HomePageCircularGaugeScaleSweepAngleConverter ConvertBack result is null")]
+        public void ThenTheHomePageCircularGaugeScaleSweepAngleConverterConvertBackResultIsNull()
+        {
+            HomePageCircularGaugeScaleSweepAngleConverter converter = new();
+            var result = converter.ConvertBack(null, null, null, null);
+            result.Should().BeNull();
         }
     }
 }
