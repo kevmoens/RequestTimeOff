@@ -1,9 +1,19 @@
 ﻿Feature: ConvertersCurrentYearVisilbilityConverter
 
-A short summary of the feature
+Return Visibility.Visible if the current year is the same as the year of the given date, otherwise Visibility.Collapsed.
 
-@tag1
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+Scenario: The current year is this year
+Given the current year is this year
+	When running the converter
+	Then the result is "Visible"
+
+Scenario: The current year is not this year
+Given the current year is not this year
+	When running the converter
+	Then the result is "Hidden"
+
+
+Scenario: The current year is null
+Given the current year is null
+	When running the converter
+	Then the result is "Hidden"

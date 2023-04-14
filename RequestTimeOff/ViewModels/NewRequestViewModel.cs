@@ -173,6 +173,10 @@ namespace RequestTimeOff.ViewModels
 
         public void OnAdd()
         {
+            //TODO Don't let all employees of the same department all ask off on the same day
+            //TODO Asking off more than 7 days in a row requires asking a manager in person
+            //TODO If you ask off more than 3 days in a row you must ask off 2 weeks in advance
+
             if (ValidateAdd() == false)
             {
                 return;
