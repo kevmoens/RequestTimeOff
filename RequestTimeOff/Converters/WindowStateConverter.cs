@@ -27,7 +27,7 @@ namespace RequestTimeOff.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return null;
+            return WindowState.Normal;
         }
     }
 }

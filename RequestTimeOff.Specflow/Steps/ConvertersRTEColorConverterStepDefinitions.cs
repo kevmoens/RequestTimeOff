@@ -55,14 +55,13 @@ namespace RequestTimeOff.Specflow.Steps
         {
             _colorBrush.Color.Should().BeEquivalentTo(_colors["Default"].Color);
         }
-
-        [Given(@"The convert back method gets ran")]
-        public void GivenTheConvertBackMethodGetsRan()
+        [Given(@"The convert back method gets ran RTEColorConverter")]
+        public void GivenTheConvertBackMethodGetsRanRTEColorConverter()
         {
         }
 
-        [When(@"running the ConvertBack on the converter")]
-        public void WhenRunningTheConvertBackOnTheConverter()
+        [When(@"running the ConvertBack on the RTEColorConverter converter")]
+        public void WhenRunningTheConvertBackOnTheRTEColorConverterConverter()
         {
         }
 
@@ -71,7 +70,7 @@ namespace RequestTimeOff.Specflow.Steps
         {
             RTEColorConverter converter = new();
             var result = converter.ConvertBack(null, null, null, null);
-            result.Should().BeNull();
+            result.Should().BeEquivalentTo(Array.Empty<object>());
 
         }
 

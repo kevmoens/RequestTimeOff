@@ -20,6 +20,6 @@ Scenario: When the state of the window is Maximize
 	
 
 Scenario: The convert back is null
-	Given The convert back method gets ran
-	When running the ConvertBack on the converter
+	Given The convert back method gets ran WindowStateConverter
+	When running the ConvertBack on the WindowStateConverter converter
 	Then the WindowStateConverter ConvertBack result is null

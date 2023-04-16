@@ -43,22 +43,23 @@ namespace RequestTimeOff.Specflow.Steps
             _result.Should().Be(state);
         }
 
-        [Given(@"The convert back method gets ran")]
-        public void GivenTheConvertBackMethodGetsRan()
+        [Given(@"The convert back method gets ran WindowStateConverter")]
+        public void GivenTheConvertBackMethodGetsRanWindowStateConverter()
         {
         }
 
-        [When(@"running the ConvertBack on the converter")]
-        public void WhenRunningTheConvertBackOnTheConverter()
+        [When(@"running the ConvertBack on the WindowStateConverter converter")]
+        public void WhenRunningTheConvertBackOnTheWindowStateConverterConverter()
         {
         }
+
 
         [Then(@"the WindowStateConverter ConvertBack result is null")]
         public void ThenTheWindowStateConverterConvertBackResultIsNull()
         {
             WindowStateConverter converter = new();
             var result = converter.ConvertBack(null, null, null, null);
-            result.Should().BeNull();
+            result.Should().Be(WindowState.Normal);
 
         }
 

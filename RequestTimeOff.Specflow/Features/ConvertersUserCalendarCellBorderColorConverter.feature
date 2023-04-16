@@ -40,6 +40,6 @@ Scenario: The current day I have vacation and Sick time off
 	Then the color is "Purple"
 
 Scenario: The convert back is null
-	Given The convert back method gets ran
-	When running the ConvertBack on the converter
+	Given The convert back method gets ran UserCalendarCellBorderColorConverter
+	When running the ConvertBack on the UserCalendarCellBorderColorConverter converter
 	Then the UserCalendarCellBorderColorConverter ConvertBack result is null

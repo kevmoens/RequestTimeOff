@@ -233,10 +233,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 22
- testRunner.Given("The convert back method gets ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The convert back method gets ran for CurrentYearVisibilityConverter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 23
- testRunner.When("running the ConvertBack on the converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("running the ConvertBack on the converter for CurrentYearVisibilityConverter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 24
  testRunner.Then("the CurrentYearVisibilityConverter ConvertBack result is null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -37,13 +37,13 @@ namespace RequestTimeOff.Specflow.Steps
         }
 
 
-        [Given(@"The convert back method gets ran")]
-        public void GivenTheConvertBackMethodGetsRan()
+        [Given(@"The convert back method gets ran for the HomePageCircularGaugeScaleSweepAngleConverter")]
+        public void GivenTheConvertBackMethodGetsRanForTheHomePageCircularGaugeScaleSweepAngleConverter()
         {
         }
 
-        [When(@"running the ConvertBack on the converter")]
-        public void WhenRunningTheConvertBackOnTheConverter()
+        [When(@"running the ConvertBack on the HomePageCircularGaugeScaleSweepAngleConverter converter")]
+        public void WhenRunningTheConvertBackOnTheHomePageCircularGaugeScaleSweepAngleConverterConverter()
         {
         }
 
@@ -52,7 +52,7 @@ namespace RequestTimeOff.Specflow.Steps
         {
             HomePageCircularGaugeScaleSweepAngleConverter converter = new();
             var result = converter.ConvertBack(null, null, null, null);
-            result.Should().BeNull();
+            result.Should().BeEquivalentTo(Array.Empty<object>());
         }
     }
 }

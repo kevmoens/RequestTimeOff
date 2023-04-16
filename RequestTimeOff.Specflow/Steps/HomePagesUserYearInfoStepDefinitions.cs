@@ -13,9 +13,9 @@ namespace RequestTimeOff.Specflow.Steps
     [Binding]
     public class HomePagesUserYearInfoStepDefinitions
     {
-        private Session _session ;
-        private IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
-        private ILogger<UserYearInfo> _logger = Substitute.For<ILogger<UserYearInfo>>();
+        private Session _session;
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
+        private readonly ILogger<UserYearInfo> _logger = Substitute.For<ILogger<UserYearInfo>>();
 
         private int _year;
         private IUserYearInfo _userInfo;
@@ -28,8 +28,10 @@ namespace RequestTimeOff.Specflow.Steps
         [When(@"Running the ChangeYear method")]
         public async Task WhenRunningTheChangeYearMethod()
         {
-            _session = new Session();
-            _session.User = new User();
+            _session = new Session
+            {
+                User = new User()
+            };
             _session.User.SickHrs = 40;
             _session.User.VacHrs = 200;
 
@@ -69,10 +71,19 @@ namespace RequestTimeOff.Specflow.Steps
                     Date = new DateTimeOffset(2023, 1, 10, 0, 0, 0, TimeSpan.Zero),
                     Range = TimeOffRange.PM,
                     Type = TimeOffType.Sick
+                },
+                new TimeOff
+                {
+                    Date = new DateTimeOffset(2023, 1, 11, 0, 0, 0, TimeSpan.Zero),
+                    Range = TimeOffRange.PM,
+                    Type = TimeOffType.Sick
                 }
             };
+            var startDate = new DateTimeOffset(_year, 1, 1, 0, 0, 0, TimeSpan.Zero);
+            var endDate = new DateTimeOffset(_year, 12, 31, 0, 0, 0, TimeSpan.Zero);
+            var timeOffFilter = UserYearInfo.TimeOffFilterByRange(startDate, endDate);
             _requestTimeOffRepository
-                .TimeOffQuery(Arg.Is<Func<TimeOff, bool>>(t => t(timeOffs[0])))
+                .TimeOffQuery(timeOffFilter)
                 .Returns(timeOffs);
 
             _userInfo = new UserYearInfo(_session, _requestTimeOffRepository, _logger);
@@ -83,7 +94,7 @@ namespace RequestTimeOff.Specflow.Steps
         public void ThenTheYearInfoIsCalculated()
         {
             _userInfo.Year.Should().Be(_year);
-            _userInfo.SickRemain.Should().Be(24);
+            _userInfo.SickRemain.Should().Be(20);
             _userInfo.VacRemain.Should().Be(184);
         }
     }

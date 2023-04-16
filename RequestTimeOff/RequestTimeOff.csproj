@@ -15,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CircularGauge" Version="1.0.0.0" />
+	<PackageReference Include="CircularGauge" Version="1.0.0.0" >
+		<NoWarn>NU1701</NoWarn>
+	</PackageReference>
     <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.32" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.1.32" />

@@ -45,13 +45,13 @@ namespace RequestTimeOff.Specflow.Steps
             _visibility.Should().Be(expectedVisibility);
         }
 
-        [Given(@"The convert back method gets ran")]
-        public void GivenTheConvertBackMethodGetsRan()
+        [Given(@"The convert back method gets ran for CurrentYearVisibilityConverter")]
+        public void GivenTheConvertBackMethodGetsRanForCurrentYearVisibilityConverter()
         {
         }
 
-        [When(@"running the ConvertBack on the converter")]
-        public void WhenRunningTheConvertBackOnTheConverter()
+        [When(@"running the ConvertBack on the converter for CurrentYearVisibilityConverter")]
+        public void WhenRunningTheConvertBackOnTheConverterForCurrentYearVisibilityConverter()
         {
         }
 
@@ -60,8 +60,9 @@ namespace RequestTimeOff.Specflow.Steps
         {
             var converter = new CurrentYearVisibilityConverter();
             var result = converter.ConvertBack(null, null, null, null);
-            result.Should().BeNull();
+            result.Should().Be(DateTime.Today.Year);
         }
+
 
 
     }

@@ -201,10 +201,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 26
- testRunner.Given("The convert back method gets ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The convert back method gets ran RTEColorConverter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
- testRunner.When("running the ConvertBack on the converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("running the ConvertBack on the RTEColorConverter converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
  testRunner.Then("the RTEColorConverter ConvertBack result is null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

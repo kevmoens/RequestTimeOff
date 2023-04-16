@@ -232,10 +232,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 23
- testRunner.Given("The convert back method gets ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The convert back method gets ran WindowStateConverter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 24
- testRunner.When("running the ConvertBack on the converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("running the ConvertBack on the WindowStateConverter converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
  testRunner.Then("the WindowStateConverter ConvertBack result is null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

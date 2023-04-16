@@ -17,6 +17,6 @@ Given the hours are 100
 
 
 Scenario: The convert back is null
-	Given The convert back method gets ran
-	When running the ConvertBack on the converter
+	Given The convert back method gets ran for the HomePageCircularGaugeScaleSweepAngleConverter
+	When running the ConvertBack on the HomePageCircularGaugeScaleSweepAngleConverter converter
 	Then the HomePageCircularGaugeScaleSweepAngleConverter ConvertBack result is null

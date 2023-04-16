@@ -23,6 +23,6 @@ Scenario: Display the correct color when passing in an incorrect number of param
 	
 
 Scenario: The convert back is null
-	Given The convert back method gets ran
-	When running the ConvertBack on the converter
+	Given The convert back method gets ran RTEColorConverter
+	When running the ConvertBack on the RTEColorConverter converter
 	Then the RTEColorConverter ConvertBack result is null

@@ -19,6 +19,6 @@ Given the current year is null
 	Then the result is "Hidden"
 
 Scenario: The convert back is null
-	Given The convert back method gets ran
-	When running the ConvertBack on the converter
+	Given The convert back method gets ran for CurrentYearVisibilityConverter
+	When running the ConvertBack on the converter for CurrentYearVisibilityConverter
 	Then the CurrentYearVisibilityConverter ConvertBack result is null

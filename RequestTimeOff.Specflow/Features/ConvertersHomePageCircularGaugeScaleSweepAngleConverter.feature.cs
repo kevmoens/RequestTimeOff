@@ -197,10 +197,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 20
- testRunner.Given("The convert back method gets ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The convert back method gets ran for the HomePageCircularGaugeScaleSweepAngleConv" +
+                        "erter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 21
- testRunner.When("running the ConvertBack on the converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("running the ConvertBack on the HomePageCircularGaugeScaleSweepAngleConverter conv" +
+                        "erter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
  testRunner.Then("the HomePageCircularGaugeScaleSweepAngleConverter ConvertBack result is null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

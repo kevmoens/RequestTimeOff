@@ -17,7 +17,7 @@
     ],
 
     "ignore-methods": [
-        "OnPropertyChanged"
+        "*OnPropertyChanged*"
     ]
   }
 }

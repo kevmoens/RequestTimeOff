@@ -338,10 +338,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 43
- testRunner.Given("The convert back method gets ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The convert back method gets ran UserCalendarCellBorderColorConverter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 44
- testRunner.When("running the ConvertBack on the converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("running the ConvertBack on the UserCalendarCellBorderColorConverter converter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 45
  testRunner.Then("the UserCalendarCellBorderColorConverter ConvertBack result is null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

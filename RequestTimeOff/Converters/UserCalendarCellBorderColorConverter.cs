@@ -25,7 +25,7 @@ namespace RequestTimeOff.Converters
                 }
             }
 
-            if (!(value[0] is ObservableCollection<TimeOff> timeOffs)) return new SolidColorBrush(Colors.Transparent);
+            if (value[0] is not ObservableCollection<TimeOff> timeOffs) return new SolidColorBrush(Colors.Transparent);
             if (timeOffs.Count == 0) return new SolidColorBrush(Colors.Transparent);
             if (timeOffs.Count == 1)
             {
@@ -47,7 +47,7 @@ namespace RequestTimeOff.Converters
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            return null;
+            return Array.Empty<object>();
         }
     }
 }

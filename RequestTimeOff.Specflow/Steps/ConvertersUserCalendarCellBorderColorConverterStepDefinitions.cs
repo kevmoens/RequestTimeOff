@@ -22,8 +22,11 @@ namespace RequestTimeOff.Specflow.Steps
         public void GivenTheCurrentDayIsAHoliday()
         {
             _day = 1;
-            _holidays = new ObservableCollection<Holiday>();
-            _holidays.Add(new Holiday { Date = new DateTime(2019, 1, 1) });
+            _holidays = new ObservableCollection<Holiday>
+            {
+                new Holiday { Date = new DateTime(2019, 1, 1) },
+                new Holiday { Date = new DateTime(2019, 1, 2) }
+            };
         }
 
         [When(@"running the converter UserCalendarCellBorderColorConverter")]
@@ -55,13 +58,13 @@ namespace RequestTimeOff.Specflow.Steps
             }
         }
 
-        [Given(@"The convert back method gets ran")]
-        public void GivenTheConvertBackMethodGetsRan()
+        [Given(@"The convert back method gets ran UserCalendarCellBorderColorConverter")]
+        public void GivenTheConvertBackMethodGetsRanUserCalendarCellBorderColorConverter()
         {
         }
 
-        [When(@"running the ConvertBack on the converter")]
-        public void WhenRunningTheConvertBackOnTheConverter()
+        [When(@"running the ConvertBack on the UserCalendarCellBorderColorConverter converter")]
+        public void WhenRunningTheConvertBackOnTheUserCalendarCellBorderColorConverterConverter()
         {
         }
 
@@ -70,7 +73,7 @@ namespace RequestTimeOff.Specflow.Steps
         {
             UserCalendarCellBorderColorConverter converter = new();
             var result = converter.ConvertBack(null, null, null, null);
-            result.Should().BeNull();
+            result.Should().BeEquivalentTo(Array.Empty<object>());
 
         }
     }

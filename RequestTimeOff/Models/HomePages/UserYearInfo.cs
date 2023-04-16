@@ -66,13 +66,13 @@ namespace RequestTimeOff.Models.HomePages
             Year = year; ;
             var firstOfYear = GetFirstOfYear(year);
             var lastOfYear = GetLastOfYear(year);
+            var timeOffFilter = TimeOffFilterByRange(firstOfYear, lastOfYear);
             try
             {
                 await Task.Run(() =>
                 {
                     List<TimeOff> requests = _requestTimeOffRepository
-                        .TimeOffQuery(new Func<TimeOff, bool>((t) => { return firstOfYear <= t.Date && t.Date <= lastOfYear; }))
-                        .OrderBy(t => t.Date)
+                        .TimeOffQuery(timeOffFilter)
                         .ToList();
                     Schedule = new ObservableCollection<TimeOff>(requests);
 
@@ -88,14 +88,30 @@ namespace RequestTimeOff.Models.HomePages
             }
         }
 
-        private DateTimeOffset GetFirstOfYear(int year)
+        private static DateTimeOffset GetFirstOfYear(int year)
         {
             return new DateTimeOffset(year, 1, 1, 0, 0, 0, TimeSpan.Zero);
         }
 
-        private DateTimeOffset GetLastOfYear(int year)
+        private static DateTimeOffset GetLastOfYear(int year)
         {
             return new DateTimeOffset(year, 12, 31, 0, 0, 0, TimeSpan.Zero);
+        }
+
+        private static Func<TimeOff, bool> _timeOffFilter;
+        private static DateTimeOffset _timeOffFilterStartDate;
+        private static DateTimeOffset _timeOffFilterEndDate;
+        public static Func<TimeOff, bool> TimeOffFilterByRange(DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            if (_timeOffFilter != null && _timeOffFilterStartDate == startDate && _timeOffFilterEndDate == endDate)
+            {
+                return _timeOffFilter;
+            }
+            _timeOffFilterStartDate = startDate;
+            _timeOffFilterEndDate = endDate;
+            _timeOffFilter = h => startDate <= h.Date
+                && h.Date <= endDate;
+            return _timeOffFilter;
         }
 
     }
