@@ -3,10 +3,10 @@ using RequestTimeOff.Converters;
 using System;
 using TechTalk.SpecFlow;
 
-namespace RequestTimeOff.Specflow.Steps
+namespace RequestTimeOff.Specflow.Steps.Converters
 {
     [Binding]
-    public class ConvertersHomePageCircularGaugeScaleSweepAngleConverterStepDefinitions
+    public class HomePageCircularGaugeScaleSweepAngleConverterStepDefinitions
     {
         private int _hours;
         private int _remaining;

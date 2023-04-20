@@ -2,6 +2,10 @@
   "stryker-config": {
     "solution": "RequestTimeOff.sln",
     "project": "RequestTimeOff/RequestTimeOff.csproj",
+    "ignore-methods": [
+        "Log*",
+	  "OnPropertyChanged"
+    ],
     "mutate": [
       "!**/RequestTimeOff/App.xaml.cs",
       "!**/RequestTimeOff/Extensions/**",
@@ -14,10 +18,6 @@
 	  "!**/RequestTimeOff/UserControls/**", 
       "!**/RequestTimeOff/Views/**", 
       "!**/RequestTimeOff.Specflow/**"
-    ],
-
-    "ignore-methods": [
-        "*OnPropertyChanged*"
     ]
   }
 }

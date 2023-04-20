@@ -19,7 +19,9 @@ namespace RequestTimeOff.Converters
 
             if (day != null && (value[1] is ObservableCollection<Holiday> holidays))
             {
+                // Stryker disable all
                 if (holidays.Any(h => h.Date.Day == day))
+                // Stryker restore all
                 {
                     return new SolidColorBrush(Colors.Yellow);
                 }

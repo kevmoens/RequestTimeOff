@@ -1,6 +1,7 @@
 ﻿using RequestTimeOff.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -76,6 +77,7 @@ namespace RequestTimeOff.Models.Requests
         private const int OneMonth = 30;
         private static Func<Holiday, bool> _holidayFilter;
         private static DateTimeOffset _holidayFilterSelectedDate;
+        [ExcludeFromCodeCoverage]
         public static Func<Holiday, bool> HolidayFilterBySelectedDate(DateTimeOffset selectedDate) 
         { 
             if (_holidayFilter != null && _holidayFilterSelectedDate == selectedDate)

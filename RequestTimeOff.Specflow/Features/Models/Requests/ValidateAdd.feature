@@ -1,4 +1,4 @@
-﻿Feature: RequestAddValidate
+﻿Feature: ValidateAdd
 
 A user that adds a request off record is only allowed to add requests that are validated
 

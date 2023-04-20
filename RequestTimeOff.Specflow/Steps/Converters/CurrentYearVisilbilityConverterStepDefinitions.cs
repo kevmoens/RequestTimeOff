@@ -4,10 +4,10 @@ using System;
 using System.Windows;
 using TechTalk.SpecFlow;
 
-namespace RequestTimeOff.Specflow.Steps
+namespace RequestTimeOff.Specflow.Steps.Converters
 {
     [Binding]
-    public class SConvertersCurrentYearVisilbilityConverterStepDefinitions
+    public class CurrentYearVisilbilityConverterStepDefinitions
     {
         private object _currentYear;
         private Visibility _visibility;

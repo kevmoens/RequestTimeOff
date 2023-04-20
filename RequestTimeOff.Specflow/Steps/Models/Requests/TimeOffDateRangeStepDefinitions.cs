@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace RequestTimeOff.Specflow.Steps
+namespace RequestTimeOff.Specflow.Steps.Models.Requests
 {
     [Binding]
-    public class RequestsTimeOffDateRangeStepDefinitions
+    public class TimeOffDateRangeStepDefinitions
     {
         //Dependencies
         private readonly IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
@@ -38,7 +38,7 @@ namespace RequestTimeOff.Specflow.Steps
         {
 
             _requestTimeOffRepository
-                .HolidayQuery(Arg.Is<Func<Holiday, bool>>(TimeOffDateRange.HolidayFilterBySelectedDate(_timeOffDateRange.SelectedDate)))
+                .HolidayQuery(Arg.Is(TimeOffDateRange.HolidayFilterBySelectedDate(_timeOffDateRange.SelectedDate)))
                 .Returns(
                     (from row in table.Rows
                      select new Holiday()
@@ -60,9 +60,9 @@ namespace RequestTimeOff.Specflow.Steps
             List<DateTimeOffset> expected_result = new();
             foreach (var row in table.Rows)
             {
-               expected_result.Add(DateTimeOffset.Parse(row["Date"]));
+                expected_result.Add(DateTimeOffset.Parse(row["Date"]));
             }
-            
+
             _result.Should().BeEquivalentTo(expected_result);
         }
 

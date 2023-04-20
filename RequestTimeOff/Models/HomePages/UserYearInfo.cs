@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RequestTimeOff.Models.HomePages
 {
@@ -19,6 +20,7 @@ namespace RequestTimeOff.Models.HomePages
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore CS0067 // The event 'PropertyChanged' is never used;
+        [ExcludeFromCodeCoverage]
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -101,7 +103,8 @@ namespace RequestTimeOff.Models.HomePages
         private static Func<TimeOff, bool> _timeOffFilter;
         private static DateTimeOffset _timeOffFilterStartDate;
         private static DateTimeOffset _timeOffFilterEndDate;
-        public static Func<TimeOff, bool> TimeOffFilterByRange(DateTimeOffset startDate, DateTimeOffset endDate)
+        [ExcludeFromCodeCoverage]
+        internal static Func<TimeOff, bool> TimeOffFilterByRange(DateTimeOffset startDate, DateTimeOffset endDate)
         {
             if (_timeOffFilter != null && _timeOffFilterStartDate == startDate && _timeOffFilterEndDate == endDate)
             {

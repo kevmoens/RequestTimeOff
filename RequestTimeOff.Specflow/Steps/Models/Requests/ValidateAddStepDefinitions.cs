@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using Xunit;
 
-namespace RequestTimeOff.Specflow.Steps
+namespace RequestTimeOff.Specflow.Steps.Models.Requests
 {
     [Binding]
-    public class RequestAddValidateStepDefinitions
+    public class ValidateAddStepDefinitions
     {
         ValidateAdd _validateAdd;
         readonly ISystemDateTime _systemDateTime = Substitute.For<ISystemDateTime>();
@@ -26,7 +26,7 @@ namespace RequestTimeOff.Specflow.Steps
             _systemDateTime.Now().Returns(new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero));
 
             HolidayQueryForNonHolidays();
-            
+
             HolidayQueryForNewYearsHoliday();
         }
 
