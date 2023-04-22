@@ -1,6 +1,5 @@
 using FluentAssertions;
 using RequestTimeOff.Models;
-using System;
 using TechTalk.SpecFlow;
 
 namespace RequestTimeOff.Specflow.Steps.Models.Requests

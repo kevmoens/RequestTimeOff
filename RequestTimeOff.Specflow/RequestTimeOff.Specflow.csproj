@@ -1,22 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>disable</Nullable>
-	  <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Drivers\**" />
+    <Compile Remove="Features\Converters\**" />
     <Compile Remove="Hooks\**" />
+    <Compile Remove="Steps\Converters\**" />
     <EmbeddedResource Remove="Drivers\**" />
+    <EmbeddedResource Remove="Features\Converters\**" />
     <EmbeddedResource Remove="Hooks\**" />
+    <EmbeddedResource Remove="Steps\Converters\**" />
     <None Remove="Drivers\**" />
+    <None Remove="Features\Converters\**" />
     <None Remove="Hooks\**" />
+    <None Remove="Steps\Converters\**" />
     <SpecFlowFeatureFiles Remove="Drivers\**" />
+    <SpecFlowFeatureFiles Remove="Features\Converters\**" />
     <SpecFlowFeatureFiles Remove="Hooks\**" />
+    <SpecFlowFeatureFiles Remove="Steps\Converters\**" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Drivers\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\Converters\**" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Hooks\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Steps\Converters\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RequestTimeOff\RequestTimeOff.csproj" />
+    <Folder Include="Features\Models\HomePages\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Models\HomePages\" />
+    <ProjectReference Include="..\RequestTimeOff.Core\RequestTimeOff.Core.csproj" />
   </ItemGroup>
 
 </Project>

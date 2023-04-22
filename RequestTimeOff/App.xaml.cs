@@ -6,20 +6,15 @@ using NLog.Extensions.Logging;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.HomePages;
+using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.Models.Requests;
 using RequestTimeOff.Models.Sessions;
 using RequestTimeOff.MVVM;
 using RequestTimeOff.ViewModels;
 using RequestTimeOff.Views;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Navigation;
 
 [assembly: InternalsVisibleToAttribute("RequestTimeOff.Specflow")]
 namespace RequestTimeOff
@@ -94,6 +89,8 @@ namespace RequestTimeOff
             services.AddDbContext<RequestTimeOffContext>(options => options.UseSqlite("TimeOff.sqlite"));
             services.AddSingleton<Session>();
             services.AddSingleton<INavigationService, WPFNavigationService>();
+            services.AddTransient<IMessageBox, WPFMessageBox>();
+            services.AddTransient<IDialogHost, WPFDialogHost>();
 
             services.AddTransient<ISessionLoad, SessionLoad>();
             services.AddSingleton<ISystemDateTime, SystemDateTime>();

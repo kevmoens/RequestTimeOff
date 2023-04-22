@@ -1,16 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Neleus.DependencyInjection.Extensions;
-using RequestTimeOff.MVVM;
+﻿using Neleus.DependencyInjection.Extensions;
 using RequestTimeOff.MVVM.Events;
-using RequestTimeOff.Views;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Interop;
 using System.Windows.Navigation;
 
 namespace RequestTimeOff.MVVM
@@ -57,7 +49,7 @@ namespace RequestTimeOff.MVVM
         {
             ViewNavigation viewNav = new ViewNavigation();
             var view = _pageFactory.GetRequiredByName(pageKey);
-            viewNav.Content = (FrameworkElement)view;
+            viewNav.Content = view;
             ViewNavigationPubSub.Instance.Publish(viewNav);
             if (((FrameworkElement)view).DataContext is INavigationAware viewModel)
             {

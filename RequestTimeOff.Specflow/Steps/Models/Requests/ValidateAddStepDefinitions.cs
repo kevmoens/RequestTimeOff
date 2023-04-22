@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NSubstitute;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
@@ -7,7 +6,6 @@ using RequestTimeOff.Models.Requests;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
-using Xunit;
 
 namespace RequestTimeOff.Specflow.Steps.Models.Requests
 {

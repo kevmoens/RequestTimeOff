@@ -8,9 +8,9 @@
     xmlns:local="clr-namespace:RequestTimeOff.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="_this"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    x:Name="_this"
     mc:Ignorable="d">
     <GroupBox Margin="16" Header="Add User">
         <ScrollViewer CanContentScroll="False">

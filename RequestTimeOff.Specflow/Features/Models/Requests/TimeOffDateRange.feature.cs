@@ -104,12 +104,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table5.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             "2023/01/03"});
 #line 8
- testRunner.Then("The following records are created", ((string)(null)), table5, "Then ");
+ testRunner.Then("The following records are created", ((string)(null)), table1, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -139,16 +139,16 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table6.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "2023/01/03"});
-                table6.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "2023/01/04"});
-                table6.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "2023/01/05"});
 #line 15
- testRunner.Then("The following records are created", ((string)(null)), table6, "Then ");
+ testRunner.Then("The following records are created", ((string)(null)), table2, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -178,20 +178,20 @@ this.ScenarioInitialize(scenarioInfo);
 #line 23
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2023/01/03"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2023/01/04"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2023/01/05"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2023/01/06"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "2023/01/09"});
 #line 24
- testRunner.Then("The following records are created", ((string)(null)), table7, "Then ");
+ testRunner.Then("The following records are created", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -218,30 +218,30 @@ this.ScenarioInitialize(scenarioInfo);
 #line 33
  testRunner.Given("A user wants to request 5 day(s) off on \"2023/07/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table8.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "2023/07/04"});
 #line 34
- testRunner.And("The following holidays exist", ((string)(null)), table8, "And ");
+ testRunner.And("The following holidays exist", ((string)(null)), table4, "And ");
 #line hidden
 #line 37
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2023/07/03"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2023/07/05"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2023/07/06"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2023/07/07"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2023/07/10"});
 #line 38
- testRunner.Then("The following records are created", ((string)(null)), table9, "Then ");
+ testRunner.Then("The following records are created", ((string)(null)), table5, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -268,26 +268,26 @@ this.ScenarioInitialize(scenarioInfo);
 #line 49
  testRunner.Given("A user wants to request 2 day(s) off on \"2023/11/22\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table10.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "2023/11/23"});
-                table10.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "2023/11/24"});
 #line 50
- testRunner.And("The following holidays exist", ((string)(null)), table10, "And ");
+ testRunner.And("The following holidays exist", ((string)(null)), table6, "And ");
 #line hidden
 #line 54
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
-                table11.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2023/11/22"});
-                table11.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2023/11/27"});
 #line 55
- testRunner.Then("The following records are created", ((string)(null)), table11, "Then ");
+ testRunner.Then("The following records are created", ((string)(null)), table7, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

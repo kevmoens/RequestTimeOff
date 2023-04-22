@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="CircularGauge" Version="1.0.0.0" >
+	<PackageReference Include="CircularGauge" Version="1.0.0.0">
 		<NoWarn>NU1701</NoWarn>
 	</PackageReference>
     <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
@@ -36,6 +36,10 @@
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="NLog" Version="5.1.3" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RequestTimeOff.Core\RequestTimeOff.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.33423.255
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTimeOff", "RequestTimeOff\RequestTimeOff.csproj", "{E3CB60CA-FD2D-4A1D-9621-3ED09CE5688A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTimeOff", "RequestTimeOff\RequestTimeOff.csproj", "{E3CB60CA-FD2D-4A1D-9621-3ED09CE5688A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTimeOff.Specflow", "RequestTimeOff.Specflow\RequestTimeOff.Specflow.csproj", "{186B3137-217F-40C1-8018-9E043CE45D0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTimeOff.Specflow", "RequestTimeOff.Specflow\RequestTimeOff.Specflow.csproj", "{186B3137-217F-40C1-8018-9E043CE45D0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTimeOff.Core", "RequestTimeOff.Core\RequestTimeOff.Core.csproj", "{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{186B3137-217F-40C1-8018-9E043CE45D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{186B3137-217F-40C1-8018-9E043CE45D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{186B3137-217F-40C1-8018-9E043CE45D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

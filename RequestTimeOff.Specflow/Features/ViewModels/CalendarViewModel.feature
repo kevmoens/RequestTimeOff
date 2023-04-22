@@ -1,0 +1,12 @@
+﻿Feature: CalendarViewModel
+
+When loading the calendar view model 
+Then the calendar collections will be populated with the correct data in the correct order
+
+
+Scenario: Load the calendar view model
+	Given The current date is 1st July 2023
+	And the holidays are loaded
+	And the time offs are loaded
+	When Loading the month
+	Then Correct data will be loaded into the calendar collections

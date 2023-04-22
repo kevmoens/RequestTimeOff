@@ -1,22 +1,27 @@
 {
   "stryker-config": {
     "solution": "RequestTimeOff.sln",
-    "project": "RequestTimeOff/RequestTimeOff.csproj",
+    "project": "RequestTimeOff.Core/RequestTimeOff.Core.csproj",
     "ignore-methods": [
         "Log*",
-	  "OnPropertyChanged"
+	  "OnPropertyChanged",
+        "TimeOffQuery",
+        "HolidayQuery",
+        "UserQuery",
+        "DepartmentQuery"
     ],
     "mutate": [
       "!**/RequestTimeOff/App.xaml.cs",
-      "!**/RequestTimeOff/Extensions/**",
       "!**/RequestTimeOff/Helpers/**",
-      "!**/RequestTimeOff/Migrations/**",
-	  "!**/RequestTimeOff/Models/Date/**",
-	  "!**/RequestTimeOff/Models/Sessions/**",
-	  "!**/RequestTimeOff/Models/RequestTimeOffContext.cs",
       "!**/RequestTimeOff/MVVM/**",
-	  "!**/RequestTimeOff/UserControls/**", 
+	"!**/RequestTimeOff/UserControls/**", 
       "!**/RequestTimeOff/Views/**", 
+      "!**/RequestTimeOff.Core/Extensions/**",
+	"!**/RequestTimeOff.Core/Models/Date/**",
+	"!**/RequestTimeOff.Core/Models/Sessions/**",
+	"!**/RequestTimeOff.Core/Models/RequestTimeOffContext.cs",
+      "!**/RequestTimeOff.Core/Migrations/**",
+      "!**/RequestTimeOff.Core/MVVM/**",
       "!**/RequestTimeOff.Specflow/**"
     ]
   }
