@@ -31,46 +31,6 @@ namespace RequestTimeOff.ViewModels
 
         }
 
-        internal void LoadMonth()
-        {
-            DateTime currDate = new DateTime(Year, Month, 1);
-            MonthName = currDate.ToString("MMMM");
-            Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(h => h.Date.Year == Year && h.Date.Month == Month));
-            bool weekDayStarted = false;
-            for (int i = 0; i <= 36; i++)
-            {
-                if (currDate.DayOfWeek == GetDayOfWeek(i))
-                {
-                    weekDayStarted = true;
-                }
-
-                if (weekDayStarted == false)
-                {
-                    // Stryker disable all : Properties used for binding in the view 1
-                    SetDate(i, null);
-                    SetTimeOffs(i, new List<TimeOff>());
-                    // Stryker restore all
-                    continue;
-                }
-
-                if (currDate.Month != Month)
-                {
-                    // Stryker disable all : Properties used for binding in the view 1
-                    SetDate(i, null);
-                    SetTimeOffs(i, new List<TimeOff>());
-                    // Stryker restore all
-                    continue;
-                }
-
-                // Stryker disable all : Properties used for binding in the view 1
-                SetDate(i, currDate.Day);
-                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate));
-                // Stryker restore all
-
-                currDate = currDate.AddDays(1);
-            }
-        }
-
 
         public ICommand LoadedCommand { get; set; }
         public ICommand PreviousCommand { get; set; }
@@ -256,5 +216,46 @@ namespace RequestTimeOff.ViewModels
             }
             return DayOfWeek.Sunday;
         }
+
+        internal void LoadMonth()
+        {
+            DateTime currDate = new DateTime(Year, Month, 1);
+            MonthName = currDate.ToString("MMMM");
+            Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(h => h.Date.Year == Year && h.Date.Month == Month));
+            bool weekDayStarted = false;
+            for (int i = 0; i <= 36; i++)
+            {
+                if (currDate.DayOfWeek == GetDayOfWeek(i))
+                {
+                    weekDayStarted = true;
+                }
+
+                if (weekDayStarted == false)
+                {
+                    // Stryker disable all : Properties used for binding in the view 1
+                    SetDate(i, null);
+                    SetTimeOffs(i, new List<TimeOff>());
+                    // Stryker restore all
+                    continue;
+                }
+
+                if (currDate.Month != Month)
+                {
+                    // Stryker disable all : Properties used for binding in the view 1
+                    SetDate(i, null);
+                    SetTimeOffs(i, new List<TimeOff>());
+                    // Stryker restore all
+                    continue;
+                }
+
+                // Stryker disable all : Properties used for binding in the view 1
+                SetDate(i, currDate.Day);
+                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate));
+                // Stryker restore all
+
+                currDate = currDate.AddDays(1);
+            }
+        }
+
     }
 }

@@ -102,7 +102,7 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 DisplayDate="{Binding Dates[2]}"
-                 TimeOffs="{Binding TimeOffs[2]}" />
+                TimeOffs="{Binding TimeOffs[2]}" />
             <uc:CalendarCell
                 Grid.Row="2"
                 Grid.Column="3"
