@@ -20,7 +20,7 @@
     <UserControl.Resources>
         <converters:CurrentYearVisibilityConverter x:Key="CurrentYearVisibilityConverter" />
         <converters:RTEColorConverter x:Key="RTEColorConverter" />
-        <converters:HomePageCircularGaugeScaleSweepAngleConverter x:Key="HomePageCircularGaugeScaleSweepAngleConverter"/>
+        <converters:HomePageCircularGaugeScaleSweepAngleConverter x:Key="HomePageCircularGaugeScaleSweepAngleConverter" />
 
         <gauge:ImageOffsetConverter x:Key="imageOffsetConverter" />
         <gauge:RadiusToDiameterConverter x:Key="radiusToDiameterConverter" />
@@ -253,7 +253,7 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 BorderThickness="2">
-                
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -290,12 +290,11 @@
                             RangeIndicatorThickness="15"
                             ScaleLabelForeground="Transparent"
                             ScaleRadius="0"
-                            ScaleStartAngle="270"
-                            >
+                            ScaleStartAngle="270">
                             <gauge:CircularGaugeControl.ScaleSweepAngle>
                                 <MultiBinding Converter="{StaticResource HomePageCircularGaugeScaleSweepAngleConverter}">
-                                    <Binding Path="Session.User.VacHrs"/>
-                                    <Binding Path="UserYearInfo.VacRemain"/>
+                                    <Binding Path="Session.User.VacHrs" />
+                                    <Binding Path="UserYearInfo.VacRemain" />
                                 </MultiBinding>
                             </gauge:CircularGaugeControl.ScaleSweepAngle>
                         </gauge:CircularGaugeControl>
@@ -324,12 +323,11 @@
                             RangeIndicatorThickness="30"
                             ScaleLabelForeground="Transparent"
                             ScaleRadius="0"
-                            ScaleStartAngle="270"
-                            >
+                            ScaleStartAngle="270">
                             <gauge:CircularGaugeControl.ScaleSweepAngle>
                                 <MultiBinding Converter="{StaticResource HomePageCircularGaugeScaleSweepAngleConverter}">
-                                    <Binding Path="Session.User.SickHrs"/>
-                                    <Binding Path="UserYearInfo.SickRemain"/>
+                                    <Binding Path="Session.User.SickHrs" />
+                                    <Binding Path="UserYearInfo.SickRemain" />
                                 </MultiBinding>
                             </gauge:CircularGaugeControl.ScaleSweepAngle>
                         </gauge:CircularGaugeControl>

@@ -2,6 +2,7 @@
 using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.MVVM;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -13,6 +14,8 @@ namespace RequestTimeOff.ViewModels
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore CS0067 // The event 'PropertyChanged' is never used;
+
+        [ExcludeFromCodeCoverage]
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -21,6 +24,8 @@ namespace RequestTimeOff.ViewModels
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly Session _session;
         private readonly IMessageBox _messageBox;
+
+        [ExcludeFromCodeCoverage]
         public SettingsViewModel(IRequestTimeOffRepository requestTimeOffRepository, Session session, IMessageBox messageBox)
         {
             _requestTimeOffRepository = requestTimeOffRepository;

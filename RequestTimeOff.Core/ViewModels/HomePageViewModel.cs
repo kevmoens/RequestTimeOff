@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Neleus.DependencyInjection.Extensions;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.HomePages;
@@ -24,17 +25,21 @@ namespace RequestTimeOff.ViewModels
         private readonly ISystemDateTime _systemDateTime;
         private IUserYearInfo _userYearInfo;
         private readonly ILogger<HomePageViewModel> _logger;
+        private IServiceByNameFactory<IPage> _pageFactory;
         public HomePageViewModel(INavigationService navigationService,
                                  Session session,
                                  ISystemDateTime systemDateTime,
                                  IUserYearInfo userYearInfo,
-                                 ILogger<HomePageViewModel> logger)
+                                 ILogger<HomePageViewModel> logger,
+                                 IServiceByNameFactory<IPage> pageFactory
+            )
         {
             _navigationService = navigationService;
             _session = session;
             _systemDateTime = systemDateTime;
             _userYearInfo = userYearInfo;
             _logger = logger;
+            _pageFactory = pageFactory;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangeYearCommand = new DelegateCommand<int>(OnChangeYear);
             NewRequestOffCommand = new DelegateCommand(OnNewRequest);
@@ -43,8 +48,12 @@ namespace RequestTimeOff.ViewModels
         public ICommand ChangeYearCommand { get; set; }
         public ICommand NewRequestOffCommand { get; set; }
         public Session Session { get { return _session; } }
-        //private readonly UserCalendar _userCalendar;
-        //public UserCalendar UserCalendar { get { return _userCalendar; } }
+
+        private IPage _userCalendar;
+        public IPage UserCalendar {
+            get { return _userCalendar; }
+            set { _userCalendar = value; OnPropertyChanged(); }
+        }
 
         private int _prevYear;
 
@@ -84,6 +93,7 @@ namespace RequestTimeOff.ViewModels
             CurrYear = _systemDateTime.Now().Year;
             PrevYear = CurrYear - 1;
             NextYear = CurrYear + 1;
+            UserCalendar = _pageFactory.GetByName("UserCalendar");
             OnChangeYear(CurrYear);
         }
         private async void OnChangeYear(int year)

@@ -81,6 +81,7 @@ namespace RequestTimeOff
                 .Add<NewRequest>("NewRequest")
                 .Add<PendingRequests>("PendingRequests")
                 .Add<Settings>("Settings")
+                .Add<UserCalendar>("UserCalendar")
                 .Add<UserEdit>("UserEdit")
                 .Add<Users>("Users")
                 .Build();

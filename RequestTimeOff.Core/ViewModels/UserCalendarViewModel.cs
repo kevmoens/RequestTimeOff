@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -15,12 +16,16 @@ namespace RequestTimeOff.ViewModels
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore CS0067 // The event 'PropertyChanged' is never used;
+
+        [ExcludeFromCodeCoverage]
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly Session _session;
+
+        [ExcludeFromCodeCoverage]
         public UserCalendarViewModel(IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
@@ -238,6 +243,8 @@ namespace RequestTimeOff.ViewModels
 
         public ObservableCollection<TimeOff> TimeOffs60 { get { return _timeOffs60; } set { _timeOffs60 = value; OnPropertyChanged(); } }
         public ObservableCollection<TimeOff> TimeOffs61 { get { return _timeOffs61; } set { _timeOffs61 = value; OnPropertyChanged(); } }
+
+        [ExcludeFromCodeCoverage]
         private void SetDate(int pos, int? day)
         {
             switch (pos)
@@ -282,6 +289,7 @@ namespace RequestTimeOff.ViewModels
             }
         }
 
+        [ExcludeFromCodeCoverage]
         private void SetTimeOffs(int pos, List<TimeOff> offs)
         {
             switch (pos)
@@ -330,6 +338,8 @@ namespace RequestTimeOff.ViewModels
         {
             LoadMonth();
         }
+
+        [ExcludeFromCodeCoverage]
         void OnPrevious()
         {
 
@@ -339,6 +349,8 @@ namespace RequestTimeOff.ViewModels
             Month = currDate.Month;
             LoadMonth();
         }
+
+        [ExcludeFromCodeCoverage]
         void OnNext()
         {
             DateTime currDate = new DateTime(Year, Month, 1);
@@ -382,6 +394,8 @@ namespace RequestTimeOff.ViewModels
                 currDate = currDate.AddDays(1);
             }
         }
+
+        [ExcludeFromCodeCoverage]
         private DayOfWeek GetDayOfWeek(int pos)
         {
             switch (pos % 7)

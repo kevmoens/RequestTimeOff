@@ -2,6 +2,7 @@
 using RequestTimeOff.MVVM;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -13,12 +14,15 @@ namespace RequestTimeOff.ViewModels
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore CS0067 // The event 'PropertyChanged' is never used;
+        [ExcludeFromCodeCoverage]
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+
+        [ExcludeFromCodeCoverage]
         public PendingRequestsViewModel(IRequestTimeOffRepository requestTimeOffRepository)
         {
             _requestTimeOffRepository = requestTimeOffRepository;

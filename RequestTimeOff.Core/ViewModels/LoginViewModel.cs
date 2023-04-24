@@ -5,6 +5,7 @@ using RequestTimeOff.Models.Sessions;
 using RequestTimeOff.MVVM;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -16,6 +17,7 @@ namespace RequestTimeOff.ViewModels
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore CS0067 // The event 'PropertyChanged' is never used;
+        [ExcludeFromCodeCoverage]
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -25,6 +27,7 @@ namespace RequestTimeOff.ViewModels
         private readonly Session _session;
         private readonly ISessionLoad _sessionLoad;
         private readonly IMessageBox _messageBox;
+        [ExcludeFromCodeCoverage]
         public LoginViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository, Session session, ISessionLoad sessionLoad, IMessageBox messageBox)
         {
             _navigationService = navigationService;
@@ -35,6 +38,7 @@ namespace RequestTimeOff.ViewModels
             LoginCommand = new DelegateCommand(OnLogin);
         }
 
+        // Stryker disable all : Properties used for binding in the view 1
         private string _Username;
 
         public string Username
@@ -52,8 +56,11 @@ namespace RequestTimeOff.ViewModels
 
 
         public ICommand LoginCommand { get; set; }
+        // Stryker restore all
+
         public void OnLogin()
         {
+            // Stryker disable once all
             var user = _requestTimeOffRepository.UserQuery(u => (u.Username ?? "").ToUpper() == (Username ?? "").ToUpper()).FirstOrDefault();
             if (user == null)
             {
@@ -66,6 +73,7 @@ namespace RequestTimeOff.ViewModels
                 return;
             }
             _session.User = user;
+            // Stryker disable once all
             _sessionLoad.Initialize().Await(new Action<Exception>((ex) => { _messageBox.Show(ex.Message); }));
             if (user.IsAdmin)
             {

@@ -20,10 +20,12 @@ namespace RequestTimeOff.ViewModels
         }
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly IDialogHost _dialogHost;
-        public DepartmentsViewModel(IRequestTimeOffRepository requestTimeOffRepository, IDialogHost dialogHost)
+        private readonly IMessageBox _messageBox;
+        public DepartmentsViewModel(IRequestTimeOffRepository requestTimeOffRepository, IDialogHost dialogHost, IMessageBox messageBox)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
             _dialogHost = dialogHost;
+            _messageBox = messageBox;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangedCommand = new DelegateCommand<Department>(OnChanged);
             AddCommand = new DelegateCommand(OnAdd);
@@ -84,6 +86,11 @@ namespace RequestTimeOff.ViewModels
         }
         private void OnAdded()
         {
+            if (_requestTimeOffRepository.DepartmentQuery(d => d.Dept.ToUpper() == NewDept.ToUpper()).Any())
+            {
+                _messageBox.Show($"Department [{NewDept}] already exists.");
+                return;
+            }
             var newDepartment = new Department() { Dept = NewDept };
             _requestTimeOffRepository.AddDepartment(newDepartment);
             Departments.Add(newDepartment);

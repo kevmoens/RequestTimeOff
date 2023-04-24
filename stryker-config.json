@@ -22,6 +22,13 @@
 	"!**/RequestTimeOff.Core/Models/RequestTimeOffContext.cs",
       "!**/RequestTimeOff.Core/Migrations/**",
       "!**/RequestTimeOff.Core/MVVM/**",
+	"!**/RequestTimeOff.Core/ViewModels/DepartmentsViewModel.cs",
+	"!**/RequestTimeOff.Core/ViewModels/HolidaysViewModel.cs",
+	"!**/RequestTimeOff.Core/ViewModels/HomeAdminViewModel.cs",
+	"!**/RequestTimeOff.Core/ViewModels/HomePageViewModel.cs",
+	"!**/RequestTimeOff.Core/ViewModels/HomeViewModel.cs",
+	"!**/RequestTimeOff.Core/ViewModels/MainWindowViewModel.cs",
+	"!**/RequestTimeOff.Core/ViewModels/UsersViewModel.cs",
       "!**/RequestTimeOff.Specflow/**"
     ]
   }

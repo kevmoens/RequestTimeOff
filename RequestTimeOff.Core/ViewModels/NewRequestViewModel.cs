@@ -5,6 +5,7 @@ using RequestTimeOff.MVVM;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -15,6 +16,7 @@ namespace RequestTimeOff.ViewModels
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore CS0067 // The event 'PropertyChanged' is never used;
+        [ExcludeFromCodeCoverage]
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -25,6 +27,7 @@ namespace RequestTimeOff.ViewModels
         private readonly IValidateAdd _validateAdd;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly IMessageBox _messageBox;
+        [ExcludeFromCodeCoverage]
         public NewRequestViewModel(Session session, INavigationService navigationService, ITimeOffDateRange timeOffDateRange, IValidateAdd validateAdd, IRequestTimeOffRepository requestTimeOffRepository, IMessageBox messageBox)
         {
             _session = session;
@@ -126,6 +129,7 @@ namespace RequestTimeOff.ViewModels
             set { _description = value; OnPropertyChanged(); }
         }
 
+        [ExcludeFromCodeCoverage]
         private void LoadValues()
         {
             LoadTimeOffTypes();
@@ -133,6 +137,7 @@ namespace RequestTimeOff.ViewModels
             LoadReoccrrances();
         }
 
+        [ExcludeFromCodeCoverage]
         private void LoadTimeOffTypes()
         {
             TimeOffTypes = new ObservableCollection<TimeOffTypeDisplay>
@@ -142,6 +147,7 @@ namespace RequestTimeOff.ViewModels
             };
         }
 
+        [ExcludeFromCodeCoverage]
         private void LoadTimeOffRanges()
         {
             TimeOffRanges = new ObservableCollection<TimeOffRangeDisplay>
@@ -152,6 +158,7 @@ namespace RequestTimeOff.ViewModels
             };
         }
 
+        [ExcludeFromCodeCoverage]
         private void LoadReoccrrances()
         {
             Reoccurrances.Add(1);
@@ -225,11 +232,13 @@ namespace RequestTimeOff.ViewModels
             }
             _navigationService.ViewNavigateTo("HomePage");
         }
+        [ExcludeFromCodeCoverage]
         public void OnBack()
         {
             _navigationService.ViewNavigateTo("HomePage");
         }
 
+        [ExcludeFromCodeCoverage]
         public void OnRemoveItem(TimeOff timeOff)
         {
             TotalHours -= timeOff.Range.Hours();

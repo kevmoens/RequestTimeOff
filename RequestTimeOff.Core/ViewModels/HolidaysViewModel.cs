@@ -21,10 +21,12 @@ namespace RequestTimeOff.ViewModels
         }
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly IDialogHost _dialogHost;
-        public HolidaysViewModel(IRequestTimeOffRepository requestTimeOffRepository, IDialogHost dialogHost)
+        private readonly IMessageBox _messageBox;
+        public HolidaysViewModel(IRequestTimeOffRepository requestTimeOffRepository, IDialogHost dialogHost, IMessageBox messageBox)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
             _dialogHost = dialogHost;
+            _messageBox = messageBox;
             LoadedCommand = new DelegateCommand(OnLoaded);
             ChangedCommand = new DelegateCommand<Holiday>(OnChanged);
             AddCommand = new DelegateCommand(OnAdd);
@@ -85,6 +87,11 @@ namespace RequestTimeOff.ViewModels
         }
         private void OnAdded()
         {
+            if (_requestTimeOffRepository.HolidayQuery(h => h.Date == NewHoliday).Any())
+            {
+                _messageBox.Show($"Holiday [{NewHoliday}] already exists");
+                return;
+            }
             var newHoliday = new Holiday() { Date = NewHoliday };
             _requestTimeOffRepository.AddHoliday(newHoliday);
             Holidays.Add(newHoliday);

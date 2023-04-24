@@ -30,15 +30,15 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock
-                            Margin="5,5"
-                            VerticalAlignment="Center"
-                            Text="{Binding Dept}" />
+                                Margin="5,5"
+                                VerticalAlignment="Center"
+                                Text="{Binding Dept}" />
                             <TextBox
-                            Grid.Column="1"
-                            Margin="3"
-                            materialDesign:HintAssist.Hint="Description"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}">
+                                Grid.Column="1"
+                                Margin="3"
+                                materialDesign:HintAssist.Hint="Description"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}">
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="TextChanged">
                                         <b:InvokeCommandAction Command="{Binding ElementName=_this, Path=DataContext.ChangedCommand}" CommandParameter="{Binding}" />
@@ -46,15 +46,15 @@
                                 </b:Interaction.Triggers>
                             </TextBox>
                             <Button
-                            Grid.Column="2"
-                            Width="24"
-                            Height="24"
-                            Margin="3"
-                            HorizontalAlignment="Right"
-                            Command="{Binding DataContext.DeleteCommand, ElementName=_this}"
-                            CommandParameter="{Binding}"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            ToolTip="Delete">
+                                Grid.Column="2"
+                                Width="24"
+                                Height="24"
+                                Margin="3"
+                                HorizontalAlignment="Right"
+                                Command="{Binding DataContext.DeleteCommand, ElementName=_this}"
+                                CommandParameter="{Binding}"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                ToolTip="Delete">
                                 <materialDesign:PackIcon Kind="Delete" />
                             </Button>
                         </Grid>
@@ -62,38 +62,38 @@
                 </ListView.ItemTemplate>
             </ListView>
             <materialDesign:DialogHost
-            CloseOnClickAway="True"
-            DialogTheme="Inherit"
-            IsOpen="{Binding IsAdding}"
-            OverlayBackground="{DynamicResource PrimaryHueDarkBrush}"
-            Placement="Mouse">
+                CloseOnClickAway="True"
+                DialogTheme="Inherit"
+                IsOpen="{Binding IsAdding}"
+                OverlayBackground="{DynamicResource PrimaryHueDarkBrush}"
+                Placement="Mouse">
                 <materialDesign:DialogHost.DialogContent>
                     <StackPanel Margin="16">
                         <TextBlock Text="Add a new department." />
 
                         <TextBox
-                        Margin="0,8,0,0"
-                        HorizontalAlignment="Stretch"
-                        Text="{Binding NewDept}" />
+                            Margin="0,8,0,0"
+                            HorizontalAlignment="Stretch"
+                            Text="{Binding NewDept}" />
 
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <Button
-                            Margin="0,8,8,0"
-                            Command="{Binding AddedCommand}"
-                            Content="ACCEPT"
-                            IsDefault="True"
-                            Style="{StaticResource MaterialDesignFlatButton}">
+                                Margin="0,8,8,0"
+                                Command="{Binding AddedCommand}"
+                                Content="ACCEPT"
+                                IsDefault="True"
+                                Style="{StaticResource MaterialDesignFlatButton}">
                                 <Button.CommandParameter>
                                     <system:Boolean>True</system:Boolean>
                                 </Button.CommandParameter>
                             </Button>
 
                             <Button
-                            Margin="0,8,8,0"
-                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                            Content="CANCEL"
-                            IsCancel="True"
-                            Style="{StaticResource MaterialDesignFlatButton}">
+                                Margin="0,8,8,0"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Content="CANCEL"
+                                IsCancel="True"
+                                Style="{StaticResource MaterialDesignFlatButton}">
                                 <Button.CommandParameter>
                                     <system:Boolean>False</system:Boolean>
                                 </Button.CommandParameter>
@@ -104,16 +104,16 @@
                 <Grid>
 
                     <Button
-                    Margin="16"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Command="{Binding AddCommand}"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                        Margin="16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding AddCommand}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        ToolTip="MaterialDesignFloatingActionMiniDarkButton">
                         <materialDesign:PackIcon
-                        Width="30"
-                        Height="30"
-                        Kind="Plus" />
+                            Width="30"
+                            Height="30"
+                            Kind="Plus" />
                     </Button>
                 </Grid>
             </materialDesign:DialogHost>
