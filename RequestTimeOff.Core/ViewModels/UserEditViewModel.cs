@@ -1,4 +1,5 @@
 ﻿using RequestTimeOff.Models;
+using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.MVVM;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,11 +23,13 @@ namespace RequestTimeOff.ViewModels
         }
         private readonly INavigationService _navigationService;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly IMessageBox _messageBox;   
         [ExcludeFromCodeCoverage]
-        public UserEditViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository)
+        public UserEditViewModel(INavigationService navigationService, IRequestTimeOffRepository requestTimeOffRepository, IMessageBox messageBox)
         {
             _navigationService = navigationService;
             _requestTimeOffRepository = requestTimeOffRepository;
+            _messageBox = messageBox;   
             SaveCommand = new DelegateCommand(OnSave);
             BackCommand = new DelegateCommand(OnBack);
         }
@@ -40,8 +43,10 @@ namespace RequestTimeOff.ViewModels
             set { _User = value; OnPropertyChanged(); }
         }
 
+        // Stryker disable all : Properties used for binding in the view 1
         private ObservableCollection<Department> _departments;
         public ObservableCollection<Department> Departments { get { return _departments; } set { _departments = value; OnPropertyChanged(); } }
+        // Stryker restore all
         private bool _isNew;
         public bool IsNew { get { return _isNew; } set { _isNew = value; OnPropertyChanged(); } }
         private string _password;
@@ -77,11 +82,15 @@ namespace RequestTimeOff.ViewModels
             PasswordVerify = string.Empty;
             User = new User();
         }
-        private void OnSave()
+        internal void OnSave()
         {
-            //TODO Validation 
+            if (Password != PasswordVerify)
+            {
+                _messageBox.Show("Passwords do not match");
+                return;
+            }
 
-            if (_isNew)
+            if (IsNew)
             {
                 User.Password = Password;
                 _requestTimeOffRepository.AddUser(User);
