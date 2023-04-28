@@ -6,29 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Drivers\**" />
-    <Compile Remove="Features\Converters\**" />
-    <Compile Remove="Hooks\**" />
-    <Compile Remove="Steps\Converters\**" />
-    <EmbeddedResource Remove="Drivers\**" />
-    <EmbeddedResource Remove="Features\Converters\**" />
-    <EmbeddedResource Remove="Hooks\**" />
-    <EmbeddedResource Remove="Steps\Converters\**" />
-    <None Remove="Drivers\**" />
-    <None Remove="Features\Converters\**" />
-    <None Remove="Hooks\**" />
-    <None Remove="Steps\Converters\**" />
-    <SpecFlowFeatureFiles Remove="Drivers\**" />
-    <SpecFlowFeatureFiles Remove="Features\Converters\**" />
-    <SpecFlowFeatureFiles Remove="Hooks\**" />
-    <SpecFlowFeatureFiles Remove="Steps\Converters\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Drivers\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\Converters\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Hooks\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Steps\Converters\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="NSubstitute" Version="5.0.0" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
@@ -36,10 +13,6 @@
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Include="FluentAssertions" Version="6.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Models\HomePages\" />
   </ItemGroup>
 
   <ItemGroup>
