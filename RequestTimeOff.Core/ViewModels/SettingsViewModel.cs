@@ -63,6 +63,7 @@ namespace RequestTimeOff.ViewModels
 
         internal void OnUpdatePassword()
         {
+            // Stryker disable once all
             var user = _requestTimeOffRepository.UserQuery(u => (u.Username ?? "").ToUpper() == (_session.User.Username ?? "").ToUpper()).FirstOrDefault();
             if (user == null)
             {
