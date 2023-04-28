@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace RequestTimeOff.Specflow.Steps.Models.ViewModels
+namespace RequestTimeOff.Specflow.Steps.ViewModels
 {
     [Binding]
     public class CalendarViewModelStepDefinitions
@@ -40,7 +40,7 @@ namespace RequestTimeOff.Specflow.Steps.Models.ViewModels
         [Given(@"the time offs are loaded")]
         public void GivenTheTimeOffsAreLoaded()
         {
-            _requestTimeOffRepository.TimeOffQuery(t => t.Date == new DateTime(2023, 7, 7)).ReturnsForAnyArgs(callInfo => 
+            _requestTimeOffRepository.TimeOffQuery(t => t.Date == new DateTime(2023, 7, 7)).ReturnsForAnyArgs(callInfo =>
                 new List<TimeOff>()
                 {
                     new TimeOff { Date = new DateTimeOffset(2023,7,7,0,0,0, TimeSpan.Zero), Type = TimeOffType.Sick },
@@ -187,7 +187,7 @@ namespace RequestTimeOff.Specflow.Steps.Models.ViewModels
         {
             var timeoffs = _requestTimeOffRepository.TimeOffQuery(t => t.Date == new DateTimeOffset(DateTime.Today));
 
-            return new ObservableCollection<TimeOff>(timeoffs.Where(t=> t.Date == new DateTimeOffset(2023, 7, day,0,0,0,TimeSpan.Zero)));
+            return new ObservableCollection<TimeOff>(timeoffs.Where(t => t.Date == new DateTimeOffset(2023, 7, day, 0, 0, 0, TimeSpan.Zero)));
         }
     }
 }

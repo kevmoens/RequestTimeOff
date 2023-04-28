@@ -9,7 +9,7 @@ using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace RequestTimeOff.Specflow.Steps.Models.ViewModels
+namespace RequestTimeOff.Specflow.Steps.ViewModels
 {
     [Binding]
     public class LoginViewModelStepDefinitions
@@ -30,7 +30,7 @@ namespace RequestTimeOff.Specflow.Steps.Models.ViewModels
             _messageBox.When(x => x.Show(Arg.Any<string>()))
                 .Do(x => _message = x.Arg<string>());
             _sessionLoad.Initialize().ReturnsForAnyArgs(Task.CompletedTask);
-            _loginViewModel = new LoginViewModel(_navigationService, _requestTimeOffRepository, _session, _sessionLoad, _messageBox);   
+            _loginViewModel = new LoginViewModel(_navigationService, _requestTimeOffRepository, _session, _sessionLoad, _messageBox);
         }
         [Given(@"A login witn an invalid Username")]
         public void GivenALoginWitnAnInvalidUsername()
