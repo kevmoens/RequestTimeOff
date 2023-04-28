@@ -40,7 +40,7 @@ namespace RequestTimeOff.Specflow.Features.ViewModels
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ViewModels", "UserEditViewModel", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ViewModels", "UserEditViewModel", "Allow editing of user profile information", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,17 +80,20 @@ namespace RequestTimeOff.Specflow.Features.ViewModels
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="[scenario name]")]
+        [Xunit.SkippableFactAttribute(DisplayName="When on the User Edit page make sure the password and verify password match befor" +
+            "e saving")]
         [Xunit.TraitAttribute("FeatureTitle", "UserEditViewModel")]
-        [Xunit.TraitAttribute("Description", "[scenario name]")]
+        [Xunit.TraitAttribute("Description", "When on the User Edit page make sure the password and verify password match befor" +
+            "e saving")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        public void ScenarioName()
+        public void WhenOnTheUserEditPageMakeSureThePasswordAndVerifyPasswordMatchBeforeSaving()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[scenario name]", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When on the User Edit page make sure the password and verify password match befor" +
+                    "e saving", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,14 +103,95 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given("The user is on the User Edit page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
- testRunner.Given("[context]", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("entering a new password of \"test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.When("[action]", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("entering a confirm password of \"test1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.Then("[outcome]", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("clicking on the save button of the User Edit page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("the the User Edit page should display an error message of \"Passwords do not match" +
+                        "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="When adding a new user on the User Edit page make sure the Add User method is ran" +
+            "")]
+        [Xunit.TraitAttribute("FeatureTitle", "UserEditViewModel")]
+        [Xunit.TraitAttribute("Description", "When adding a new user on the User Edit page make sure the Add User method is ran" +
+            "")]
+        public void WhenAddingANewUserOnTheUserEditPageMakeSureTheAddUserMethodIsRan()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When adding a new user on the User Edit page make sure the Add User method is ran" +
+                    "", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 13
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 14
+ testRunner.Given("The user is on the User Edit page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 15
+ testRunner.And("the user record on the User Edit page is new", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.When("clicking on the save button of the User Edit page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 17
+ testRunner.Then("the Add User method should be ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="When editing an existing user on the User Edit page make sure the Update User met" +
+            "hod is ran")]
+        [Xunit.TraitAttribute("FeatureTitle", "UserEditViewModel")]
+        [Xunit.TraitAttribute("Description", "When editing an existing user on the User Edit page make sure the Update User met" +
+            "hod is ran")]
+        public void WhenEditingAnExistingUserOnTheUserEditPageMakeSureTheUpdateUserMethodIsRan()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When editing an existing user on the User Edit page make sure the Update User met" +
+                    "hod is ran", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+ testRunner.Given("The user is on the User Edit page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 21
+ testRunner.And("the user record on the User Edit page is an Existing user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 22
+ testRunner.When("clicking on the save button of the User Edit page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 23
+ testRunner.Then("the Update User method should be ran", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

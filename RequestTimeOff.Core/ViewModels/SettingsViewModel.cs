@@ -34,6 +34,7 @@ namespace RequestTimeOff.ViewModels
             UpdatePasswordCommand = new DelegateCommand(OnUpdatePassword);
         }
 
+        // Stryker disable all : Properties used for binding in the view 1
         public ICommand UpdatePasswordCommand { get; set; }
 
         private string _origPassword;
@@ -58,8 +59,9 @@ namespace RequestTimeOff.ViewModels
             get { return _passwordConfirm; }
             set { _passwordConfirm = value; OnPropertyChanged(); }
         }
+        // Stryker restore all
 
-        private void OnUpdatePassword()
+        internal void OnUpdatePassword()
         {
             var user = _requestTimeOffRepository.UserQuery(u => (u.Username ?? "").ToUpper() == (_session.User.Username ?? "").ToUpper()).FirstOrDefault();
             if (user == null)
