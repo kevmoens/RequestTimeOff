@@ -1,9 +1,13 @@
 ﻿Feature: PendingRequestsViewModel
 
-A short summary of the feature
+Admin can view pending requests to Approve or Deny them.
 
-@tag1
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+Scenario: Admin can approve a pending request
+Given There are pending requests
+When Admin clicks on the Approve button
+Then The request is approved
+
+Scenario: Admin can deny a pending request
+Given There are pending requests
+When Admin clicks on the Deny button
+Then The request is denied

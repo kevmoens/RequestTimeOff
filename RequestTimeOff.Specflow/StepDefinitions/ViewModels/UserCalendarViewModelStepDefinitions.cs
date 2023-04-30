@@ -8,14 +8,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace RequestTimeOff.Specflow.StepDefinitions
+namespace RequestTimeOff.Specflow.StepDefinitions.ViewModels
 {
     [Binding]
     public class UserCalendarViewModelStepDefinitions
     {
         private UserCalendarViewModel _calendarViewModel;
         private IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
-        private Session _session = new Session();  
+        private Session _session = new Session();
         public UserCalendarViewModelStepDefinitions()
         {
             var user = new User();

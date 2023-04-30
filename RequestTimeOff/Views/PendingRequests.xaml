@@ -2,11 +2,12 @@
     x:Class="RequestTimeOff.Views.PendingRequests"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RequestTimeOff.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="_this"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -15,35 +16,65 @@
             <b:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    <GroupBox Header="Pending Requests" Margin="16">
+    <GroupBox Margin="16" Header="Pending Requests">
         <Grid>
-            <ListView ItemsSource="{Binding Requests}" HorizontalContentAlignment="Stretch">
+            <ListView HorizontalContentAlignment="Stretch" ItemsSource="{Binding Requests}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Username}" Margin="2"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" Margin="2"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Type}" Margin="2"/>
-                            <TextBlock Grid.Column="3" Text="{Binding Range}" Margin="2"/>
-                            <TextBlock Grid.Row="1" Grid.ColumnSpan="5" Text="{Binding Description}" Margin="2"/>
-                            <TextBox Grid.Row="2" Grid.ColumnSpan="6" Text="{Binding Reason}" materialDesign:HintAssist.Hint="Reason"  Margin="2"/>
-                            <StackPanel Grid.Row="2" Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Content="Decline" Command="{Binding DeclineCommand}" Margin="2"/>
-                                <Button Content="Approve" Command="{Binding ApproveCommand}" Margin="2"/>
+                            <TextBlock Margin="2" Text="{Binding Username}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="2"
+                                Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
+                            <TextBlock
+                                Grid.Column="2"
+                                Margin="2"
+                                Text="{Binding Type}" />
+                            <TextBlock
+                                Grid.Column="3"
+                                Margin="2"
+                                Text="{Binding Range}" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.ColumnSpan="5"
+                                Margin="2"
+                                Text="{Binding Description}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.ColumnSpan="6"
+                                Margin="2"
+                                materialDesign:HintAssist.Hint="Reason"
+                                Text="{Binding Reason}" />
+                            <StackPanel
+                                Grid.Row="2"
+                                Grid.Column="6"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                                <Button
+                                    Margin="2"
+                                    Command="{Binding ElementName=_this, Path=DataContext.DeclineCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="Decline" />
+                                <Button
+                                    Margin="2"
+                                    Command="{Binding ElementName=_this, Path=DataContext.ApproveCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="Approve" />
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

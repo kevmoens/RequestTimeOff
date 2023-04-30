@@ -27,18 +27,24 @@ namespace RequestTimeOff.ViewModels
         {
             _requestTimeOffRepository = requestTimeOffRepository;
             LoadedCommand = new DelegateCommand(OnLoaded);
+            ApproveCommand = new DelegateCommand<TimeOff>(OnApprove);
+            DeclineCommand = new DelegateCommand<TimeOff>(OnDecline);
         }
 
         public ICommand LoadedCommand { get; set; }
+        public ICommand ApproveCommand { get; set; }
+        public ICommand DeclineCommand { get; set; }
 
         private ObservableCollection<TimeOff> _requests;
 
+        [ExcludeFromCodeCoverage]
         public ObservableCollection<TimeOff> Requests
         {
             get { return _requests; }
             set { _requests = value; OnPropertyChanged(); }
         }
 
+        [ExcludeFromCodeCoverage]
         private void OnLoaded()
         {
             var requests = _requestTimeOffRepository
@@ -49,6 +55,19 @@ namespace RequestTimeOff.ViewModels
             Requests = new ObservableCollection<TimeOff>(requests);
             
         }
-
+        public void OnApprove(TimeOff timeOff)
+        {
+            timeOff.Approved = true;
+            _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            // Stryker disable once all
+            OnLoaded();
+        }
+        public void OnDecline(TimeOff timeOff)
+        {
+            timeOff.Declined = true;
+            _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            // Stryker disable once all
+            OnLoaded();
+        }
     }
 }

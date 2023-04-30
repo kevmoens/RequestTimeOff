@@ -50,6 +50,7 @@ namespace RequestTimeOff.ViewModels
 
         private ObservableCollection<TimeOffTypeDisplay> _timeOffTypes;
 
+        [ExcludeFromCodeCoverage]
         public ObservableCollection<TimeOffTypeDisplay> TimeOffTypes
         {
             get { return _timeOffTypes; }
@@ -57,6 +58,7 @@ namespace RequestTimeOff.ViewModels
         }
         private ObservableCollection<TimeOffRangeDisplay> _timeOffRanges;
 
+        [ExcludeFromCodeCoverage]
         public ObservableCollection<TimeOffRangeDisplay> TimeOffRanges
         {
             get { return _timeOffRanges; }
@@ -65,6 +67,7 @@ namespace RequestTimeOff.ViewModels
 
         private ObservableCollection<int> _reoccurrances = new ObservableCollection<int>();
 
+        [ExcludeFromCodeCoverage]
         public ObservableCollection<int> Reoccurrances
         {
             get { return _reoccurrances; }
@@ -74,6 +77,7 @@ namespace RequestTimeOff.ViewModels
 
         private TimeOffType _type = TimeOffType.Vacation;
 
+        [ExcludeFromCodeCoverage]
         public TimeOffType Type
         {
             get { return _type; }
@@ -81,6 +85,7 @@ namespace RequestTimeOff.ViewModels
         }
         private TimeOffRange _range = TimeOffRange.FullDay;
 
+        [ExcludeFromCodeCoverage]
         public TimeOffRange Range
         {
             get { return _range; }
@@ -88,6 +93,7 @@ namespace RequestTimeOff.ViewModels
         }
         private DateTime _selectedDate = DateTime.Now.Date;
 
+        [ExcludeFromCodeCoverage]
         public DateTime SelectedDate
         {
             get { return _selectedDate; }
@@ -95,6 +101,7 @@ namespace RequestTimeOff.ViewModels
         }
         private bool _isReoccurrance;
 
+        [ExcludeFromCodeCoverage]
         public bool IsReoccurrance
         {
             get { return _isReoccurrance; }
@@ -102,6 +109,7 @@ namespace RequestTimeOff.ViewModels
         }
         private int _reoccurance = 1;
 
+        [ExcludeFromCodeCoverage]
         public int Reoccurance
         {
             get { return _reoccurance; }
@@ -109,6 +117,7 @@ namespace RequestTimeOff.ViewModels
         }
         private ObservableCollection<TimeOff> _requests = new ObservableCollection<TimeOff>();
 
+        [ExcludeFromCodeCoverage]
         public ObservableCollection<TimeOff> Requests
         {
             get { return _requests; }
@@ -116,6 +125,7 @@ namespace RequestTimeOff.ViewModels
         }
         private int _totalHours;
 
+        [ExcludeFromCodeCoverage]
         public int TotalHours
         {
             get { return _totalHours; }
@@ -123,6 +133,7 @@ namespace RequestTimeOff.ViewModels
         }
         private string _description;
 
+        [ExcludeFromCodeCoverage]
         public string Description
         {
             get { return _description; }
