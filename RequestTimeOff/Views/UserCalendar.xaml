@@ -89,230 +89,230 @@
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="0"
-                DisplayDate="{Binding Date10}"
+                DisplayDate="{Binding Dates[10]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs10}" />
+                TimeOffs="{Binding TimeOffs[10]}" />
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="1"
-                DisplayDate="{Binding Date11}"
+                DisplayDate="{Binding Dates[11]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs11}" />
+                TimeOffs="{Binding TimeOffs[11]}" />
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="2"
-                DisplayDate="{Binding Date12}"
+                DisplayDate="{Binding Dates[12]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs12}" />
+                TimeOffs="{Binding TimeOffs[12]}" />
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="3"
-                DisplayDate="{Binding Date13}"
+                DisplayDate="{Binding Dates[13]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs13}" />
+                TimeOffs="{Binding TimeOffs[13]}" />
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="4"
-                DisplayDate="{Binding Date14}"
+                DisplayDate="{Binding Dates[14]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs14}" />
+                TimeOffs="{Binding TimeOffs[14]}" />
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="5"
-                DisplayDate="{Binding Date15}"
+                DisplayDate="{Binding Dates[15]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs15}" />
+                TimeOffs="{Binding TimeOffs[15]}" />
         <uc:UserCalendarCell
                 Grid.Row="2"
                 Grid.Column="6"
-                DisplayDate="{Binding Date16}"
+                DisplayDate="{Binding Dates[16]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs16}" />
+                TimeOffs="{Binding TimeOffs[16]}" />
 
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="0"
-                DisplayDate="{Binding Date20}"
+                DisplayDate="{Binding Dates[20]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs20}" />
+                TimeOffs="{Binding TimeOffs[20]}" />
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="1"
-                DisplayDate="{Binding Date21}"
+                DisplayDate="{Binding Dates[21]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs21}" />
+                TimeOffs="{Binding TimeOffs[21]}" />
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="2"
-                DisplayDate="{Binding Date22}"
+                DisplayDate="{Binding Dates[22]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs22}" />
+                TimeOffs="{Binding TimeOffs[22]}" />
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="3"
-                DisplayDate="{Binding Date23}"
+                DisplayDate="{Binding Dates[23]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs23}" />
+                TimeOffs="{Binding TimeOffs[23]}" />
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="4"
-                DisplayDate="{Binding Date24}"
+                DisplayDate="{Binding Dates[24]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs24}" />
+                TimeOffs="{Binding TimeOffs[24]}" />
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="5"
-                DisplayDate="{Binding Date25}"
+                DisplayDate="{Binding Dates[25]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs25}" />
+                TimeOffs="{Binding TimeOffs[25]}" />
         <uc:UserCalendarCell
                 Grid.Row="3"
                 Grid.Column="6"
-                DisplayDate="{Binding Date26}"
+                DisplayDate="{Binding Dates[26]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs26}" />
+                TimeOffs="{Binding TimeOffs[26]}" />
 
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="0"
-                DisplayDate="{Binding Date30}"
+                DisplayDate="{Binding Dates[30]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs30}" />
+                TimeOffs="{Binding TimeOffs[30]}" />
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="1"
-                DisplayDate="{Binding Date31}"
+                DisplayDate="{Binding Dates[31]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs31}" />
+                TimeOffs="{Binding TimeOffs[31]}" />
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="2"
-                DisplayDate="{Binding Date32}"
+                DisplayDate="{Binding Dates[32]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs32}" />
+                TimeOffs="{Binding TimeOffs[32]}" />
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="3"
-                DisplayDate="{Binding Date33}"
+                DisplayDate="{Binding Dates[33]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs33}" />
+                TimeOffs="{Binding TimeOffs[33]}" />
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="4"
-                DisplayDate="{Binding Date34}"
+                DisplayDate="{Binding Dates[34]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs34}" />
+                TimeOffs="{Binding TimeOffs[34]}" />
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="5"
-                DisplayDate="{Binding Date35}"
+                DisplayDate="{Binding Dates[35]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs35}" />
+                TimeOffs="{Binding TimeOffs[35]}" />
         <uc:UserCalendarCell
                 Grid.Row="4"
                 Grid.Column="6"
-                DisplayDate="{Binding Date36}"
+                DisplayDate="{Binding Dates[36]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs36}" />
+                TimeOffs="{Binding TimeOffs[36]}" />
 
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="0"
-                DisplayDate="{Binding Date40}"
+                DisplayDate="{Binding Dates[40]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs40}" />
+                TimeOffs="{Binding TimeOffs[40]}" />
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="1"
-                DisplayDate="{Binding Date41}"
+                DisplayDate="{Binding Dates[41]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs41}" />
+                TimeOffs="{Binding TimeOffs[41]}" />
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="2"
-                DisplayDate="{Binding Date42}"
+                DisplayDate="{Binding Dates[42]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs42}" />
+                TimeOffs="{Binding TimeOffs[42]}" />
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="3"
-                DisplayDate="{Binding Date43}"
+                DisplayDate="{Binding Dates[43]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs43}" />
+                TimeOffs="{Binding TimeOffs[43]}" />
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="4"
-                DisplayDate="{Binding Date44}"
+                DisplayDate="{Binding Dates[44]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs44}" />
+                TimeOffs="{Binding TimeOffs[44]}" />
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="5"
-                DisplayDate="{Binding Date45}"
+                DisplayDate="{Binding Dates[45]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs45}" />
+                TimeOffs="{Binding TimeOffs[45]}" />
         <uc:UserCalendarCell
                 Grid.Row="5"
                 Grid.Column="6"
-                DisplayDate="{Binding Date46}"
+                DisplayDate="{Binding Dates[46]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs46}" />
+                TimeOffs="{Binding TimeOffs[46]}" />
 
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="0"
-                DisplayDate="{Binding Date50}"
+                DisplayDate="{Binding Dates[50]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs50}" />
+                TimeOffs="{Binding TimeOffs[50]}" />
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="1"
-                DisplayDate="{Binding Date51}"
+                DisplayDate="{Binding Dates[51]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs51}" />
+                TimeOffs="{Binding TimeOffs[51]}" />
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="2"
-                DisplayDate="{Binding Date52}"
+                DisplayDate="{Binding Dates[52]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs52}" />
+                TimeOffs="{Binding TimeOffs[52]}" />
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="3"
-                DisplayDate="{Binding Date53}"
+                DisplayDate="{Binding Dates[53]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs53}" />
+                TimeOffs="{Binding TimeOffs[53]}" />
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="4"
-                DisplayDate="{Binding Date54}"
+                DisplayDate="{Binding Dates[54]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs54}" />
+                TimeOffs="{Binding TimeOffs[54]}" />
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="5"
-                DisplayDate="{Binding Date55}"
+                DisplayDate="{Binding Dates[55]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs55}" />
+                TimeOffs="{Binding TimeOffs[55]}" />
         <uc:UserCalendarCell
                 Grid.Row="6"
                 Grid.Column="6"
-                DisplayDate="{Binding Date56}"
+                DisplayDate="{Binding Dates[56]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs56}" />
+                TimeOffs="{Binding TimeOffs[56]}" />
 
         <uc:UserCalendarCell
                 Grid.Row="7"
                 Grid.Column="0"
-                DisplayDate="{Binding Date60}"
+                DisplayDate="{Binding Dates[60]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs60}" />
+                TimeOffs="{Binding TimeOffs[60]}" />
         <uc:UserCalendarCell
                 Grid.Row="7"
                 Grid.Column="1"
-                DisplayDate="{Binding Date61}"
+                DisplayDate="{Binding Dates[61]}"
                 Holidays="{Binding Holidays}"
-                TimeOffs="{Binding TimeOffs61}" />
+                TimeOffs="{Binding TimeOffs[61]}" />
     </Grid>
 </UserControl>
 

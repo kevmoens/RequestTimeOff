@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -36,87 +37,13 @@ namespace RequestTimeOff.ViewModels
         public ICommand PreviousCommand { get; set; }
         public ICommand NextCommand { get; set; }
 
-        private ObservableCollection<int?> _dates = new ObservableCollection<int?>
-        {
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null },
-            { null }
-        };
+        // S t r y k e r disable once all
+        private ObservableCollection<int?> _dates = new ObservableCollection<int?>(from int? i in Enumerable.Range(0, 37) select (int?)null);
 
-        private ObservableCollection<ObservableCollection<TimeOff>> _timeOffs = new ObservableCollection<ObservableCollection<TimeOff>>
-        { 
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() },
-            {new ObservableCollection<TimeOff>() }
-        };
+        // S t r y k e r disable once all
+        private ObservableCollection<ObservableCollection<TimeOff>> _timeOffs = new ObservableCollection<ObservableCollection<TimeOff>>(from int? i in Enumerable.Range(0, 37) select new ObservableCollection<TimeOff>());
+
+        // S t r y k e r disable all : Properties used for binding in the view 1
 
         // Stryker disable all : Properties used for binding in the view 1
         private int _year = DateTime.Now.Year;
@@ -234,8 +161,8 @@ namespace RequestTimeOff.ViewModels
                 {
                     // Stryker disable all : Properties used for binding in the view 1
                     SetDate(i, null);
-                    SetTimeOffs(i, new List<TimeOff>());
-                    // Stryker restore all
+                    SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
+					// Stryker restore all
                     continue;
                 }
 
@@ -243,7 +170,7 @@ namespace RequestTimeOff.ViewModels
                 {
                     // Stryker disable all : Properties used for binding in the view 1
                     SetDate(i, null);
-                    SetTimeOffs(i, new List<TimeOff>());
+                    SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
                     // Stryker restore all
                     continue;
                 }
