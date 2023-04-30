@@ -3,6 +3,7 @@ using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.Models.Requests;
 using RequestTimeOff.MVVM;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -184,29 +185,37 @@ namespace RequestTimeOff.ViewModels
             Reoccurrances.Add(10);
         }
 
+        [ExcludeFromCodeCoverage]
         public void OnAdd()
         {
             //TODO Don't let all employees of the same department all ask off on the same day
             //TODO Asking off more than 7 days in a row requires asking a manager in person
             //TODO If you ask off more than 3 days in a row you must ask off 2 weeks in advance
-
-            if (ValidateAdd() == false)
+            try
             {
+                _validateAdd.SelectedDate = SelectedDate;
+                _validateAdd.ExistingRequests = Requests;
+                _validateAdd.ValidateInput();
+
+                _timeOffDateRange.SelectedDate = SelectedDate;
+                _timeOffDateRange.Reoccurance = IsReoccurrance ? Reoccurance : 1;
+                var dates = _timeOffDateRange.GetDates();
+
+                _validateAdd.NewDates = dates;
+                _validateAdd.ValidateDates();
+
+                AddDatesToRequests(dates);
+            }
+            catch (Exception ex)
+            {
+                _messageBox.Show(ex.Message);
                 return;
             }
+        }
 
-            _timeOffDateRange.SelectedDate = SelectedDate;
-            _timeOffDateRange.Reoccurance = IsReoccurrance ? Reoccurance : 1;
-            var dates = _timeOffDateRange.GetDates();
-
-            _validateAdd.NewDates = dates;
-            string message = _validateAdd.ValidateDates();
-            if (string.IsNullOrEmpty(message) == false)
-            {
-                _messageBox.Show(message);
-                return;
-            }   
-
+        [ExcludeFromCodeCoverage]
+        private void AddDatesToRequests(List<DateTimeOffset> dates)
+        {
             foreach (var date in dates)
             {
                 TotalHours += Range.Hours();
@@ -221,19 +230,7 @@ namespace RequestTimeOff.ViewModels
             }
         }
 
-        private bool ValidateAdd()
-        {
-            _validateAdd.SelectedDate = SelectedDate;
-            _validateAdd.ExistingRequests = Requests; 
-            string message = _validateAdd.ValidateInput();
-            if (string.IsNullOrEmpty(message) == false)
-            {
-                _messageBox.Show(message);
-                return false;
-            }
-            return true;
-        }
-
+        [ExcludeFromCodeCoverage]
         public void OnSave()
         {
             foreach (var req in Requests)

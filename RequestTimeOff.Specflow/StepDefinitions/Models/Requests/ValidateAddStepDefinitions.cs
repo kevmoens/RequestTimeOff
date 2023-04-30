@@ -16,6 +16,7 @@ namespace RequestTimeOff.Specflow.Steps.Models.Requests
         readonly ISystemDateTime _systemDateTime = Substitute.For<ISystemDateTime>();
         Session _session;
         readonly IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
+        private string _errorMessage = string.Empty;
 
         [Given(@"When creating a request off record")]
         public void GivenWhenCreatingARequestOffRecord()
@@ -83,7 +84,14 @@ namespace RequestTimeOff.Specflow.Steps.Models.Requests
         [Then(@"the request returns the error ""([^""]*)""")]
         public void ThenTheRequestReturnsTheError(string message)
         {
-            _validateAdd.ValidateInput()
+            try
+            {
+                _validateAdd.ValidateInput();
+            }   catch (Exception ex)
+            {
+                _errorMessage = ex.Message;
+            }
+            _errorMessage
                 .Should()
                 .Be(message
                     .Replace("<DATE>", _systemDateTime.Now().Date.ToShortDateString())
@@ -174,7 +182,15 @@ namespace RequestTimeOff.Specflow.Steps.Models.Requests
         [Then(@"the request dates returns the error ""([^""]*)""")]
         public void ThenTheRequestDatesReturnsTheError(string message)
         {
-            _validateAdd.ValidateDates()
+            try
+            {
+                _validateAdd.ValidateDates();
+            }
+            catch (Exception ex)
+            {
+                _errorMessage = ex.Message;
+            }
+            _errorMessage
                 .Should()
                 .Be(message
                     .Replace("<DATE>", _systemDateTime.Now().Date.ToShortDateString())

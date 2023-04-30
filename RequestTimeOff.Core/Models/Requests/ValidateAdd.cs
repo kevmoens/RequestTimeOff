@@ -22,37 +22,36 @@ namespace RequestTimeOff.Models.Requests
             _requestTimeOffRepository = requestTimeOffRepository;
             _session = session;
         }
-        public string ValidateInput()
+        public void ValidateInput()
         {
             if (SelectedDate < _systemDateTime.Now())
             {
-                return $"Date must be on or after {_systemDateTime.Now().Date.ToShortDateString()}";
+                throw new ArgumentException($"Date must be on or after {_systemDateTime.Now().Date.ToShortDateString()}");
             }
             if (_requestTimeOffRepository.HolidayQuery(h => h.Date == _systemDateTime.Now()).Any())
             {
-                return "You can't request off a holiday.";
+                throw new ArgumentException("You can't request off a holiday.");
             }
+
             if (SelectedDate.DayOfWeek == DayOfWeek.Saturday || SelectedDate.DayOfWeek == DayOfWeek.Sunday)
             {
-                return "Request cannot be on a weekend.";
+                throw new ArgumentException( "Request cannot be on a weekend.");
             }
-            return string.Empty;
         }
 
-        public string ValidateDates()
+        public void ValidateDates()
         {
             foreach (var date in NewDates)
             {
                 if (ExistingRequests.Any(r => r.Date == date))
                 {
-                    return $"Unable to add a duplicate date {date.Date.ToShortDateString()}";
+                    throw new ArgumentException($"Unable to add a duplicate date {date.Date.ToShortDateString()}");
                 }
                 if (_requestTimeOffRepository.TimeOffQuery(t => t.Username == _session.User.Username && t.Date == date).Any())
                 {
-                    return $"Unable to add a duplicate date {date.Date.ToShortDateString()}";
+                    throw new ArgumentException($"Unable to add a duplicate date {date.Date.ToShortDateString()}");
                 }
             }
-            return string.Empty;
         }
     }
 }

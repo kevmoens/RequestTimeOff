@@ -10,7 +10,7 @@ namespace RequestTimeOff.Models.Requests
         List<DateTimeOffset> NewDates { get; set; }
         DateTimeOffset SelectedDate { get; set; }
 
-        string ValidateDates();
-        string ValidateInput();
+        void ValidateDates();
+        void ValidateInput();
     }
 }
