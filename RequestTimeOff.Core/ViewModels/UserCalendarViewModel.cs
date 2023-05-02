@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
@@ -108,30 +109,30 @@ namespace RequestTimeOff.ViewModels
         }
 
         [ExcludeFromCodeCoverage]
-        private void OnLoaded()
+        private async void OnLoaded()
         {
-            LoadMonth();
+            await LoadMonth();
         }
 
         [ExcludeFromCodeCoverage]
-        void OnPrevious()
+        async void OnPrevious()
         {
 
             DateTime currDate = new DateTime(Year, Month, 1);
             currDate = currDate.AddMonths(-1);
             Year = currDate.Year;
             Month = currDate.Month;
-            LoadMonth();
+            await LoadMonth();
         }
 
         [ExcludeFromCodeCoverage]
-        void OnNext()
+        async void OnNext()
         {
             DateTime currDate = new DateTime(Year, Month, 1);
             currDate = currDate.AddMonths(1);
             Year = currDate.Year;
             Month = currDate.Month;
-            LoadMonth();
+            await LoadMonth();
         }
         [ExcludeFromCodeCoverage]
         private DayOfWeek GetDayOfWeek(int pos)
@@ -149,14 +150,15 @@ namespace RequestTimeOff.ViewModels
             return DayOfWeek.Sunday;
         }
 
-        internal void LoadMonth()
-        {
+        internal async Task LoadMonth()
+        {            
             DateTime currDate = new DateTime(Year, Month, 1);
             MonthName = currDate.ToString("MMMM");
             Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(h => h.Date.Year == Year && h.Date.Month == Month));
             bool weekDayStarted = false;
             for (int i = 0; i <= 36; i++)
             {
+                await Task.Delay(1);
                 if (currDate.DayOfWeek == GetDayOfWeek(i))
                 {
                     weekDayStarted = true;

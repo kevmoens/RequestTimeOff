@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace RequestTimeOff.Specflow.StepDefinitions.ViewModels
@@ -59,9 +60,9 @@ namespace RequestTimeOff.Specflow.StepDefinitions.ViewModels
         }
 
         [When(@"Loading the month usercalendar view model")]
-        public void WhenLoadingTheMonthUsercalendarViewModel()
+        public async Task WhenLoadingTheMonthUsercalendarViewModel()
         {
-            _calendarViewModel.LoadMonth();
+            await _calendarViewModel.LoadMonth();
         }
 
         [Then(@"Correct data will be loaded into the calendar collections usercalendar view model")]

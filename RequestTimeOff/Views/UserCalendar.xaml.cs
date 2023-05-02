@@ -9,7 +9,7 @@ namespace RequestTimeOff.Views
     /// </summary>
     public partial class UserCalendar : UserControl, IPage
     {
-        public UserCalendar(CalendarViewModel viewModel) : this()
+        public UserCalendar(UserCalendarViewModel viewModel) : this()
         {
             DataContext = viewModel;
         }
