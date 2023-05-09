@@ -22,6 +22,10 @@ namespace RequestTimeOff.Models.Requests
             _requestTimeOffRepository = requestTimeOffRepository;
             _session = session;
         }
+
+        //TODO Don't let all employees of the same department all ask off on the same day
+        //TODO Asking off more than 7 days in a row requires asking a manager in person
+        //TODO If you ask off more than 3 days in a row you must ask off 2 weeks in advance
         public void ValidateInput()
         {
             if (SelectedDate < _systemDateTime.Now())
@@ -32,7 +36,6 @@ namespace RequestTimeOff.Models.Requests
             {
                 throw new ArgumentException("You can't request off a holiday.");
             }
-
             if (SelectedDate.DayOfWeek == DayOfWeek.Saturday || SelectedDate.DayOfWeek == DayOfWeek.Sunday)
             {
                 throw new ArgumentException( "Request cannot be on a weekend.");

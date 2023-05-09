@@ -1,4 +1,6 @@
-﻿using RequestTimeOff.Models;
+﻿using FluentValidation;
+using RequestTimeOff.Core.Models.Requests;
+using RequestTimeOff.Models;
 using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.Models.Requests;
 using RequestTimeOff.MVVM;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -25,16 +28,21 @@ namespace RequestTimeOff.ViewModels
         private readonly Session _session;
         private readonly INavigationService _navigationService;
         private readonly ITimeOffDateRange _timeOffDateRange;
-        private readonly IValidateAdd _validateAdd;
+        private readonly IValidator<TimeOff> _validator;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
         private readonly IMessageBox _messageBox;
         [ExcludeFromCodeCoverage]
-        public NewRequestViewModel(Session session, INavigationService navigationService, ITimeOffDateRange timeOffDateRange, IValidateAdd validateAdd, IRequestTimeOffRepository requestTimeOffRepository, IMessageBox messageBox)
+        public NewRequestViewModel(Session session,
+                                   INavigationService navigationService,
+                                   ITimeOffDateRange timeOffDateRange,
+                                   IValidator<TimeOff> validator,
+                                   IRequestTimeOffRepository requestTimeOffRepository,
+                                   IMessageBox messageBox)
         {
             _session = session;
             _navigationService = navigationService;
             _timeOffDateRange = timeOffDateRange;
-            _validateAdd = validateAdd;
+            _validator = validator;
             _requestTimeOffRepository = requestTimeOffRepository;
             _messageBox = messageBox;
             LoadValues();
@@ -188,34 +196,24 @@ namespace RequestTimeOff.ViewModels
         [ExcludeFromCodeCoverage]
         public void OnAdd()
         {
-            //TODO Don't let all employees of the same department all ask off on the same day
-            //TODO Asking off more than 7 days in a row requires asking a manager in person
-            //TODO If you ask off more than 3 days in a row you must ask off 2 weeks in advance
-            try
-            {
-                _validateAdd.SelectedDate = SelectedDate;
-                _validateAdd.ExistingRequests = Requests;
-                _validateAdd.ValidateInput();
 
-                _timeOffDateRange.SelectedDate = SelectedDate;
-                _timeOffDateRange.Reoccurance = IsReoccurrance ? Reoccurance : 1;
-                var dates = _timeOffDateRange.GetDates();
+            _timeOffDateRange.SelectedDate = SelectedDate;
+            _timeOffDateRange.Reoccurance = IsReoccurrance ? Reoccurance : 1;
+            var dates = _timeOffDateRange.GetDates();
 
-                _validateAdd.NewDates = dates;
-                _validateAdd.ValidateDates();
+            AddDatesToRequests(dates);
 
-                AddDatesToRequests(dates);
-            }
-            catch (Exception ex)
-            {
-                _messageBox.Show(ex.Message);
-                return;
-            }
         }
 
         [ExcludeFromCodeCoverage]
         private void AddDatesToRequests(List<DateTimeOffset> dates)
         {
+            var newRequests = new List<TimeOff>();
+            var timeOffValidator = _validator as ITimeOffValidator;
+            if (timeOffValidator != null)
+            {
+                timeOffValidator.ExistingRequests = Requests.ToList();
+            }
             foreach (var date in dates)
             {
                 TotalHours += Range.Hours();
@@ -226,7 +224,19 @@ namespace RequestTimeOff.ViewModels
                     Range = Range,
                     Username = _session.User.Username
                 };
-                Requests.Add(timeOff);
+                
+                var results = _validator.Validate(timeOff);
+                if (results.IsValid == false)
+                {
+                    _messageBox.Show(results.Errors.First().ErrorMessage);
+                    return;
+                }
+                newRequests.Add(timeOff);
+            }
+            
+            foreach (var req in newRequests)
+            {
+                Requests.Add(req);
             }
         }
 

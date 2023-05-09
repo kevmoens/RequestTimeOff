@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Neleus.DependencyInjection.Extensions;
 using NLog.Extensions.Logging;
+using RequestTimeOff.Core.Models.Requests;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.HomePages;
@@ -84,6 +86,13 @@ namespace RequestTimeOff
                 .Add<UserCalendar>("UserCalendar")
                 .Add<UserEdit>("UserEdit")
                 .Add<Users>("Users")
+                .Build();
+
+            services.AddTransient<TimeOffValidator>();
+            services.AddTransient<IValidator<TimeOff>, TimeOffValidator>();
+
+            services.AddByName<IValidator>()
+                .Add<TimeOffValidator>("TimeOff")
                 .Build();
 
             services.AddSingleton<IRequestTimeOffRepository, RequestTimeOffContext>();
