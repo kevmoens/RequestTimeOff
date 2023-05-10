@@ -26,7 +26,7 @@ namespace RequestTimeOff.Core.Models.Requests
                 .WithMessage("Remove invalid characters for Username.");
             RuleFor(x => x.Date)
                 .GreaterThan(systemDate.Now())
-                .WithMessage("Date must be on or after today.");
+                .WithMessage($"Date must be on or after {systemDate.Now().Date.ToShortDateString()}");
             RuleFor(x => x.Date)
                 .Must((DateTimeOffset Date) => Date.DayOfWeek != DayOfWeek.Saturday && Date.DayOfWeek != DayOfWeek.Sunday)
                 .WithMessage("Request cannot be on a weekend.");
