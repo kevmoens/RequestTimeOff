@@ -107,7 +107,6 @@ namespace RequestTimeOff
             services.AddTransient<IUserYearInfo, UserYearInfo>();
 
             services.AddTransient<ITimeOffDateRange, TimeOffDateRange>();
-            services.AddTransient<IValidateAdd, ValidateAdd>();
 
             services.AddLogging(builder => {
                 builder.SetMinimumLevel(LogLevel.Trace);

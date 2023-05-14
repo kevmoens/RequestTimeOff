@@ -196,7 +196,17 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
         [When(@"the date is unique")]
         public void WhenTheDateIsUnique()
         {
-            throw new PendingStepException();
+            _timeOff = new TimeOff()
+            {
+                Username = "TUser",
+                Date = _systemDate.Now().AddDays(1),
+                Range = TimeOffRange.FullDay,
+                Type = TimeOffType.Vacation,
+                Description = "Family Vacation"
+            }; 
+            _requestTimeOffRepository
+                .HolidayQuery(h => true)
+                .ReturnsForAnyArgs(new List<Holiday>());
         }
 
         [Then(@"the request dates returns the error ""([^""]*)""")]
@@ -237,6 +247,27 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             {
                 new TimeOff() {  Date = new DateTimeOffset(2023,1,3,0,0,0,TimeSpan.Zero), Username = "TUser" }
             };
+            _requestTimeOffRepository
+                .HolidayQuery(h => true)
+                .ReturnsForAnyArgs(new List<Holiday>());
         }
+        [When(@"the username is not set on the timeoff record")]
+        public void WhenTheUsernameIsNotSetOnTheTimeoffRecord()
+        {
+            _timeOff.Username = null;
+        }
+
+        [When(@"the username contains spaces")]
+        public void WhenTheUsernameContainsSpaces()
+        {
+            _timeOff.Username = "T User";
+        }
+
+        [When(@"the username contains any control characters")]
+        public void WhenTheUsernameContainsAnyControlCharacters()
+        {
+            _timeOff.Username = "\tTUser";
+        }
+
     }
 }

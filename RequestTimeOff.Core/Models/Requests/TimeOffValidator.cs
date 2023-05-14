@@ -22,7 +22,7 @@ namespace RequestTimeOff.Core.Models.Requests
                 .NotEmpty()
                 .WithMessage("Username is required.");
             RuleFor(x => x.Username)
-                .Must((string Username) => Username.Any(c => char.IsWhiteSpace(c) || char.IsControl(c)) == false)
+                .Must((string Username) => string.IsNullOrEmpty(Username) == false && Username.Any(c => (char.IsWhiteSpace(c) || char.IsControl(c))) == false)
                 .WithMessage("Remove invalid characters for Username.");
             RuleFor(x => x.Date)
                 .GreaterThan(systemDate.Now())

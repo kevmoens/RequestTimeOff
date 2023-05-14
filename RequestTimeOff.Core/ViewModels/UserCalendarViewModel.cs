@@ -99,7 +99,7 @@ namespace RequestTimeOff.ViewModels
         [ExcludeFromCodeCoverage]
         private void SetDate(int pos, int? day)
         {
-            Dates[pos] = day; OnPropertyChanged($"Dates[{pos}]"); 
+            Dates[pos] = day; OnPropertyChanged($"Dates[{pos}]");
         }
 
         [ExcludeFromCodeCoverage]
@@ -151,44 +151,46 @@ namespace RequestTimeOff.ViewModels
         }
 
         internal async Task LoadMonth()
-        {            
-            DateTime currDate = new DateTime(Year, Month, 1);
-            MonthName = currDate.ToString("MMMM");
-            Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(h => h.Date.Year == Year && h.Date.Month == Month));
-            bool weekDayStarted = false;
-            for (int i = 0; i <= 36; i++)
+        {
+            await Task.Run(() =>
             {
-                await Task.Delay(1);
-                if (currDate.DayOfWeek == GetDayOfWeek(i))
+                DateTime currDate = new DateTime(Year, Month, 1);
+                MonthName = currDate.ToString("MMMM");
+                Holidays = new ObservableCollection<Holiday>(_requestTimeOffRepository.HolidayQuery(h => h.Date.Year == Year && h.Date.Month == Month));
+                bool weekDayStarted = false;
+                for (int i = 0; i <= 36; i++)
                 {
-                    weekDayStarted = true;
-                }
+                    if (currDate.DayOfWeek == GetDayOfWeek(i))
+                    {
+                        weekDayStarted = true;
+                    }
 
-                if (weekDayStarted == false)
-                {
-                    // Stryker disable all : Properties used for binding in the view 1
-                    SetDate(i, null);
-                    SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
-					// Stryker restore all
-                    continue;
-                }
+                    if (weekDayStarted == false)
+                    {
+                        // Stryker disable all : Properties used for binding in the view 1
+                        SetDate(i, null);
+                        SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
+                        // Stryker restore all
+                        continue;
+                    }
 
-                if (currDate.Month != Month)
-                {
+                    if (currDate.Month != Month)
+                    {
+                        // Stryker disable all : Properties used for binding in the view 1
+                        SetDate(i, null);
+                        SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
+                        // Stryker restore all
+                        continue;
+                    }
+
                     // Stryker disable all : Properties used for binding in the view 1
-                    SetDate(i, null);
-                    SetTimeOffs(i, Array.Empty<TimeOff>().ToList());
+                    SetDate(i, currDate.Day);
+                    SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate && t.Username == _session.User.Username));
                     // Stryker restore all
-                    continue;
+
+                    currDate = currDate.AddDays(1);
                 }
-
-                // Stryker disable all : Properties used for binding in the view 1
-                SetDate(i, currDate.Day);
-                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate && t.Username == _session.User.Username));
-                // Stryker restore all
-
-                currDate = currDate.AddDays(1);
-            }
+            });
         }
 
     }

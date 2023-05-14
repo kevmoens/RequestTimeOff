@@ -1,6 +1,20 @@
 ﻿Feature: TimeOffValidator
 
 A user that adds a request off record is only allowed to add requests that are validated
+Scenario: Username must be set
+	Given When creating a request off record
+	When the username is not set on the timeoff record
+	Then the request returns the error "Username is required."
+
+Scenario: Username must not contain any spaces
+	Given When creating a request off record
+	When the username contains spaces
+	Then the request returns the error "Remove invalid characters for Username."
+	
+Scenario: Username must not contain any control characters
+	Given When creating a request off record
+	When the username contains any control characters
+	Then the request returns the error "Remove invalid characters for Username."
 
 Scenario: Date Must be after today
 	Given When creating a request off record
