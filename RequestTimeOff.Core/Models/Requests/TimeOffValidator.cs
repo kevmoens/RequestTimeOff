@@ -43,7 +43,7 @@ namespace RequestTimeOff.Core.Models.Requests
         public List<TimeOff> ExistingRequests { get; set; }
         private bool IsNotACurrentRequest(DateTimeOffset Date)
         {
-            if (ExistingRequests?.Any(r => r.Date == Date.Date) ?? false)
+            if (ExistingRequests?.Any(r => r.Date.Date == Date.Date) ?? false)
             {
                 return false; 
             }
