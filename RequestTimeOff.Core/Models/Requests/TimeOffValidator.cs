@@ -39,16 +39,28 @@ namespace RequestTimeOff.Core.Models.Requests
             RuleFor(x => x.Date)
                 .Must((DateTimeOffset Date) => IsNotACurrentRequest(Date))
                 .WithMessage(x => $"Unable to add a duplicate date {x.Date.Date.ToShortDateString()}");
+            RuleFor(x => x)
+                .Must((TimeOff timeOff) => IsNotADuplicate(timeOff.Date.Date, timeOff.Username))
+                .WithMessage("Two or more employees with the same Username cannot request time off for the same day.");
+   
         }
         public List<TimeOff> ExistingRequests { get; set; }
         private bool IsNotACurrentRequest(DateTimeOffset Date)
         {
             if (ExistingRequests?.Any(r => r.Date.Date == Date.Date) ?? false)
             {
-                return false; 
+                return false;
             }
-           
+
             return true;
+        }
+        private bool IsNotADuplicate(DateTime date, string userName)
+        {
+            var currUser = _requestTimeOffRepository.UserQuery(u => u.Username == userName).FirstOrDefault();
+            var users = _requestTimeOffRepository.UserQuery(u => u.Dept == currUser.Dept && u.Username != currUser.Username);
+            var userTimeOffRecords = _requestTimeOffRepository.TimeOffQuery(t => t.Date.Date == date && users.Any(u => u.Username == t.Username));
+
+            return userTimeOffRecords.Count() < 2;
         }
     }
 }

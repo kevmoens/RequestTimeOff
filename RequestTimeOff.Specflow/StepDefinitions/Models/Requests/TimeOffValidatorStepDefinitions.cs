@@ -30,12 +30,15 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
 
         public TimeOffValidatorStepDefinitions()
         {
-            _session = new Session() { User = new User()
+            _session = new Session()
             {
-                Dept = "PROG",
-                FullName = "Test User",
-                Username = "TUser"
-            } };
+                User = new User()
+                {
+                    Dept = "PROG",
+                    FullName = "Test User",
+                    Username = "TUser"
+                }
+            };
         }
         [Given(@"When creating a request off record")]
         public void GivenWhenCreatingARequestOffRecord()
@@ -48,10 +51,31 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                     Date = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
                     Username = "TUser"
                 }
+                ,new TimeOff { Date = new DateTimeOffset(2023,1,17,0,0, 0,TimeSpan.Zero),
+                    Username = "User2"
+                }
             };
             _requestTimeOffRepository
                 .TimeOffQuery(t => true)
                 .ReturnsForAnyArgs(callInfo => timeOffs.Where(callInfo.Arg<Func<TimeOff, bool>>()).ToList());
+            var users = new List<User>
+            {
+                new User {
+                    Username = "TUser",
+                    Dept = "PROG",
+                }
+                ,new User {
+                    Username = "User2",
+                    Dept = "PROG",
+                }
+                ,new User {
+                    Username = "User3",
+                    Dept = "NETW",
+                }
+            };
+            _requestTimeOffRepository
+                .UserQuery(u => true)
+                .ReturnsForAnyArgs(callInfo => users.Where(callInfo.Arg<Func<User, bool>>()).ToList());
 
             _timeOff = new TimeOff()
             {
@@ -144,6 +168,12 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             _timeOff.Date = new DateTimeOffset(2023, 1, 4, 0, 0, 0, TimeSpan.Zero);
         }
 
+        [When(@"Another User in the same department also has asked off")]
+        public void WhenAnotherUserInTheSameDepartmentAlsoHasAskedOff()
+        {
+            _timeOff.Date = new DateTimeOffset(2023, 1, 17, 0, 0, 0, TimeSpan.Zero);
+        }
+
         [Given(@"When creating a request off record and validating existing dates")]
         public void GivenWhenCreatingARequestOffRecordAndValidatingExistingDates()
         {
@@ -191,7 +221,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 Range = TimeOffRange.FullDay,
                 Type = TimeOffType.Vacation,
                 Description = "Family Vacation"
-            }; 
+            };
             _requestTimeOffRepository
                 .HolidayQuery(h => true)
                 .ReturnsForAnyArgs(new List<Holiday>());
@@ -276,7 +306,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 Type = TimeOffType.Vacation,
                 Description = "Family Vacation"
             };
-            
+
             _requestTimeOffRepository
                 .HolidayQuery(h => true)
                 .ReturnsForAnyArgs(new List<Holiday>());

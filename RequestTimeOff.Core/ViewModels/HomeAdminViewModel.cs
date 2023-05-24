@@ -1,4 +1,5 @@
-﻿using RequestTimeOff.Models;
+﻿using RequestTimeOff.Core.MVVM.Events;
+using RequestTimeOff.Models;
 using RequestTimeOff.MVVM;
 using RequestTimeOff.MVVM.Events;
 using System.ComponentModel;
@@ -32,6 +33,7 @@ namespace RequestTimeOff.ViewModels
             HolidaysCommand = new DelegateCommand(OnHolidays);
             SignoutCommand = new DelegateCommand(OnSignout);
             ViewNavigationPubSub.Instance.Subscribe(OnViewNavigation);
+            PendingRequestUpdatePubSub.Instance.Subscribe(OnPendingRequestUpdate);
         }
 
 
@@ -118,6 +120,10 @@ namespace RequestTimeOff.ViewModels
                 viewModel.OnNavigatedTo(view.Parameters);
             }
             HamburgerOpen = false;
+        }
+        public void OnPendingRequestUpdate(PendingRequestUpdate update)
+        {
+            PendingRequests = _requestTimeOffRepository.TimeOffQuery(t => t.Approved == false && t.Declined == false).Count;
         }
     }
     

@@ -209,10 +209,9 @@ namespace RequestTimeOff.ViewModels
         private void AddDatesToRequests(List<DateTimeOffset> dates)
         {
             var newRequests = new List<TimeOff>();
-            var timeOffValidator = _validator as ITimeOffValidator;
-            if (timeOffValidator != null)
+            if (_validator as ITimeOffValidator != null)
             {
-                timeOffValidator.ExistingRequests = Requests.ToList();
+                (_validator as ITimeOffValidator).ExistingRequests = Requests.ToList();
             }
             foreach (var date in dates)
             {
@@ -248,12 +247,27 @@ namespace RequestTimeOff.ViewModels
                 req.Description = Description;
                 _requestTimeOffRepository.AddTimeOff(req);
             }
+            Clear();
             _navigationService.ViewNavigateTo("HomePage");
         }
         [ExcludeFromCodeCoverage]
         public void OnBack()
         {
+            Clear();
             _navigationService.ViewNavigateTo("HomePage");
+        }
+
+        [ExcludeFromCodeCoverage]
+        public void Clear()
+        {
+            Description = "";
+            Requests.Clear();
+            IsReoccurrance = false;
+            Reoccurance = 1;
+            Type = TimeOffType.Vacation;
+            Range = TimeOffRange.FullDay;
+            SelectedDate = DateTime.Today;
+            TotalHours = 0;
         }
 
         [ExcludeFromCodeCoverage]

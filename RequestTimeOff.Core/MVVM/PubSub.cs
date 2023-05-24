@@ -14,8 +14,7 @@ namespace RequestTimeOff.MVVM
         }
         public void Unsubscribe(PubSubToken token)
         {
-            Action<T> action;
-            _subscribers.TryRemove(token, out action);
+            _subscribers.TryRemove(token, out Action<T> action);
         }
         public void Publish(T message)
         {

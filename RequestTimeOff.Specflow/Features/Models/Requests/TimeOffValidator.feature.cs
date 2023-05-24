@@ -41,7 +41,8 @@ namespace RequestTimeOff.Specflow.Features.Models.Requests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Models/Requests", "TimeOffValidator", "A user that adds a request off record is only allowed to add requests that are va" +
-                    "lidated", ProgrammingLanguage.CSharp, featureTags);
+                    "lidated\r\n\r\nAs a user,\r\nI want to add time off requests,\r\nso that I can avoid man" +
+                    "ually tracking my time off.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -89,37 +90,6 @@ namespace RequestTimeOff.Specflow.Features.Models.Requests
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Username must be set", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 5
- testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 6
- testRunner.When("the username is not set on the timeoff record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 7
- testRunner.Then("the request returns the error \"Username is required.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Username must not contain any spaces")]
-        [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Username must not contain any spaces")]
-        public void UsernameMustNotContainAnySpaces()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Username must not contain any spaces", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -134,23 +104,23 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.When("the username contains spaces", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the username is not set on the timeoff record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("the request returns the error \"Remove invalid characters for Username.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the request returns the error \"Username is required.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Username must not contain any control characters")]
+        [Xunit.SkippableFactAttribute(DisplayName="Username must not contain any spaces")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Username must not contain any control characters")]
-        public void UsernameMustNotContainAnyControlCharacters()
+        [Xunit.TraitAttribute("Description", "Username must not contain any spaces")]
+        public void UsernameMustNotContainAnySpaces()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Username must not contain any control characters", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Username must not contain any spaces", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -165,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 16
- testRunner.When("the username contains any control characters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the username contains spaces", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
  testRunner.Then("the request returns the error \"Remove invalid characters for Username.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -174,14 +144,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Date Must be after today")]
+        [Xunit.SkippableFactAttribute(DisplayName="Username must not contain any control characters")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Date Must be after today")]
-        public void DateMustBeAfterToday()
+        [Xunit.TraitAttribute("Description", "Username must not contain any control characters")]
+        public void UsernameMustNotContainAnyControlCharacters()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Date Must be after today", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Username must not contain any control characters", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -196,23 +166,23 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 21
- testRunner.When("the date is not set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the username contains any control characters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
- testRunner.Then("the request returns the error \"Date must be on or after <DATE>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the request returns the error \"Remove invalid characters for Username.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a holiday")]
+        [Xunit.SkippableFactAttribute(DisplayName="Date Must be after today")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Requesting a single date that is on a holiday")]
-        public void RequestingASingleDateThatIsOnAHoliday()
+        [Xunit.TraitAttribute("Description", "Date Must be after today")]
+        public void DateMustBeAfterToday()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a holiday", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Date Must be after today", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -227,23 +197,23 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 26
- testRunner.When("the date is on a holiday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the date is not set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 27
- testRunner.Then("the request returns the error \"You can\'t request off a holiday.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the request returns the error \"Date must be on or after <DATE>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a weekend")]
+        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a holiday")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Requesting a single date that is on a weekend")]
-        public void RequestingASingleDateThatIsOnAWeekend()
+        [Xunit.TraitAttribute("Description", "Requesting a single date that is on a holiday")]
+        public void RequestingASingleDateThatIsOnAHoliday()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a weekend", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a holiday", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 29
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -258,23 +228,23 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 31
- testRunner.When("the date is on a weekend", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the date is on a holiday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 32
- testRunner.Then("the request returns the error \"Request cannot be on a weekend.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the request returns the error \"You can\'t request off a holiday.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a weekend Sunday")]
+        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a weekend")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Requesting a single date that is on a weekend Sunday")]
-        public void RequestingASingleDateThatIsOnAWeekendSunday()
+        [Xunit.TraitAttribute("Description", "Requesting a single date that is on a weekend")]
+        public void RequestingASingleDateThatIsOnAWeekend()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a weekend Sunday", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a weekend", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -289,7 +259,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 36
- testRunner.When("the date is on a weekend Sunday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the date is on a weekend", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 37
  testRunner.Then("the request returns the error \"Request cannot be on a weekend.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -298,14 +268,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is valid")]
+        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is on a weekend Sunday")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Requesting a single date that is valid")]
-        public void RequestingASingleDateThatIsValid()
+        [Xunit.TraitAttribute("Description", "Requesting a single date that is on a weekend Sunday")]
+        public void RequestingASingleDateThatIsOnAWeekendSunday()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is valid", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is on a weekend Sunday", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -320,9 +290,40 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 41
- testRunner.When("the date is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the date is on a weekend Sunday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 42
+ testRunner.Then("the request returns the error \"Request cannot be on a weekend.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Requesting a single date that is valid")]
+        [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
+        [Xunit.TraitAttribute("Description", "Requesting a single date that is valid")]
+        public void RequestingASingleDateThatIsValid()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Requesting a single date that is valid", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 44
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 45
+ testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 46
+ testRunner.When("the date is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 47
  testRunner.Then("the request returns the error \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -337,37 +338,6 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Existing Requests when request doesn\'t have an existing date", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 44
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 45
- testRunner.Given("When creating a request off record and validating existing dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 46
- testRunner.When("the date is unique", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 47
- testRunner.Then("the request dates returns the error \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="Validate Existing Requests when just added request has the same date")]
-        [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Validate Existing Requests when just added request has the same date")]
-        public void ValidateExistingRequestsWhenJustAddedRequestHasTheSameDate()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Existing Requests when just added request has the same date", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 49
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -382,23 +352,23 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record and validating existing dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 51
- testRunner.When("the date is a duplicate from the just added request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the date is unique", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 52
- testRunner.Then("the request dates returns the error \"Unable to add a duplicate date <DATE>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the request dates returns the error \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Validate Existing Requests when previously added request has the same date")]
+        [Xunit.SkippableFactAttribute(DisplayName="Validate Existing Requests when just added request has the same date")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
-        [Xunit.TraitAttribute("Description", "Validate Existing Requests when previously added request has the same date")]
-        public void ValidateExistingRequestsWhenPreviouslyAddedRequestHasTheSameDate()
+        [Xunit.TraitAttribute("Description", "Validate Existing Requests when just added request has the same date")]
+        public void ValidateExistingRequestsWhenJustAddedRequestHasTheSameDate()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Existing Requests when previously added request has the same date", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Existing Requests when just added request has the same date", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 54
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -413,10 +383,76 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("When creating a request off record and validating existing dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 56
- testRunner.When("the date is a duplicate from a previously added request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the date is a duplicate from the just added request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 57
  testRunner.Then("the request dates returns the error \"Unable to add a duplicate date <DATE>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Validate Existing Requests when previously added request has the same date")]
+        [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
+        [Xunit.TraitAttribute("Description", "Validate Existing Requests when previously added request has the same date")]
+        public void ValidateExistingRequestsWhenPreviouslyAddedRequestHasTheSameDate()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Existing Requests when previously added request has the same date", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 59
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 60
+ testRunner.Given("When creating a request off record and validating existing dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 61
+ testRunner.When("the date is a duplicate from a previously added request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 62
+ testRunner.Then("the request dates returns the error \"Unable to add a duplicate date <DATE>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Validate that no more than one employee of the same department is off on the same" +
+            " day")]
+        [Xunit.TraitAttribute("FeatureTitle", "TimeOffValidator")]
+        [Xunit.TraitAttribute("Description", "Validate that no more than one employee of the same department is off on the same" +
+            " day")]
+        public void ValidateThatNoMoreThanOneEmployeeOfTheSameDepartmentIsOffOnTheSameDay()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate that no more than one employee of the same department is off on the same" +
+                    " day", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 64
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 65
+ testRunner.Given("When creating a request off record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 66
+ testRunner.When("Another User in the same department also has asked off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 67
+ testRunner.Then("the request returns the error \"Two or more employees with the same Username canno" +
+                        "t request time off for the same day.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

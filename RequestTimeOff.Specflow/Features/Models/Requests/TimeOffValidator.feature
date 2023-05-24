@@ -1,6 +1,11 @@
 ﻿Feature: TimeOffValidator
 
 A user that adds a request off record is only allowed to add requests that are validated
+
+As a user,
+I want to add time off requests,
+so that I can avoid manually tracking my time off.
+
 Scenario: Username must be set
 	Given When creating a request off record
 	When the username is not set on the timeoff record
@@ -55,3 +60,8 @@ Scenario: Validate Existing Requests when previously added request has the same 
 	Given When creating a request off record and validating existing dates
 	When the date is a duplicate from a previously added request
 	Then the request dates returns the error "Unable to add a duplicate date <DATE>"
+
+Scenario: Validate that no more than one employee of the same department is off on the same day
+	Given When creating a request off record
+	When Another User in the same department also has asked off
+	Then the request returns the error "Two or more employees with the same Username cannot request time off for the same day."

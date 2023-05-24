@@ -1,4 +1,5 @@
-﻿using RequestTimeOff.Models;
+﻿using RequestTimeOff.Core.MVVM.Events;
+using RequestTimeOff.Models;
 using RequestTimeOff.MVVM;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -59,13 +60,14 @@ namespace RequestTimeOff.ViewModels
         {
             timeOff.Approved = true;
             _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            PendingRequestUpdatePubSub.Instance.Publish(new PendingRequestUpdate());
             // Stryker disable once all
             OnLoaded();
         }
         public void OnDecline(TimeOff timeOff)
         {
             timeOff.Declined = true;
-            _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            _requestTimeOffRepository.UpdateTimeOff(timeOff); PendingRequestUpdatePubSub.Instance.Publish(new PendingRequestUpdate());
             // Stryker disable once all
             OnLoaded();
         }
