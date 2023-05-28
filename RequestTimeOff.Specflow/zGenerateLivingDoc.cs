@@ -10,9 +10,13 @@ namespace RequestTimeOff.Specflow.zEnd
 {
     public class zGenerateLivingDoc
     {
+        /// <summary>
+        /// Make sure your machine has this tool installed:
+        /// dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
+        /// </summary>
         [Fact]
         public void GenerateLivingDoc()
-        {
+        {           
             Thread.Sleep(5_000);
             var startInfo = new System.Diagnostics.ProcessStartInfo();
             startInfo.FileName = "livingdoc";
