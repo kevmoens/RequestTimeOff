@@ -21,6 +21,8 @@
         <converters:CurrentYearVisibilityConverter x:Key="CurrentYearVisibilityConverter" />
         <converters:RTEColorConverter x:Key="RTEColorConverter" />
         <converters:HomePageCircularGaugeScaleSweepAngleConverter x:Key="HomePageCircularGaugeScaleSweepAngleConverter" />
+        <converters:IsCurrentUserVisibilityConverter x:Key="IsCurrentUserVisibilityConverter" TrueVisibility="Visible" FalseVisibility="Collapsed"/>
+        <converters:IsCurrentUserVisibilityConverter x:Key="InverseIsCurrentUserVisibilityConverter" TrueVisibility="Collapsed" FalseVisibility="Visible"/>
 
         <gauge:ImageOffsetConverter x:Key="imageOffsetConverter" />
         <gauge:RadiusToDiameterConverter x:Key="radiusToDiameterConverter" />
@@ -293,7 +295,7 @@
                             ScaleStartAngle="270">
                             <gauge:CircularGaugeControl.ScaleSweepAngle>
                                 <MultiBinding Converter="{StaticResource HomePageCircularGaugeScaleSweepAngleConverter}">
-                                    <Binding Path="Session.User.VacHrs" />
+                                    <Binding Path="UserYearInfo.VacHrs" />
                                     <Binding Path="UserYearInfo.VacRemain" />
                                 </MultiBinding>
                             </gauge:CircularGaugeControl.ScaleSweepAngle>
@@ -326,7 +328,7 @@
                             ScaleStartAngle="270">
                             <gauge:CircularGaugeControl.ScaleSweepAngle>
                                 <MultiBinding Converter="{StaticResource HomePageCircularGaugeScaleSweepAngleConverter}">
-                                    <Binding Path="Session.User.SickHrs" />
+                                    <Binding Path="UserYearInfo.SickHrs" />
                                     <Binding Path="UserYearInfo.SickRemain" />
                                 </MultiBinding>
                             </gauge:CircularGaugeControl.ScaleSweepAngle>
@@ -363,7 +365,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"
-                    Text="{Binding Session.User.VacHrs}" />
+                    Text="{Binding UserYearInfo.VacHrs}" />
                 <TextBlock
                     Grid.Row="2"
                     Margin="30,0"
@@ -371,7 +373,7 @@
                 <TextBlock
                     Grid.Row="2"
                     Grid.Column="1"
-                    Text="{Binding Session.User.SickHrs}" />
+                    Text="{Binding UserYearInfo.SickHrs}" />
 
                 <TextBlock
                     Grid.Row="3"
@@ -406,11 +408,31 @@
                     Height="30"
                     Margin="10"
                     Command="{Binding NewRequestOffCommand}">
+                    <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource IsCurrentUserVisibilityConverter}">
+                            <Binding Path="Username"/>
+                            <Binding Path="SessionUsername"/>
+                        </MultiBinding>
+                    </Button.Visibility>
                     <TextBlock
                         FontSize="15"
                         FontWeight="SemiBold"
                         Text="New Request" />
                 </Button>
+                <TextBlock 
+                    Grid.Row="6"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Username}"
+                    HorizontalAlignment="Center"
+                    FontSize="24"
+                    >
+                    <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource InverseIsCurrentUserVisibilityConverter}">
+                            <Binding Path="Username"/>
+                            <Binding Path="SessionUsername"/>
+                        </MultiBinding>
+                    </TextBlock.Visibility>
+                </TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="2">
                 <ContentControl Content="{Binding UserCalendar}" />

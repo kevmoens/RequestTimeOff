@@ -1,4 +1,5 @@
-﻿using RequestTimeOff.Models;
+﻿using RequestTimeOff.Core.ViewModels;
+using RequestTimeOff.Models;
 using RequestTimeOff.MVVM;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
 {
-    public class UserCalendarViewModel : INotifyPropertyChanged
+    public class UserCalendarViewModel : INotifyPropertyChanged, IUserCalendarViewModel
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -30,6 +31,7 @@ namespace RequestTimeOff.ViewModels
         {
             _requestTimeOffRepository = requestTimeOffRepository;
             _session = session;
+            Username = _session.User.Username;
             LoadedCommand = new DelegateCommand(OnLoaded);
             PreviousCommand = new DelegateCommand(OnPrevious);
             NextCommand = new DelegateCommand(OnNext);
@@ -96,6 +98,14 @@ namespace RequestTimeOff.ViewModels
             set { _timeOffs = value; OnPropertyChanged(); }
         }
 
+        private string _username;
+        [ExcludeFromCodeCoverage]
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; OnPropertyChanged(); }
+        }
+
         [ExcludeFromCodeCoverage]
         private void SetDate(int pos, int? day)
         {
@@ -150,7 +160,7 @@ namespace RequestTimeOff.ViewModels
             return DayOfWeek.Sunday;
         }
 
-        internal async Task LoadMonth()
+        public async Task LoadMonth()
         {
             await Task.Run(() =>
             {
@@ -185,7 +195,7 @@ namespace RequestTimeOff.ViewModels
 
                     // Stryker disable all : Properties used for binding in the view 1
                     SetDate(i, currDate.Day);
-                    SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate && t.Username == _session.User.Username));
+                    SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate && t.Username == Username));
                     // Stryker restore all
 
                     currDate = currDate.AddDays(1);

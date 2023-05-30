@@ -125,6 +125,19 @@
                                     Margin="3"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
+                                    Command="{Binding DataContext.DetailRequestsCommand, ElementName=_this}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    ToolTip="Requests">
+                                    <materialDesign:PackIcon Kind="ListBoxOutline" />
+                                </Button>
+                                <Button
+                                    Grid.Column="1"
+                                    Width="24"
+                                    Height="24"
+                                    Margin="3"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
                                     Command="{Binding DataContext.EditCommand, ElementName=_this}"
                                     CommandParameter="{Binding}"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
