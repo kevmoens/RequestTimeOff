@@ -68,6 +68,7 @@ namespace RequestTimeOff.ViewModels
         public ICommand LoadedCommand { get; set; }
         // Stryker restore all
 
+        [ExcludeFromCodeCoverage]
         public void OnLoaded()
         {
             IsUsernameFocused = false;
@@ -112,11 +113,13 @@ namespace RequestTimeOff.ViewModels
             return true;
         }
 
+        [ExcludeFromCodeCoverage]
         public void OnNavigatedTo(Dictionary<string, object> parameters)
         {
             IsUsernameFocused = false;
             IsUsernameFocused = true;
         }
+        [ExcludeFromCodeCoverage]
         public void OnNavigated()
         {
             IsUsernameFocused = false;

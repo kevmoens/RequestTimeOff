@@ -35,6 +35,7 @@ namespace RequestTimeOff.Models.HomePages
         }
 
         private int _year;
+        [ExcludeFromCodeCoverage]
         public int Year
         {
             get { return _year; }
@@ -42,6 +43,7 @@ namespace RequestTimeOff.Models.HomePages
         }
 
         private int _vacHrs;
+        [ExcludeFromCodeCoverage]
         public int VacHrs
         {
             get { return _vacHrs; }
@@ -49,6 +51,7 @@ namespace RequestTimeOff.Models.HomePages
         }
 
         private int _vacRemain;
+        [ExcludeFromCodeCoverage]
         public int VacRemain
         {
             get { return _vacRemain; }
@@ -56,6 +59,7 @@ namespace RequestTimeOff.Models.HomePages
         }
 
         private int _sickHrs;
+        [ExcludeFromCodeCoverage]
         public int SickHrs
         {
             get { return _sickHrs; }
@@ -63,6 +67,7 @@ namespace RequestTimeOff.Models.HomePages
         }
 
         private int _sickRemain;
+        [ExcludeFromCodeCoverage]
         public int SickRemain
         {
             get { return _sickRemain; }
@@ -71,6 +76,7 @@ namespace RequestTimeOff.Models.HomePages
 
         private string _username;
 
+        [ExcludeFromCodeCoverage]
         public string Username
         {
             get { return _username; }
@@ -78,6 +84,7 @@ namespace RequestTimeOff.Models.HomePages
         }
 
         private ObservableCollection<TimeOff> _schedule;
+        [ExcludeFromCodeCoverage]
         public ObservableCollection<TimeOff> Schedule
         {
             get { return _schedule; }

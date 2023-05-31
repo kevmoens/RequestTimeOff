@@ -54,6 +54,9 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 ,new TimeOff { Date = new DateTimeOffset(2023,1,17,0,0, 0,TimeSpan.Zero),
                     Username = "User2"
                 }
+                ,new TimeOff { Date = new DateTimeOffset(2023,1,18,0,0, 0,TimeSpan.Zero),
+                    Username = "User3"
+                }
             };
             _requestTimeOffRepository
                 .TimeOffQuery(t => true)
@@ -63,14 +66,20 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 new User {
                     Username = "TUser",
                     Dept = "PROG",
+                    VacHrs = 100,
+                    SickHrs = 40,
                 }
                 ,new User {
                     Username = "User2",
                     Dept = "PROG",
+                    VacHrs = 80,
+                    SickHrs = 30,
                 }
                 ,new User {
                     Username = "User3",
                     Dept = "NETW",
+                    VacHrs = 60,
+                    SickHrs = 20,
                 }
             };
             _requestTimeOffRepository
@@ -178,13 +187,36 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
         public void GivenWhenCreatingARequestOffRecordAndValidatingExistingDates()
         {
             _systemDate.Now().Returns(new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero));
-            _session = new Session()
+            var users = new List<User>
             {
-                User = new User()
-                {
-                    Username = "TUser"
+                new User {
+                    Username = "TUser",
+                    Dept = "PROG",
+                    VacHrs = 100,
+                    SickHrs = 40,
+                }
+                ,new User {
+                    Username = "User2",
+                    Dept = "PROG",
+                    VacHrs = 80,
+                    SickHrs = 30,
+                }
+                ,new User {
+                    Username = "User3",
+                    Dept = "NETW",
+                    VacHrs = 60,
+                    SickHrs = 20,
                 }
             };
+            _requestTimeOffRepository
+                .UserQuery(u => true)
+                .ReturnsForAnyArgs(callInfo => users.Where(callInfo.Arg<Func<User, bool>>()).ToList());
+
+            _session = new Session()
+            {
+                User = users[0]
+            };
+
             CurrentTimeOffsOtherThanJan3();
             CurrentTimeOffsForJan3();
 

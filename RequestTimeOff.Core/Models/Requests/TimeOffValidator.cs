@@ -57,10 +57,15 @@ namespace RequestTimeOff.Core.Models.Requests
         private bool IsNotADuplicate(DateTime date, string userName)
         {
             var currUser = _requestTimeOffRepository.UserQuery(u => u.Username == userName).FirstOrDefault();
-            var users = _requestTimeOffRepository.UserQuery(u => u.Dept == currUser.Dept && u.Username != currUser.Username);
+            if (currUser == null)
+            {
+                //Don't throw an error if something else caused it.
+                return false;
+            }
+            var users = _requestTimeOffRepository.UserQuery(u => u.Dept == currUser?.Dept && u.Username != currUser?.Username);
             var userTimeOffRecords = _requestTimeOffRepository.TimeOffQuery(t => t.Date.Date == date && users.Any(u => u.Username == t.Username));
 
-            return userTimeOffRecords.Count() < 2;
+            return userTimeOffRecords.Count() == 0;
         }
     }
 }

@@ -281,13 +281,10 @@ namespace RequestTimeOff.ViewModels
             Requests.Remove(timeOff);
         }
 
+        [ExcludeFromCodeCoverage]
         public void OnNavigatedTo(Dictionary<string, object> parameters)
         {
-            Requests.Clear();
-            TotalHours = 0;
-            Description = "";
-            IsReoccurrance = false;
-            SelectedDate = _systemDateTime.Now().Date;
+            Clear();
         }
         public void OnNavigated()
         {
