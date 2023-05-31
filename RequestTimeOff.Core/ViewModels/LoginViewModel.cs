@@ -4,6 +4,7 @@ using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.Models.Sessions;
 using RequestTimeOff.MVVM;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged, INavigationAware
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -36,6 +37,7 @@ namespace RequestTimeOff.ViewModels
             _sessionLoad = sessionLoad;
             _messageBox = messageBox;
             LoginCommand = new DelegateCommand(OnLogin);
+            LoadedCommand = new DelegateCommand(OnLoaded);
         }
 
         // Stryker disable all : Properties used for binding in the view 1
@@ -54,9 +56,23 @@ namespace RequestTimeOff.ViewModels
             set { _Password = value; OnPropertyChanged(); }
         }
 
+        private bool _isUsernameFocused;
+
+        public bool IsUsernameFocused
+        {
+            get { return _isUsernameFocused; }
+            set { _isUsernameFocused = value; OnPropertyChanged();  }
+        }
 
         public ICommand LoginCommand { get; set; }
+        public ICommand LoadedCommand { get; set; }
         // Stryker restore all
+
+        public void OnLoaded()
+        {
+            IsUsernameFocused = false;
+            IsUsernameFocused = true;
+        }
 
         public void OnLogin()
         {
@@ -94,6 +110,17 @@ namespace RequestTimeOff.ViewModels
                 return false;
             }
             return true;
+        }
+
+        public void OnNavigatedTo(Dictionary<string, object> parameters)
+        {
+            IsUsernameFocused = false;
+            IsUsernameFocused = true;
+        }
+        public void OnNavigated()
+        {
+            IsUsernameFocused = false;
+            IsUsernameFocused = true;
         }
     }
 }

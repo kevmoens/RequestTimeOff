@@ -9,6 +9,7 @@ namespace RequestTimeOff.Models.HomePages
         int SickRemain { get; }
         int VacRemain { get; }
         int Year { get; }
+        string Username { get; set; }
 
         Task ChangeYear(int year);
     }

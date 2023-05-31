@@ -8,7 +8,7 @@ namespace RequestTimeOff.Converters
 {
     public class RTEColorConverter : IMultiValueConverter
     {
-        private RTEColorBrushes _colors = new();
+        private readonly RTEColorBrushes _colors = new();
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
 

@@ -83,7 +83,7 @@ namespace RequestTimeOff.Specflow.Steps.Models.HomePages
             };
             var startDate = new DateTimeOffset(_year, 1, 1, 0, 0, 0, TimeSpan.Zero);
             var endDate = new DateTimeOffset(_year, 12, 31, 0, 0, 0, TimeSpan.Zero);
-            var timeOffFilter = UserYearInfo.TimeOffFilterByRange(startDate, endDate);
+            var timeOffFilter = UserYearInfo.TimeOffFilterByRange(startDate, endDate, _session.User.Username);
             _requestTimeOffRepository
                 .TimeOffQuery(timeOffFilter)
                 .Returns(timeOffs);

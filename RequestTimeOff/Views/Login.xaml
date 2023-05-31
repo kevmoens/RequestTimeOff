@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:helpers="clr-namespace:RequestTimeOff.Helpers"
     xmlns:local="clr-namespace:RequestTimeOff.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -10,9 +11,13 @@
     xmlns:uc="clr-namespace:RequestTimeOff.UserControls"
     Title="Login"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="800"     
     mc:Ignorable="d">
-
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -44,6 +49,7 @@
             Margin="3"
             HorizontalAlignment="Stretch"
             materialDesign:HintAssist.Hint="Username"
+            helpers:FocusHelper.IsFocused="{Binding IsUsernameFocused}"
             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
         <PasswordBox
             x:Name="passwordBox"

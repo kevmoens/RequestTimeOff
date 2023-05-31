@@ -68,8 +68,7 @@ namespace RequestTimeOff.ViewModels
         public void OnNavigatedTo(Dictionary<string, object> parameters)
         {
             Departments = new ObservableCollection<Department>(_requestTimeOffRepository.DepartmentQuery(d => true).OrderBy(d => d.Dept));
-            object objuser = null;
-            if (parameters?.TryGetValue("User", out objuser) == true)
+            if (parameters?.TryGetValue("User", out object objuser) == true)
             {
                 User user = (User)objuser;
                 Password = User.Password;
@@ -81,6 +80,10 @@ namespace RequestTimeOff.ViewModels
             Password = string.Empty;
             PasswordVerify = string.Empty;
             User = new User();
+        }
+        public void OnNavigated()
+        {
+
         }
         internal void OnSave()
         {

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using RequestTimeOff.Core.Models.Requests;
 using RequestTimeOff.Models;
+using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.MessageBoxes;
 using RequestTimeOff.Models.Requests;
 using RequestTimeOff.MVVM;
@@ -15,7 +16,7 @@ using System.Windows.Input;
 
 namespace RequestTimeOff.ViewModels
 {
-    public class NewRequestViewModel : INotifyPropertyChanged
+    public class NewRequestViewModel : INotifyPropertyChanged, INavigationAware
     {
 #pragma warning disable CS0067 // The event 'PropertyChanged' is never used;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -30,6 +31,7 @@ namespace RequestTimeOff.ViewModels
         private readonly ITimeOffDateRange _timeOffDateRange;
         private readonly IValidator<TimeOff> _validator;
         private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly ISystemDateTime _systemDateTime;
         private readonly IMessageBox _messageBox;
         [ExcludeFromCodeCoverage]
         public NewRequestViewModel(Session session,
@@ -37,6 +39,7 @@ namespace RequestTimeOff.ViewModels
                                    ITimeOffDateRange timeOffDateRange,
                                    IValidator<TimeOff> validator,
                                    IRequestTimeOffRepository requestTimeOffRepository,
+                                   ISystemDateTime systemDateTime,
                                    IMessageBox messageBox)
         {
             _session = session;
@@ -44,6 +47,7 @@ namespace RequestTimeOff.ViewModels
             _timeOffDateRange = timeOffDateRange;
             _validator = validator;
             _requestTimeOffRepository = requestTimeOffRepository;
+            _systemDateTime = systemDateTime;
             _messageBox = messageBox;
             LoadValues();
             AddCommand = new DelegateCommand(OnAdd);
@@ -209,13 +213,12 @@ namespace RequestTimeOff.ViewModels
         private void AddDatesToRequests(List<DateTimeOffset> dates)
         {
             var newRequests = new List<TimeOff>();
-            if (_validator as ITimeOffValidator != null)
+            if (_validator is ITimeOffValidator timeOffValidator)
             {
                 (_validator as ITimeOffValidator).ExistingRequests = Requests.ToList();
             }
             foreach (var date in dates)
             {
-                TotalHours += Range.Hours();
                 TimeOff timeOff = new TimeOff
                 {
                     Date = date,
@@ -235,6 +238,7 @@ namespace RequestTimeOff.ViewModels
             
             foreach (var req in newRequests)
             {
+                TotalHours += req.Range.Hours();
                 Requests.Add(req);
             }
         }
@@ -275,6 +279,19 @@ namespace RequestTimeOff.ViewModels
         {
             TotalHours -= timeOff.Range.Hours();
             Requests.Remove(timeOff);
+        }
+
+        public void OnNavigatedTo(Dictionary<string, object> parameters)
+        {
+            Requests.Clear();
+            TotalHours = 0;
+            Description = "";
+            IsReoccurrance = false;
+            SelectedDate = _systemDateTime.Now().Date;
+        }
+        public void OnNavigated()
+        {
+
         }
     }
 }

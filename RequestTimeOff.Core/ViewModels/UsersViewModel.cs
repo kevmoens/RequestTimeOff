@@ -29,6 +29,7 @@ namespace RequestTimeOff.ViewModels
             AddCommand = new DelegateCommand(OnAdd);
             DeleteCommand = new DelegateCommand<User>(OnDelete);
             EditCommand = new DelegateCommand<User>(OnEdit);
+            DetailRequestsCommand = new DelegateCommand<User>(OnDetailRequests);
         }
 
 
@@ -37,6 +38,7 @@ namespace RequestTimeOff.ViewModels
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand DetailRequestsCommand { get; set; }
         private ObservableCollection<User> _users;
         public ObservableCollection<User> Users { get { return _users; } set { _users = value; OnPropertyChanged(); } }
         private ObservableCollection<Department> _departments;
@@ -45,7 +47,11 @@ namespace RequestTimeOff.ViewModels
         {
             Users = new ObservableCollection<User>(_requestTimeOffRepository.UserQuery(u => true).OrderBy(u => u.Username));
             Departments = new ObservableCollection<Department>(_requestTimeOffRepository.DepartmentQuery(d => true).OrderBy(d => d.Dept));
-                
+        }
+
+        private void OnDetailRequests(User user)
+        {
+            _navigationService.ViewNavigateTo("HomePage", new Dictionary<string, object> { { "User", user } });
         }
 
         private void OnEdit(User user)

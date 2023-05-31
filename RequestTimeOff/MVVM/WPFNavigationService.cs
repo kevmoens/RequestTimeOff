@@ -1,4 +1,5 @@
-﻿using Neleus.DependencyInjection.Extensions;
+﻿using Microsoft.VisualBasic;
+using Neleus.DependencyInjection.Extensions;
 using RequestTimeOff.MVVM.Events;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,20 +10,47 @@ namespace RequestTimeOff.MVVM
 {
     public class WPFNavigationService : INavigationService
     {
-        private readonly TaskCompletionSource<bool> _taskCompletionSource = new TaskCompletionSource<bool>();
+        private readonly TaskCompletionSource<bool> _taskCompletionSource = new();
         private NavigationService _service;
-        public NavigationService Service { get { return _service; } set { _service = value; _taskCompletionSource.SetResult(true); } }
+        public NavigationService Service 
+        { 
+            get 
+            { 
+                return _service; 
+            } 
+            set 
+            { 
+                _service = value;
+                if (Service != null)
+                {
+                    Service.Navigated += Service_Navigated;
+                }
+                _taskCompletionSource.SetResult(true); 
+            } 
+        }
         private readonly IServiceByNameFactory<IPage> _pageFactory;
         public WPFNavigationService(IServiceByNameFactory<IPage> pageFactory)
         {
             _pageFactory = pageFactory;
         }
+
+        private void Service_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (e?.Content != null && e.Content is FrameworkElement element)
+            {
+                if (element.DataContext is INavigationAware aware)
+                {
+                    aware.OnNavigated();
+                }
+            }
+        }
+
         public async void GoBack()
         {
-            await _taskCompletionSource.Task;
+            await _taskCompletionSource.Task;                        
             if (Service.CanGoBack)
             {
-                Service.GoBack();
+                Service.GoBack();                
             }
         }
 
@@ -47,7 +75,7 @@ namespace RequestTimeOff.MVVM
         }
         public void ViewNavigateTo(string pageKey, Dictionary<string, object> parameters)
         {
-            ViewNavigation viewNav = new ViewNavigation();
+            ViewNavigation viewNav = new();
             var view = _pageFactory.GetRequiredByName(pageKey);
             viewNav.Content = view;
             ViewNavigationPubSub.Instance.Publish(viewNav);

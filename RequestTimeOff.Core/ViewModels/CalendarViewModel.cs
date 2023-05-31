@@ -177,7 +177,7 @@ namespace RequestTimeOff.ViewModels
 
                 // Stryker disable all : Properties used for binding in the view 1
                 SetDate(i, currDate.Day);
-                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate));
+                SetTimeOffs(i, _requestTimeOffRepository.TimeOffQuery(t => t.Date == currDate && t.Declined == false));
                 // Stryker restore all
 
                 currDate = currDate.AddDays(1);

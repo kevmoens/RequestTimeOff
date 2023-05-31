@@ -41,6 +41,13 @@ namespace RequestTimeOff.Models.HomePages
             private set { _year = value; OnPropertyChanged(); }
         }
 
+        private int _vacHrs;
+        public int VacHrs
+        {
+            get { return _vacHrs; }
+            private set { _vacHrs = value; OnPropertyChanged(); }
+        }
+
         private int _vacRemain;
         public int VacRemain
         {
@@ -48,11 +55,26 @@ namespace RequestTimeOff.Models.HomePages
             private set { _vacRemain = value; OnPropertyChanged(); }
         }
 
+        private int _sickHrs;
+        public int SickHrs
+        {
+            get { return _sickHrs; }
+            private set { _sickHrs = value; OnPropertyChanged(); }
+        }
+
         private int _sickRemain;
         public int SickRemain
         {
             get { return _sickRemain; }
             private set { _sickRemain = value; OnPropertyChanged(); }
+        }
+
+        private string _username;
+
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<TimeOff> _schedule;
@@ -67,7 +89,7 @@ namespace RequestTimeOff.Models.HomePages
             Year = year; ;
             var firstOfYear = GetFirstOfYear(year);
             var lastOfYear = GetLastOfYear(year);
-            var timeOffFilter = TimeOffFilterByRange(firstOfYear, lastOfYear);
+            var timeOffFilter = TimeOffFilterByRange(firstOfYear, lastOfYear, Username);
             try
             {
                 await Task.Run(() =>
@@ -78,12 +100,27 @@ namespace RequestTimeOff.Models.HomePages
                     Schedule = new ObservableCollection<TimeOff>(requests);
 
                     var sickReqs = requests.Where(t => t.Type == TimeOffType.Sick).ToList();
-                    var vacReqs = Schedule.Where(t => t.Type == TimeOffType.Vacation).ToList();
+                    var vacReqs = requests.Where(t => t.Type == TimeOffType.Vacation).ToList();
 
-                    SickRemain = _session.User.SickHrs - sickReqs.Sum(t => t.Range.Hours());
-                    VacRemain = _session.User.VacHrs - vacReqs.Sum(t => t.Range.Hours());
+                    if (Username == _session.User.Username)
+                    {
+                        SickHrs = _session.User.SickHrs;
+                        VacHrs = _session.User.VacHrs;
+                        SickRemain = _session.User.SickHrs - sickReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+                        VacRemain = _session.User.VacHrs - vacReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+                    }
+                    else
+                    {
+                        var currUser = _requestTimeOffRepository.UserQuery(u => u.Username == Username).FirstOrDefault();
+                        SickHrs = currUser?.SickHrs ?? 0;
+                        VacHrs = currUser?.VacHrs ?? 0;
+                        SickRemain = (currUser?.SickHrs ?? 0) - sickReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+                        VacRemain = (currUser?.VacHrs ?? 0) - vacReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+
+                    }
                 });
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "ChangeYear");
             }
@@ -102,17 +139,20 @@ namespace RequestTimeOff.Models.HomePages
         private static Func<TimeOff, bool> _timeOffFilter;
         private static DateTimeOffset _timeOffFilterStartDate;
         private static DateTimeOffset _timeOffFilterEndDate;
+        private static string _timeOffFilterUsername;
         [ExcludeFromCodeCoverage]
-        public static Func<TimeOff, bool> TimeOffFilterByRange(DateTimeOffset startDate, DateTimeOffset endDate)
+        public static Func<TimeOff, bool> TimeOffFilterByRange(DateTimeOffset startDate, DateTimeOffset endDate, string username)
         {
-            if (_timeOffFilter != null && _timeOffFilterStartDate == startDate && _timeOffFilterEndDate == endDate)
+            if (_timeOffFilter != null && _timeOffFilterStartDate == startDate && _timeOffFilterEndDate == endDate && _timeOffFilterUsername == username)
             {
                 return _timeOffFilter;
             }
             _timeOffFilterStartDate = startDate;
             _timeOffFilterEndDate = endDate;
+            _timeOffFilterUsername = username;
             _timeOffFilter = h => startDate <= h.Date
-                && h.Date <= endDate;
+                && h.Date <= endDate
+                && h.Username == username;
             return _timeOffFilter;
         }
 
