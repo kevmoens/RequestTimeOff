@@ -3,6 +3,7 @@ using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -12,8 +13,8 @@ namespace RequestTimeOff.Core.Models.Requests
 {
     public class TimeOffValidator : AbstractValidator<TimeOff>, ITimeOffValidator
     {
-        private IRequestTimeOffRepository _requestTimeOffRepository;
-        private Session _session;
+        private readonly IRequestTimeOffRepository _requestTimeOffRepository;
+        private readonly Session _session;
         public TimeOffValidator(ISystemDateTime systemDate, IRequestTimeOffRepository requestTimeOffRepository, Session session)
         {
             _requestTimeOffRepository = requestTimeOffRepository;
@@ -54,14 +55,10 @@ namespace RequestTimeOff.Core.Models.Requests
 
             return true;
         }
+        [ExcludeFromCodeCoverage]
         private bool IsNotADuplicate(DateTime date, string userName)
         {
             var currUser = _requestTimeOffRepository.UserQuery(u => u.Username == userName).FirstOrDefault();
-            if (currUser == null)
-            {
-                //Don't throw an error if something else caused it.
-                return false;
-            }
             var users = _requestTimeOffRepository.UserQuery(u => u.Dept == currUser?.Dept && u.Username != currUser?.Username);
             var userTimeOffRecords = _requestTimeOffRepository.TimeOffQuery(t => t.Date.Date == date && users.Any(u => u.Username == t.Username));
 

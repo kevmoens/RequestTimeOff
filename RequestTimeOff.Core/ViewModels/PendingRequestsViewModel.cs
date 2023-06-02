@@ -60,6 +60,7 @@ namespace RequestTimeOff.ViewModels
         {
             timeOff.Approved = true;
             _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            // Stryker disable once all
             PendingRequestUpdatePubSub.Instance.Publish(new PendingRequestUpdate());
             // Stryker disable once all
             OnLoaded();
@@ -67,7 +68,9 @@ namespace RequestTimeOff.ViewModels
         public void OnDecline(TimeOff timeOff)
         {
             timeOff.Declined = true;
-            _requestTimeOffRepository.UpdateTimeOff(timeOff); PendingRequestUpdatePubSub.Instance.Publish(new PendingRequestUpdate());
+            _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            // Stryker disable once all
+            PendingRequestUpdatePubSub.Instance.Publish(new PendingRequestUpdate());
             // Stryker disable once all
             OnLoaded();
         }

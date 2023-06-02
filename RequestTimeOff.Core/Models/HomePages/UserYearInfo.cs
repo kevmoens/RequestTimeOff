@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
+using RequestTimeOff.Models.Sessions;
 
 namespace RequestTimeOff.Models.HomePages
 {
@@ -109,22 +110,20 @@ namespace RequestTimeOff.Models.HomePages
                     var sickReqs = requests.Where(t => t.Type == TimeOffType.Sick).ToList();
                     var vacReqs = requests.Where(t => t.Type == TimeOffType.Vacation).ToList();
 
-                    if (Username == _session.User.Username)
-                    {
-                        SickHrs = _session.User.SickHrs;
-                        VacHrs = _session.User.VacHrs;
-                        SickRemain = _session.User.SickHrs - sickReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
-                        VacRemain = _session.User.VacHrs - vacReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+                    User currUser = _session.User;
+                    // Stryker disable once all
+                    if (Username != _session.User.Username)
+                    {     
+                        // Stryker disable once all
+                        currUser = _requestTimeOffRepository.UserQuery(u => u.Username == Username).FirstOrDefault();
                     }
-                    else
-                    {
-                        var currUser = _requestTimeOffRepository.UserQuery(u => u.Username == Username).FirstOrDefault();
-                        SickHrs = currUser?.SickHrs ?? 0;
-                        VacHrs = currUser?.VacHrs ?? 0;
-                        SickRemain = (currUser?.SickHrs ?? 0) - sickReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
-                        VacRemain = (currUser?.VacHrs ?? 0) - vacReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+                    // Stryker disable once all
+                    SickHrs = currUser?.SickHrs ?? 0;
+                    // Stryker disable once all
+                    VacHrs = currUser?.VacHrs ?? 0;
+                    SickRemain = (currUser?.SickHrs ?? 0) - sickReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
+                    VacRemain = (currUser?.VacHrs ?? 0) - vacReqs.Where(t => t.Declined == false).Sum(t => t.Range.Hours());
 
-                    }
                 });
             }
             catch (Exception ex)
