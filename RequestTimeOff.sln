@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTimeOff.Specflow", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTimeOff.Core", "RequestTimeOff.Core\RequestTimeOff.Core.csproj", "{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTimeOff.BlazorServer", "RequestTimeOff.BlazorServer\RequestTimeOff.BlazorServer.csproj", "{18CF3D8D-468F-4660-9ADC-D0DF82CE8853}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F3203AE-5DC9-4790-AD41-7E7C6F5AE7EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18CF3D8D-468F-4660-9ADC-D0DF82CE8853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18CF3D8D-468F-4660-9ADC-D0DF82CE8853}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18CF3D8D-468F-4660-9ADC-D0DF82CE8853}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18CF3D8D-468F-4660-9ADC-D0DF82CE8853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

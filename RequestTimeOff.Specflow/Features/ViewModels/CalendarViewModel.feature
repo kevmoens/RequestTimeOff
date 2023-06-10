@@ -13,7 +13,7 @@ Scenario: Load the calendar view model
 	
 Scenario: Load the calendar view model with no holidays
 	Given The current date is 1st July 2022
-	And the holidays are loaded
-	And the time offs are loaded
+	* the holidays are loaded
+	* the time offs are loaded
 	When Loading the month
 	Then Correct data will be loaded into the calendar collections with no holidays
