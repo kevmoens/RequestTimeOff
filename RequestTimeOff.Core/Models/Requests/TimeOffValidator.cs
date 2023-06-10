@@ -32,7 +32,7 @@ namespace RequestTimeOff.Core.Models.Requests
                 .Must((DateTimeOffset Date) => Date.DayOfWeek != DayOfWeek.Saturday && Date.DayOfWeek != DayOfWeek.Sunday)
                 .WithMessage("Request cannot be on a weekend.");
             RuleFor(x => x.Date)
-                .Must((DateTimeOffset Date) => requestTimeOffRepository.HolidayQuery(h => h.Date == Date).Any() == false)
+                .Must((DateTimeOffset Date) => requestTimeOffRepository.HolidayQuery(h => h.Date.Date == Date.Date).Any() == false)
                 .WithMessage("You can't request off a holiday.");
             RuleFor(x => x.Date)
                 .Must((DateTimeOffset Date) => requestTimeOffRepository.TimeOffQuery(t => t.Username == _session.User.Username && t.Date == Date).Any() == false)

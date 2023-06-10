@@ -3,17 +3,21 @@
 
 TAB: Specflow Demo
 
-- Gherkin Date Must be after today 
-
-Scenario: Date Must be after today
+- Scenario Outline / Examples feature file
+Scenario Outline: Handle invalid dates
 	Given When creating a request off record
-	When the date is not set
-	Then the request returns the error "Date must be on or after <DATE>"
+	When the date '<Date>' is invalid
+	Then the request returns the error "<Message>"
 
-- Step : Date Must be after today
+Examples:
+| Date       | TestName     | Message                          |
+|            | Before Today | Date must be on or after <DATE>  |
+| 2023/01/02 | Holiday      | You can't request off a holiday. |
+| 2023/01/07 | Saturday     | Request cannot be on a weekend.  |
+| 2023/01/08 | Sunday       | Request cannot be on a weekend.  |
+	
 
-        [When(@"the date is not set")]
-        public void WhenTheDateIsNotSet()
-        {
-            _validateAdd.SelectedDate = default;
-        }
+- When the date '<Date>' is invalid
+            DateTimeOffset date = default;
+            DateTimeOffset.TryParse(inputDate, out date);
+            _timeOff.Date = date;

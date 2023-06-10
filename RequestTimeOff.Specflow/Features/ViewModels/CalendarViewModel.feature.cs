@@ -103,10 +103,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("The current date is 1st July 2023", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.And("the holidays are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the holidays are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
 #line 10
- testRunner.And("the time offs are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the time offs are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
 #line 11
  testRunner.When("Loading the month", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -140,10 +140,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("The current date is 1st July 2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 16
- testRunner.And("the holidays are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the holidays are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
 #line 17
- testRunner.And("the time offs are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the time offs are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
 #line 18
  testRunner.When("Loading the month", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

@@ -122,12 +122,6 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
         }
 
 
-        [When(@"the date is not set")]
-        public void WhenTheDateIsNotSet()
-        {
-            _timeOff.Date = default;
-        }
-
         [Then(@"the request returns the error ""([^""]*)""")]
         public void ThenTheRequestReturnsTheError(string message)
         {
@@ -151,6 +145,12 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 .Be(message
                     .Replace("<DATE>", _systemDate.Now().Date.ToShortDateString())
                  );
+        }
+
+        [When(@"the date is not set")]
+        public void WhenTheDateIsNotSet()
+        {
+            _timeOff.Date = default;
         }
 
         [When(@"the date is on a holiday")]

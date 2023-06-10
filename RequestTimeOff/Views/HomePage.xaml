@@ -21,8 +21,14 @@
         <converters:CurrentYearVisibilityConverter x:Key="CurrentYearVisibilityConverter" />
         <converters:RTEColorConverter x:Key="RTEColorConverter" />
         <converters:HomePageCircularGaugeScaleSweepAngleConverter x:Key="HomePageCircularGaugeScaleSweepAngleConverter" />
-        <converters:IsCurrentUserVisibilityConverter x:Key="IsCurrentUserVisibilityConverter" TrueVisibility="Visible" FalseVisibility="Collapsed"/>
-        <converters:IsCurrentUserVisibilityConverter x:Key="InverseIsCurrentUserVisibilityConverter" TrueVisibility="Collapsed" FalseVisibility="Visible"/>
+        <converters:IsCurrentUserVisibilityConverter
+            x:Key="IsCurrentUserVisibilityConverter"
+            FalseVisibility="Collapsed"
+            TrueVisibility="Visible" />
+        <converters:IsCurrentUserVisibilityConverter
+            x:Key="InverseIsCurrentUserVisibilityConverter"
+            FalseVisibility="Visible"
+            TrueVisibility="Collapsed" />
 
         <gauge:ImageOffsetConverter x:Key="imageOffsetConverter" />
         <gauge:RadiusToDiameterConverter x:Key="radiusToDiameterConverter" />
@@ -208,8 +214,8 @@
             Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*" MinHeight="200" />
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -410,8 +416,8 @@
                     Command="{Binding NewRequestOffCommand}">
                     <Button.Visibility>
                         <MultiBinding Converter="{StaticResource IsCurrentUserVisibilityConverter}">
-                            <Binding Path="Username"/>
-                            <Binding Path="SessionUsername"/>
+                            <Binding Path="Username" />
+                            <Binding Path="SessionUsername" />
                         </MultiBinding>
                     </Button.Visibility>
                     <TextBlock
@@ -419,17 +425,16 @@
                         FontWeight="SemiBold"
                         Text="New Request" />
                 </Button>
-                <TextBlock 
+                <TextBlock
                     Grid.Row="6"
                     Grid.ColumnSpan="2"
-                    Text="{Binding Username}"
                     HorizontalAlignment="Center"
                     FontSize="24"
-                    >
+                    Text="{Binding Username}">
                     <TextBlock.Visibility>
                         <MultiBinding Converter="{StaticResource InverseIsCurrentUserVisibilityConverter}">
-                            <Binding Path="Username"/>
-                            <Binding Path="SessionUsername"/>
+                            <Binding Path="Username" />
+                            <Binding Path="SessionUsername" />
                         </MultiBinding>
                     </TextBlock.Visibility>
                 </TextBlock>
@@ -452,6 +457,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
+                                <Grid.Resources>
+                                    <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="FontWeight" Value="ExtraBold" />
+                                    </Style>
+                                </Grid.Resources>
                                 <Grid.Background>
                                     <MultiBinding Converter="{StaticResource RTEColorConverter}">
                                         <Binding Path="Type" />
@@ -474,8 +485,6 @@
                                     Grid.Column="0"
                                     Margin="0"
                                     Padding="0"
-                                    FontSize="10"
-                                    FontWeight="Bold"
                                     Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
                                 <StackPanel
                                     Grid.Column="1"
@@ -484,19 +493,16 @@
                                     <TextBlock
                                         Margin="0"
                                         Padding="0"
-                                        FontSize="10"
                                         Text="Hours" />
                                     <TextBlock
                                         Margin="7,0,0,0"
                                         Padding="0"
-                                        FontSize="10"
                                         Text="{Binding Range}" />
                                 </StackPanel>
                                 <TextBlock
                                     Grid.Column="2"
                                     Margin="0"
                                     Padding="0"
-                                    FontSize="10"
                                     Text="{Binding Type}" />
                                 <!--
                                 <TextBlock Grid.Column="3" FontSize="10"  Text="{Binding Vals[ApptDescription]}" Margin="0" Padding="0"/>
@@ -515,7 +521,6 @@
                                     Grid.ColumnSpan="5"
                                     Margin="0"
                                     Padding="0"
-                                    FontSize="10"
                                     Text="{Binding Reason}"
                                     TextWrapping="WrapWithOverflow" />
 
