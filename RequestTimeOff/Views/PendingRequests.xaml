@@ -5,8 +5,8 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RequestTimeOff.Views"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     x:Name="_this"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -17,69 +17,145 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <GroupBox Margin="16" Header="Pending Requests">
-        <Grid>
-            <ListView HorizontalContentAlignment="Stretch" ItemsSource="{Binding Requests}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Margin="2" Text="{Binding Username}" />
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="2"
-                                Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
-                            <TextBlock
-                                Grid.Column="2"
-                                Margin="2"
-                                Text="{Binding Type}" />
-                            <TextBlock
-                                Grid.Column="3"
-                                Margin="2"
-                                Text="{Binding Range}" />
-                            <TextBlock
-                                Grid.Row="1"
-                                Grid.ColumnSpan="5"
-                                Margin="2"
-                                Text="{Binding Description}" />
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.ColumnSpan="6"
-                                Margin="2"
-                                materialDesign:HintAssist.Hint="Reason"
-                                Text="{Binding Reason}" />
-                            <StackPanel
-                                Grid.Row="2"
-                                Grid.Column="6"
-                                HorizontalAlignment="Right"
-                                Orientation="Horizontal">
-                                <Button
+        <md:DialogHost>
+            <md:DialogHost.DialogContent>
+                <StackPanel Margin="16">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="ExtraBold"
+                        Text="Team Members Requested Same Day Off" />
+                    <ListView ItemsSource="{Binding SelectedRequest.TeamMemberTimeOffs}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Username}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Range}" />
+                                    <TextBlock Grid.Column="2" Text="{Binding Description}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            Margin="0,8,8,0"
+                            Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                            Content="OK"
+                            IsDefault="True"
+                            Style="{StaticResource MaterialDesignPaperButton}" />
+                    </StackPanel>
+                </StackPanel>
+            </md:DialogHost.DialogContent>
+            <Grid>
+                <ListView
+                    HorizontalContentAlignment="Stretch"
+                    ItemsSource="{Binding Requests}"
+                    SelectedItem="{Binding SelectedRequest}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="2" Text="{Binding Username}" />
+                                <TextBlock
+                                    Grid.Column="1"
                                     Margin="2"
-                                    Command="{Binding ElementName=_this, Path=DataContext.DeclineCommand}"
-                                    CommandParameter="{Binding}"
-                                    Content="Decline" />
-                                <Button
+                                    Text="{Binding Date, StringFormat=\{0:yyyy/MM/dd\}}" />
+                                <TextBlock
+                                    Grid.Column="2"
                                     Margin="2"
-                                    Command="{Binding ElementName=_this, Path=DataContext.ApproveCommand}"
-                                    CommandParameter="{Binding}"
-                                    Content="Approve" />
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                                    Text="{Binding Type}" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    Margin="2"
+                                    Text="{Binding Range}" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="5"
+                                    Margin="2"
+                                    Text="{Binding Description}" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="6"
+                                    Margin="2"
+                                    md:HintAssist.Hint="Reason"
+                                    Text="{Binding Reason}" />
+                                <StackPanel
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="6"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal"
+                                    Visibility="Visible">
+                                    <Button
+                                        Margin="3,0"
+                                        Command="{Binding ElementName=_this, Path=DataContext.ViewTeamMembersTransactionsCommand}"
+                                        CommandParameter="{Binding}">
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource MaterialDesignToolForegroundButton}" TargetType="Button">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding TeamMemberTimeOffs.Count}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <md:PackIcon
+                                            Width="24"
+                                            Height="24"
+                                            Margin="0"
+                                            Padding="0"
+                                            VerticalAlignment="Center"
+                                            Kind="AlertOutline" />
+                                    </Button>
+
+                                    <Button
+                                        Grid.Column="1"
+                                        Width="24"
+                                        Height="24"
+                                        Margin="10 0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding DataContext.UserDetailsCommand, ElementName=_this}"
+                                        CommandParameter="{Binding}"
+                                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Requests">
+                                        <md:PackIcon Kind="ListBoxOutline" />
+                                    </Button>
+
+                                    <Button
+                                        Margin="2"
+                                        Command="{Binding ElementName=_this, Path=DataContext.DeclineCommand}"
+                                        CommandParameter="{Binding}"
+                                        Content="Decline" />
+                                    <Button
+                                        Margin="2"
+                                        Command="{Binding ElementName=_this, Path=DataContext.ApproveCommand}"
+                                        CommandParameter="{Binding}"
+                                        Content="Approve" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </md:DialogHost>
     </GroupBox>
 </UserControl>

@@ -4,7 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Neleus.DependencyInjection.Extensions;
 using NLog.Extensions.Logging;
+using RequestTimeOff.Core.AutoMapper;
 using RequestTimeOff.Core.Models.Requests;
+using RequestTimeOff.Core.MVVM;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
 using RequestTimeOff.Models.HomePages;
@@ -101,12 +103,15 @@ namespace RequestTimeOff
             services.AddSingleton<INavigationService, WPFNavigationService>();
             services.AddTransient<IMessageBox, WPFMessageBox>();
             services.AddTransient<IDialogHost, WPFDialogHost>();
+            services.AddTransient<IOpenDialog, OpenDialog>();
 
             services.AddTransient<ISessionLoad, SessionLoad>();
             services.AddSingleton<ISystemDateTime, SystemDateTime>();
             services.AddTransient<IUserYearInfo, UserYearInfo>();
 
             services.AddTransient<ITimeOffDateRange, TimeOffDateRange>();
+            
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             services.AddLogging(builder => {
                 builder.SetMinimumLevel(LogLevel.Trace);

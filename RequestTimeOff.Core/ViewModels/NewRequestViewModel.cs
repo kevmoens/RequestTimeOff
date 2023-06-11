@@ -231,7 +231,10 @@ namespace RequestTimeOff.ViewModels
                 if (results.IsValid == false)
                 {
                     _messageBox.Show(results.Errors.First().ErrorMessage);
-                    return;
+                    if (results.Errors.Any(t => t.Severity == Severity.Error))
+                    {
+                        return;
+                    }
                 }
                 newRequests.Add(timeOff);
             }

@@ -64,4 +64,4 @@ Scenario: Validate Existing Requests when previously added request has the same 
 Scenario: Validate that no more than one employee of the same department is off on the same day
 	Given When creating a request off record
 	When Another User in the same department also has asked off
-	Then the request returns the error "Two or more employees with the same Username cannot request time off for the same day."
+	Then the request returns the error "Two or more employees of the same department for the same day needs supervisor approval."
