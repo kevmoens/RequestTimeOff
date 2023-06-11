@@ -83,9 +83,11 @@ namespace RequestTimeOff.Specflow.Features.Models.Requests
         [Xunit.SkippableFactAttribute(DisplayName="Return hours based off a TimeOffRange of All Day")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffRange")]
         [Xunit.TraitAttribute("Description", "Return hours based off a TimeOffRange of All Day")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void ReturnHoursBasedOffATimeOffRangeOfAllDay()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return hours based off a TimeOffRange of All Day", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -114,12 +116,14 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Return hours based off a TimeOffRange of AM")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffRange")]
         [Xunit.TraitAttribute("Description", "Return hours based off a TimeOffRange of AM")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void ReturnHoursBasedOffATimeOffRangeOfAM()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return hours based off a TimeOffRange of AM", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -129,13 +133,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 13
 testRunner.Given("I have a TimeOffRange of AM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 14
  testRunner.When("I call the GetHours method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("I should get 4 hours", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -145,12 +149,14 @@ testRunner.Given("I have a TimeOffRange of AM", ((string)(null)), ((TechTalk.Spe
         [Xunit.SkippableFactAttribute(DisplayName="Return hours based off a TimeOffRange of PM")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffRange")]
         [Xunit.TraitAttribute("Description", "Return hours based off a TimeOffRange of PM")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void ReturnHoursBasedOffATimeOffRangeOfPM()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return hours based off a TimeOffRange of PM", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -160,13 +166,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 17
+#line 19
 testRunner.Given("I have a TimeOffRange of PM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 18
+#line 20
  testRunner.When("I call the GetHours method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 21
  testRunner.Then("I should get 4 hours", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -176,12 +182,14 @@ testRunner.Given("I have a TimeOffRange of PM", ((string)(null)), ((TechTalk.Spe
         [Xunit.SkippableFactAttribute(DisplayName="Return hours based off a TimeOffRange of None")]
         [Xunit.TraitAttribute("FeatureTitle", "TimeOffRange")]
         [Xunit.TraitAttribute("Description", "Return hours based off a TimeOffRange of None")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void ReturnHoursBasedOffATimeOffRangeOfNone()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return hours based off a TimeOffRange of None", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -191,13 +199,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 25
 testRunner.Given("I have a TimeOffRange of None", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 23
+#line 26
  testRunner.When("I call the GetHours method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
+#line 27
  testRunner.Then("I should get 0 hours", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

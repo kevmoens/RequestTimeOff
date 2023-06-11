@@ -2,6 +2,7 @@
 
 Calculate a range of dates to request off for.
 
+@TimeOff
 Scenario: Create a request for one day off
 	Given A user wants to request 1 day(s) off on "2023/01/03"
 	When Calculating days off
@@ -9,6 +10,7 @@ Scenario: Create a request for one day off
 | Date       |
 | 2023/01/03 |
 
+@TimeOff
 Scenario: Create a request for multiple days off
 	Given A user wants to request 3 day(s) off on "2023/01/03"
 	When Calculating days off
@@ -18,6 +20,7 @@ Scenario: Create a request for multiple days off
 | 2023/01/04 |
 | 2023/01/05 |
 
+@TimeOff
 Scenario: Create a request for multiple days off that span a weekend
 	Given A user wants to request 5 day(s) off on "2023/01/03"
 	When Calculating days off
@@ -29,6 +32,7 @@ Scenario: Create a request for multiple days off that span a weekend
 | 2023/01/06 |
 | 2023/01/09 |
 
+@TimeOff
 Scenario: Create a request for multiple days off that span a holiday
 	Given A user wants to request 5 day(s) off on "2023/07/03"
 	And The following holidays exist

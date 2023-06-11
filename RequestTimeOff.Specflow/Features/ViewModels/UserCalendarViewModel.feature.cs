@@ -84,12 +84,16 @@ namespace RequestTimeOff.Specflow.Features.ViewModels
         [Xunit.SkippableFactAttribute(DisplayName="Load the usercalendar view model")]
         [Xunit.TraitAttribute("FeatureTitle", "UserCalendarViewModel")]
         [Xunit.TraitAttribute("Description", "Load the usercalendar view model")]
+        [Xunit.TraitAttribute("Category", "User")]
+        [Xunit.TraitAttribute("Category", "Calendar")]
         public void LoadTheUsercalendarViewModel()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "User",
+                    "Calendar"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Load the usercalendar view model", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -99,19 +103,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("The current date on the usercalendar view model is 1st July 2023", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.And("the holidays are loaded usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("the time offs are loaded usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.When("Loading the month usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("Correct data will be loaded into the calendar collections usercalendar view model" +
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -122,12 +126,16 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Load the calendar view model with no holidays")]
         [Xunit.TraitAttribute("FeatureTitle", "UserCalendarViewModel")]
         [Xunit.TraitAttribute("Description", "Load the calendar view model with no holidays")]
+        [Xunit.TraitAttribute("Category", "User")]
+        [Xunit.TraitAttribute("Category", "Calendar")]
         public void LoadTheCalendarViewModelWithNoHolidays()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "User",
+                    "Calendar"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Load the calendar view model with no holidays", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 14
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -137,19 +145,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 18
  testRunner.Given("The current date on the usercalendar is 1st July 2022 usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 19
  testRunner.And("the holidays are loaded usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 20
  testRunner.And("the time offs are loaded usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 21
  testRunner.When("Loading the month usercalendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 22
  testRunner.Then("Correct data will be loaded into the calendar collections with no holidays userca" +
                         "lendar view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

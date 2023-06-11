@@ -84,9 +84,11 @@ namespace RequestTimeOff.Specflow.Features.ViewModels
         [Xunit.SkippableFactAttribute(DisplayName="Load the calendar view model")]
         [Xunit.TraitAttribute("FeatureTitle", "CalendarViewModel")]
         [Xunit.TraitAttribute("Description", "Load the calendar view model")]
+        [Xunit.TraitAttribute("Category", "Calendar")]
         public void LoadTheCalendarViewModel()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "Calendar"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Load the calendar view model", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
@@ -121,12 +123,14 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Load the calendar view model with no holidays")]
         [Xunit.TraitAttribute("FeatureTitle", "CalendarViewModel")]
         [Xunit.TraitAttribute("Description", "Load the calendar view model with no holidays")]
+        [Xunit.TraitAttribute("Category", "Calendar")]
         public void LoadTheCalendarViewModelWithNoHolidays()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "Calendar"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Load the calendar view model with no holidays", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 14
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -136,19 +140,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 16
  testRunner.Given("The current date is 1st July 2022", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 17
  testRunner.And("the holidays are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 17
+#line 18
  testRunner.And("the time offs are loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 18
+#line 19
  testRunner.When("Loading the month", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 20
  testRunner.Then("Correct data will be loaded into the calendar collections with no holidays", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

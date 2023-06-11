@@ -83,12 +83,14 @@ namespace RequestTimeOff.Specflow.Features.Models.Requests
         [Xunit.SkippableFactAttribute(DisplayName="Create a request for one day off")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestsTimeOffDateRange")]
         [Xunit.TraitAttribute("Description", "Create a request for one day off")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void CreateARequestForOneDayOff()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for one day off", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,17 +100,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("A user wants to request 1 day(s) off on \"2023/01/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
                 table1.AddRow(new string[] {
                             "2023/01/03"});
-#line 8
+#line 9
  testRunner.Then("The following records are created", ((string)(null)), table1, "Then ");
 #line hidden
             }
@@ -118,12 +120,14 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Create a request for multiple days off")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestsTimeOffDateRange")]
         [Xunit.TraitAttribute("Description", "Create a request for multiple days off")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void CreateARequestForMultipleDaysOff()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -133,10 +137,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
+#line 15
  testRunner.Given("A user wants to request 3 day(s) off on \"2023/01/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 14
+#line 16
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -147,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/01/04"});
                 table2.AddRow(new string[] {
                             "2023/01/05"});
-#line 15
+#line 17
  testRunner.Then("The following records are created", ((string)(null)), table2, "Then ");
 #line hidden
             }
@@ -157,12 +161,14 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Create a request for multiple days off that span a weekend")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestsTimeOffDateRange")]
         [Xunit.TraitAttribute("Description", "Create a request for multiple days off that span a weekend")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void CreateARequestForMultipleDaysOffThatSpanAWeekend()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off that span a weekend", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -172,10 +178,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 25
  testRunner.Given("A user wants to request 5 day(s) off on \"2023/01/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 23
+#line 26
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -190,7 +196,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/01/06"});
                 table3.AddRow(new string[] {
                             "2023/01/09"});
-#line 24
+#line 27
  testRunner.Then("The following records are created", ((string)(null)), table3, "Then ");
 #line hidden
             }
@@ -200,12 +206,14 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Create a request for multiple days off that span a holiday")]
         [Xunit.TraitAttribute("FeatureTitle", "RequestsTimeOffDateRange")]
         [Xunit.TraitAttribute("Description", "Create a request for multiple days off that span a holiday")]
+        [Xunit.TraitAttribute("Category", "TimeOff")]
         public void CreateARequestForMultipleDaysOffThatSpanAHoliday()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off that span a holiday", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 32
+#line 36
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -215,17 +223,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 33
+#line 37
  testRunner.Given("A user wants to request 5 day(s) off on \"2023/07/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
                 table4.AddRow(new string[] {
                             "2023/07/04"});
-#line 34
+#line 38
  testRunner.And("The following holidays exist", ((string)(null)), table4, "And ");
 #line hidden
-#line 37
+#line 41
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -240,7 +248,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/07/07"});
                 table5.AddRow(new string[] {
                             "2023/07/10"});
-#line 38
+#line 42
  testRunner.Then("The following records are created", ((string)(null)), table5, "Then ");
 #line hidden
             }
@@ -255,7 +263,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off that span multiple holidays", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 48
+#line 52
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -265,7 +273,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 49
+#line 53
  testRunner.Given("A user wants to request 2 day(s) off on \"2023/11/22\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -274,10 +282,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/11/23"});
                 table6.AddRow(new string[] {
                             "2023/11/24"});
-#line 50
+#line 54
  testRunner.And("The following holidays exist", ((string)(null)), table6, "And ");
 #line hidden
-#line 54
+#line 58
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -286,7 +294,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/11/22"});
                 table7.AddRow(new string[] {
                             "2023/11/27"});
-#line 55
+#line 59
  testRunner.Then("The following records are created", ((string)(null)), table7, "Then ");
 #line hidden
             }

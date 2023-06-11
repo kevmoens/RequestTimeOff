@@ -83,12 +83,14 @@ namespace RequestTimeOff.Specflow.Features.Models.HomePages
         [Xunit.SkippableFactAttribute(DisplayName="Changing the year calculates the Year Info")]
         [Xunit.TraitAttribute("FeatureTitle", "HomePagesUserYearInfo")]
         [Xunit.TraitAttribute("Description", "Changing the year calculates the Year Info")]
+        [Xunit.TraitAttribute("Category", "User")]
         public void ChangingTheYearCalculatesTheYearInfo()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "User"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Changing the year calculates the Year Info", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,13 +100,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("The user changes the year to 2023", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("Running the ChangeYear method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("The Year Info is calculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
