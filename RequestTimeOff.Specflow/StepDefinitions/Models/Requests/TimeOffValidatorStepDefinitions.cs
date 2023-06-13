@@ -49,13 +49,16 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             {
                 new TimeOff {
                     Date = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
-                    Username = "TUser"
+                    Username = "TUser",
+                    Id = 1
                 }
                 ,new TimeOff { Date = new DateTimeOffset(2023,1,17,0,0, 0,TimeSpan.Zero),
-                    Username = "User2"
+                    Username = "User2",
+                    Id = 2
                 }
                 ,new TimeOff { Date = new DateTimeOffset(2023,1,18,0,0, 0,TimeSpan.Zero),
-                    Username = "User3"
+                    Username = "User3",
+                    Id = 3
                 }
             };
             _requestTimeOffRepository
@@ -86,6 +89,10 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 .UserQuery(u => true)
                 .ReturnsForAnyArgs(callInfo => users.Where(callInfo.Arg<Func<User, bool>>()).ToList());
 
+            HolidayQueryForNonHolidays();
+
+            HolidayQueryForNewYearsHoliday();
+
             _timeOff = new TimeOff()
             {
                 Username = "TUser",
@@ -95,9 +102,6 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 Description = "Family Vacation"
             };
 
-            HolidayQueryForNonHolidays();
-
-            HolidayQueryForNewYearsHoliday();
         }
 
         private void HolidayQueryForNonHolidays()
@@ -348,7 +352,8 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             {
                 new TimeOff {
                     Date = _systemDate.Now().AddDays(1),
-                    Username = "TUser"
+                    Username = "TUser",
+                    Id = 6
                 }
             };
             _requestTimeOffRepository
