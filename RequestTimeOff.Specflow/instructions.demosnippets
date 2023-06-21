@@ -3,6 +3,27 @@
 
 TAB: Specflow Demo
 
+- Spidey Feature
+Feature: Becoming a superhero
+
+A superhero is a guy who wears a mask and does wacky stuff.
+Like Spidey, who can sling and fling like a birdy.
+He got bit by a spidey and became a spidey.
+He helps peeps and whacks creeps, because he's wise and nice.
+He also cracks and snaps for bucks.  Spidey is fab because he's us but plus.
+
+Scenario: Getting bitten by a spider
+	Given I have a spider and a radioactive source
+	When I expose the spider to the radiation and let it bite me
+	Then I should gain spider powers
+
+Scenario: Fighting crime
+	Given I have a spider powers and a costume
+	When I swing around the city and stop bad guys
+	Then I should be a superhero
+
+
+
 - Scenario Outline / Examples feature file
 Scenario Outline: Handle invalid dates
 	Given When creating a request off record
