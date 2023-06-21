@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Caching.Memory;
 using RequestTimeOff.Core.Models.Requests;
 using RequestTimeOff.Core.MVVM;
 using RequestTimeOff.Core.MVVM.Events;
@@ -11,6 +12,8 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -42,14 +45,17 @@ namespace RequestTimeOff.ViewModels
             LoadedCommand = new DelegateCommand(OnLoaded);
             ApproveCommand = new DelegateCommand<TimeOff>(OnApprove);
             DeclineCommand = new DelegateCommand<TimeOff>(OnDecline);
+            DeclineAcceptCommand = new DelegateCommand(OnDeclineAccept);
+            DeclineCancelCommand = new DelegateCommand(OnDeclineCancel);
             ViewTeamMembersTransactionsCommand = new DelegateCommand<TimeOff>(OnViewTeamMembersTransactions);
             UserDetailsCommand = new DelegateCommand<TimeOff>(OnUserDetails);
         }
 
-
         public ICommand LoadedCommand { get; set; }
         public ICommand ApproveCommand { get; set; }
         public ICommand DeclineCommand { get; set; }
+        public ICommand DeclineAcceptCommand { get; set; }
+        public ICommand DeclineCancelCommand { get; set; }
         public ICommand ViewTeamMembersTransactionsCommand { get; set; }
         public ICommand UserDetailsCommand { get; set; }
 
@@ -70,6 +76,30 @@ namespace RequestTimeOff.ViewModels
             get { return _selectedRequest; }
             set { _selectedRequest = value; OnPropertyChanged(); }
         }
+        private string _reason;
+
+        public string Reason
+        {
+            get { return _reason; }
+            set { _reason = value; OnPropertyChanged(); }
+        }
+
+        private bool _conflictVisibility;
+        [ExcludeFromCodeCoverage]
+        public bool ConflictVisibility
+        {
+            get { return _conflictVisibility; }
+            set { _conflictVisibility = value; OnPropertyChanged(); }
+        }
+
+        private bool _declineVisibility;
+        [ExcludeFromCodeCoverage]
+        public bool DeclineVisibility
+        {
+            get { return _declineVisibility; }
+            set { _declineVisibility = value; OnPropertyChanged(); }
+        }
+
 
         [ExcludeFromCodeCoverage]
         private void OnLoaded()
@@ -90,7 +120,7 @@ namespace RequestTimeOff.ViewModels
                 var teamMemberRequests = _requestTimeOffRepository
                     .TimeOffQuery(t => t.Declined == false
                                 && t.Username != request.Username
-                                && t.Date == request.Date)
+                                && t.Date.Date == request.Date.Date)
                     .OrderBy(t => t.Username)
                     .Where(t => _requestTimeOffRepository.UserQuery(u => u.Username == t.Username).First().Dept == currentUser.Dept)
                     .ToList();
@@ -111,16 +141,36 @@ namespace RequestTimeOff.ViewModels
         }
         public void OnDecline(TimeOff timeOff)
         {
-            timeOff.Declined = true;
-            _requestTimeOffRepository.UpdateTimeOff(timeOff);
+            SelectedRequest = timeOff;
+            Reason = string.Empty;
+            ConflictVisibility = false;
+            DeclineVisibility = true;
+            _openDialog.Open();
+        }
+        private void OnDeclineAccept()
+        {
+            SelectedRequest.Declined = true;
+            SelectedRequest.Reason = Reason;
+            _requestTimeOffRepository.UpdateTimeOff(SelectedRequest);
+            DeclineVisibility = false;
+
             // Stryker disable once all
             PendingRequestUpdatePubSub.Instance.Publish(new PendingRequestUpdate());
             // Stryker disable once all
+            _openDialog.Close();
             OnLoaded();
         }
+
+        private void OnDeclineCancel()
+        {
+            _openDialog.Close();
+        }
+
         private void OnViewTeamMembersTransactions(TimeOff request)
         {
-            SelectedRequest = request;                        
+            SelectedRequest = request;
+            ConflictVisibility = true;
+            DeclineVisibility = false;
             _openDialog.Open();            
         }
         
