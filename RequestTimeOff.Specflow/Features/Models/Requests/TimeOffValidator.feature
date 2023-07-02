@@ -13,18 +13,6 @@ Scenario: Username must be set
 	Then the request returns the error "Username is required."
 
 @TimeOff
-Scenario: Username must not contain any spaces
-	Given When creating a request off record
-	When the username contains spaces
-	Then the request returns the error "Remove invalid characters for Username."
-
-@TimeOff
-Scenario: Username must not contain any control characters
-	Given When creating a request off record
-	When the username contains any control characters
-	Then the request returns the error "Remove invalid characters for Username."
-
-@TimeOff
 Scenario: Date Must be after today
 	Given When creating a request off record
 	When the date is not set
@@ -77,3 +65,16 @@ Scenario: Validate that no more than one employee of the same department is off 
 	Given When creating a request off record
 	When Another User in the same department also has asked off
 	Then the request returns the error "Two or more employees of the same department for the same day needs supervisor approval."
+
+
+@TimeOff
+Scenario: Username must not contain any spaces
+	Given When creating a request off record
+	When the username contains spaces
+	Then the request returns the error "Remove invalid characters for Username."
+
+@TimeOff
+Scenario: Username must not contain any control characters
+	Given When creating a request off record
+	When the username contains any control characters
+	Then the request returns the error "Remove invalid characters for Username."
