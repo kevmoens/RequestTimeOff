@@ -2,6 +2,7 @@ using FluentAssertions;
 using FluentValidation.Results;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NSubstitute;
+using NSubstitute.Core;
 using RequestTimeOff.Core.Models.Requests;
 using RequestTimeOff.Models;
 using RequestTimeOff.Models.Date;
@@ -27,6 +28,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
         private ISystemDateTime _systemDate = Substitute.For<ISystemDateTime>();
         private Session _session;
         private IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
+        private List<User> _users = new();
 
         public TimeOffValidatorStepDefinitions()
         {
@@ -40,31 +42,10 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 }
             };
         }
-        [Given(@"When creating a request off record")]
-        public void GivenWhenCreatingARequestOffRecord()
+        [Given(@"There are existing users that can request time off")]
+        public void GivenThereAreExistingUsersThatCanRequestTimeOff()
         {
-            _systemDate.Now().Returns(new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero));
-
-            var timeOffs = new List<TimeOff>
-            {
-                new TimeOff {
-                    Date = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
-                    Username = "TUser",
-                    Id = 1
-                }
-                ,new TimeOff { Date = new DateTimeOffset(2023,1,17,0,0, 0,TimeSpan.Zero),
-                    Username = "User2",
-                    Id = 2
-                }
-                ,new TimeOff { Date = new DateTimeOffset(2023,1,18,0,0, 0,TimeSpan.Zero),
-                    Username = "User3",
-                    Id = 3
-                }
-            };
-            _requestTimeOffRepository
-                .TimeOffQuery(t => true)
-                .ReturnsForAnyArgs(callInfo => timeOffs.Where(callInfo.Arg<Func<TimeOff, bool>>()).ToList());
-            var users = new List<User>
+            _users = new List<User>
             {
                 new User {
                     Username = "TUser",
@@ -87,11 +68,48 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             };
             _requestTimeOffRepository
                 .UserQuery(u => true)
-                .ReturnsForAnyArgs(callInfo => users.Where(callInfo.Arg<Func<User, bool>>()).ToList());
+                .ReturnsForAnyArgs(callInfo => _users.Where(callInfo.Arg<Func<User, bool>>()).ToList());
+        }
 
-            HolidayQueryForNonHolidays();
+        [Given(@"Today is the first")]
+        public void GivenTodayIsTheFirst()
+        {
+            _systemDate.Now().Returns(new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero));
+        }
 
-            HolidayQueryForNewYearsHoliday();
+        [Given(@"Today is the third")]
+        public void GivenTodayIsTheThird()
+        {
+            _systemDate.Now().Returns(new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero));
+        }
+
+        [Given(@"There are existing time off records")]
+        public void GivenThereAreExistingTimeOffRecords()
+        {
+            var timeOffs = new List<TimeOff>
+            {
+                new TimeOff {
+                    Date = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
+                    Username = "TUser",
+                    Id = 1
+                }
+                ,new TimeOff { Date = new DateTimeOffset(2023,1,17,0,0, 0,TimeSpan.Zero),
+                    Username = "User2",
+                    Id = 2
+                }
+                ,new TimeOff { Date = new DateTimeOffset(2023,1,18,0,0, 0,TimeSpan.Zero),
+                    Username = "User3",
+                    Id = 3
+                }
+            };
+            _requestTimeOffRepository
+                .TimeOffQuery(t => true)
+                .ReturnsForAnyArgs(callInfo => timeOffs.Where(callInfo.Arg<Func<TimeOff, bool>>()).ToList());
+        }
+
+        [Given(@"When creating a request off record")]
+        public void GivenWhenCreatingARequestOffRecord()
+        {
 
             _timeOff = new TimeOff()
             {
@@ -104,14 +122,8 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
 
         }
 
-        private void HolidayQueryForNonHolidays()
-        {
-            _requestTimeOffRepository
-                            .HolidayQuery(h => h.Date == _systemDate.Now())
-                            .ReturnsForAnyArgs(new List<Holiday>());
-        }
-
-        private void HolidayQueryForNewYearsHoliday()
+        [Given(@"Holidays are defined")]
+        private void HolidaysAreDefined()
         {
             var holidays = new List<Holiday>
             {
@@ -121,8 +133,8 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 }
             };
             _requestTimeOffRepository
-                .HolidayQuery(Arg.Is<Func<Holiday, bool>>(h => h(holidays[0])))
-                .Returns(holidays);
+                .HolidayQuery(Arg.Any<Func<Holiday, bool>>())
+                .ReturnsForAnyArgs(callInfo => holidays.Where(callInfo.Arg<Func<Holiday, bool>>()).ToList());
         }
 
 
@@ -190,35 +202,9 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
         [Given(@"When creating a request off record and validating existing dates")]
         public void GivenWhenCreatingARequestOffRecordAndValidatingExistingDates()
         {
-            _systemDate.Now().Returns(new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero));
-            var users = new List<User>
-            {
-                new User {
-                    Username = "TUser",
-                    Dept = "PROG",
-                    VacHrs = 100,
-                    SickHrs = 40,
-                }
-                ,new User {
-                    Username = "User2",
-                    Dept = "PROG",
-                    VacHrs = 80,
-                    SickHrs = 30,
-                }
-                ,new User {
-                    Username = "User3",
-                    Dept = "NETW",
-                    VacHrs = 60,
-                    SickHrs = 20,
-                }
-            };
-            _requestTimeOffRepository
-                .UserQuery(u => true)
-                .ReturnsForAnyArgs(callInfo => users.Where(callInfo.Arg<Func<User, bool>>()).ToList());
-
             _session = new Session()
             {
-                User = users[0]
+                User = _users[0]
             };
 
             CurrentTimeOffsOtherThanJan3();
