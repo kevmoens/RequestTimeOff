@@ -27,6 +27,9 @@ Scenario: Fighting crime
 - Scenario Outline / Examples feature file
 Scenario Outline: Handle invalid dates
 	Given When creating a request off record
+	Given Today is the first
+	And Holidays are defined
+	* There are existing time off records
 	When the date '<Date>' is invalid
 	Then the request returns the error "<Message>"
 

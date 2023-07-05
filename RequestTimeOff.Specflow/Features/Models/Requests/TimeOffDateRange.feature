@@ -1,6 +1,7 @@
-﻿Feature: RequestsTimeOffDateRange
+﻿Feature: Requests TimeOff for a Date Range
 
-Calculate a range of dates to request off for.
+Calculate a range of dates to request off for.  This is done by putting in a start date and passing number of days to ask off to be greater than 1.
+This will calculate that many days off.
 
 @TimeOff
 Scenario: Create a request for one day off
