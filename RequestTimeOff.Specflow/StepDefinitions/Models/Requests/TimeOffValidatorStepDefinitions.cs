@@ -137,9 +137,8 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 .ReturnsForAnyArgs(callInfo => holidays.Where(callInfo.Arg<Func<Holiday, bool>>()).ToList());
         }
 
-
-        [Then(@"the request returns the error ""([^""]*)""")]
-        public void ThenTheRequestReturnsTheError(string message)
+        [When(@"the request validation occurs")]
+        public void WhenTheRequestValidationOccurs()
         {
             ValidationResult validationResults;
             try
@@ -156,6 +155,11 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             {
                 _errorMessage = ex.Message;
             }
+        }
+
+        [Then(@"the request returns the error ""([^""]*)""")]
+        public void ThenTheRequestReturnsTheError(string message)
+        {
             _errorMessage
                 .Should()
                 .Be(message
@@ -261,22 +265,6 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
         [Then(@"the request dates returns the error ""([^""]*)""")]
         public void ThenTheRequestDatesReturnsTheError(string message)
         {
-            ValidationResult validationResults;
-            try
-            {
-                _errorMessage = string.Empty;
-                _timeOffValidator = new TimeOffValidator(_systemDate, _requestTimeOffRepository, _session);
-                _timeOffValidator.ExistingRequests = _existingRequests;
-                validationResults = _timeOffValidator.Validate(_timeOff);
-                if (validationResults?.Errors?.Count > 0)
-                {
-                    _errorMessage = validationResults.Errors[0].ErrorMessage;
-                }
-            }
-            catch (Exception ex)
-            {
-                _errorMessage = ex.Message;
-            }
             _errorMessage
                 .Should()
                 .Be(message
