@@ -63,6 +63,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.ViewModels
         public void WhenAdminClicksOnTheDenyButton()
         {
             _pendingRequestsViewModel.OnDecline(_request);
+            _pendingRequestsViewModel.DeclineAcceptCommand.Execute(null);
         }
 
         [Then(@"The request is denied")]

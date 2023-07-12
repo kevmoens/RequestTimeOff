@@ -145,6 +145,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
             {
                 _errorMessage = string.Empty;
                 _timeOffValidator = new TimeOffValidator(_systemDate, _requestTimeOffRepository, _session);
+                _timeOffValidator.ExistingRequests = _existingRequests;
                 validationResults = _timeOffValidator.Validate(_timeOff);
                 if (validationResults?.Errors?.Count > 0)
                 {
