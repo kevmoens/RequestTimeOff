@@ -4,7 +4,7 @@
 TAB: Specflow Demo
 
 - Spidey Feature
-Feature: Becoming a superhero
+Feature: Superhero
 
 A superhero is a guy who wears a mask and does wacky stuff.
 Like Spidey, who can sling and fling like a birdy.
@@ -31,6 +31,7 @@ Scenario Outline: Handle invalid dates
 	And Holidays are defined
 	* There are existing time off records
 	When the date '<Date>' is invalid
+	And the request validation occurs
 	Then the request returns the error "<Message>"
 
 Examples:
