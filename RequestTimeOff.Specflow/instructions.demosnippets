@@ -43,6 +43,4 @@ Examples:
 	
 
 - When the date '<Date>' is invalid
-            DateTimeOffset date = default;
-            DateTimeOffset.TryParse(inputDate, out date);
-            _timeOff.Date = date;
+_timeOff.Date = date;
