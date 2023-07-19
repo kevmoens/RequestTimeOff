@@ -168,37 +168,37 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                  );
         }
 
-        [When(@"the date is not set")]
+        [Given(@"the date is not set")]
         public void WhenTheDateIsNotSet()
         {
             _timeOff.Date = default;
         }
 
-        [When(@"the date is on a holiday")]
+        [Given(@"the date is on a holiday")]
         public void WhenTheDateIsOnAHoliday()
         {
             _timeOff.Date = new DateTimeOffset(2023, 1, 2, 0, 0, 0, TimeSpan.Zero);
         }
 
-        [When(@"the date is on a weekend")]
+        [Given(@"the date is on a weekend")]
         public void WhenTheDateIsOnAWeekend()
         {
             _timeOff.Date = new DateTimeOffset(2023, 1, 7, 0, 0, 0, TimeSpan.Zero);
         }
 
-        [When(@"the date is on a weekend Sunday")]
+        [Given(@"the date is on a weekend Sunday")]
         public void WhenTheDateIsOnAWeekendSunday()
         {
             _timeOff.Date = new DateTimeOffset(2023, 1, 8, 0, 0, 0, TimeSpan.Zero);
         }
 
-        [When(@"the date is valid")]
+        [Given(@"the date is valid")]
         public void WhenTheDateIsValid()
         {
             _timeOff.Date = new DateTimeOffset(2023, 1, 4, 0, 0, 0, TimeSpan.Zero);
         }
 
-        [When(@"Another User in the same department also has asked off")]
+        [Given(@"Another User in the same department also has asked off")]
         public void WhenAnotherUserInTheSameDepartmentAlsoHasAskedOff()
         {
             _timeOff.Date = new DateTimeOffset(2023, 1, 17, 0, 0, 0, TimeSpan.Zero);
@@ -238,7 +238,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 .Returns(timeOffs);
         }
 
-        [When(@"the date is unique")]
+        [Given(@"the date is unique")]
         public void WhenTheDateIsUnique()
         {
             _timeOff = new TimeOff()
@@ -273,7 +273,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                  );
         }
 
-        [When(@"the date is a duplicate from the just added request")]
+        [Given(@"the date is a duplicate from the just added request")]
         public void WhenTheDateIsADuplicateFromTheJustAddedRequest()
         {
             _existingRequests = new List<TimeOff>
@@ -305,7 +305,7 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
 
         }
 
-        [When(@"the date is a duplicate from a previously added request")]
+        [Given(@"the date is a duplicate from a previously added request")]
         public void WhenTheDateIsADuplicateFromAPreviouslyAddedRequest()
         {
 
@@ -335,19 +335,19 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
                 .TimeOffQuery(t => true)
                 .ReturnsForAnyArgs(callInfo => timeOffs.Where(callInfo.Arg<Func<TimeOff, bool>>()).ToList());
         }
-        [When(@"the username is not set on the timeoff record")]
+        [Given(@"the username is not set on the timeoff record")]
         public void WhenTheUsernameIsNotSetOnTheTimeoffRecord()
         {
             _timeOff.Username = null;
         }
 
-        [When(@"the username contains spaces")]
+        [Given(@"the username contains spaces")]
         public void WhenTheUsernameContainsSpaces()
         {
             _timeOff.Username = "T User";
         }
 
-        [When(@"the username contains any control characters")]
+        [Given(@"the username contains any control characters")]
         public void WhenTheUsernameContainsAnyControlCharacters()
         {
             _timeOff.Username = "\tTUser";
