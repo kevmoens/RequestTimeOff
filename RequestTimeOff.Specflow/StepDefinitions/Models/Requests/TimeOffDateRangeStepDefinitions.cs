@@ -15,11 +15,21 @@ namespace RequestTimeOff.Specflow.Steps.Models.Requests
         //Dependencies
         private readonly IRequestTimeOffRepository _requestTimeOffRepository = Substitute.For<IRequestTimeOffRepository>();
 
-        //Converter
+        //Converter - SUT (System Under Test)
         private TimeOffDateRange _timeOffDateRange;
 
         //Output
         private List<DateTimeOffset> _result;
+
+        [Given(@"The holidays are loaded for Time Off Date Ranges")]
+        public void GivenTheHolidaysAreLoadedForTimeOffDateRanges()
+        {
+            _requestTimeOffRepository
+                .HolidayQuery(h => h.Date == DateTimeOffset.Now)
+                .ReturnsForAnyArgs(new List<Holiday>());
+        }
+
+
         [Given(@"A user wants to request (.*) day\(s\) off on ""([^""]*)""")]
         public void GivenAUserWantsToRequestDaySOffOn(int reoccurance, DateTimeOffset selectedDate)
         {
@@ -28,9 +38,6 @@ namespace RequestTimeOff.Specflow.Steps.Models.Requests
                 SelectedDate = selectedDate,
                 Reoccurance = reoccurance
             };
-            _requestTimeOffRepository
-                .HolidayQuery(h => h.Date == DateTimeOffset.Now)
-                .ReturnsForAnyArgs(new List<Holiday>());
         }
 
         [Given(@"The following holidays exist")]

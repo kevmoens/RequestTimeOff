@@ -18,9 +18,9 @@ namespace RequestTimeOff.Specflow.StepDefinitions.Models.Requests
     public class TimeOffValidatorStepDefinitions
     {
         //Unit of code tested
-        private TimeOffValidator _timeOffValidator;
+        private TimeOffValidator _timeOffValidator; //(SUT) System Under Test
         private List<TimeOff> _existingRequests;
-        //Model being validated
+        //Model being validated 
         private TimeOff _timeOff;
         //result being checked
         private string _errorMessage = string.Empty;

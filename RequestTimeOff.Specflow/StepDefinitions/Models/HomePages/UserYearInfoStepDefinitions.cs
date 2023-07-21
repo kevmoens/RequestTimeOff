@@ -18,6 +18,8 @@ namespace RequestTimeOff.Specflow.Steps.Models.HomePages
         private readonly ILogger<UserYearInfo> _logger = Substitute.For<ILogger<UserYearInfo>>();
 
         private int _year;
+
+        // SUT - System Under Test
         private IUserYearInfo _userInfo;
 
 

@@ -17,7 +17,7 @@ namespace RequestTimeOff.Specflow.zEnd
         [Fact]
         public void GenerateLivingDoc()
         {           
-            Thread.Sleep(5_000);
+            Thread.Sleep(2_000);
             var startInfo = new System.Diagnostics.ProcessStartInfo();
             startInfo.FileName = "livingdoc";
             startInfo.Arguments = "test-assembly RequestTimeOff.Specflow.dll -t TestExecution.json";

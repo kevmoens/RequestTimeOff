@@ -77,6 +77,15 @@ namespace RequestTimeOff.Specflow.Features.Models.Requests
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line hidden
+#line 7
+testRunner.Given("The holidays are loaded for Time Off Date Ranges", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         void System.IDisposable.Dispose()
         {
             this.TestTearDown();
@@ -92,7 +101,7 @@ namespace RequestTimeOff.Specflow.Features.Models.Requests
                     "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for one day off", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -102,17 +111,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 6
+this.FeatureBackground();
+#line hidden
+#line 11
  testRunner.Given("A user wants to request 1 day(s) off on \"2023/01/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 12
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
                 table1.AddRow(new string[] {
                             "2023/01/03"});
-#line 10
+#line 13
  testRunner.Then("The following records are created", ((string)(null)), table1, "Then ");
 #line hidden
             }
@@ -129,7 +141,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 15
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -139,10 +151,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 6
+this.FeatureBackground();
+#line hidden
+#line 19
  testRunner.Given("A user wants to request 3 day(s) off on \"2023/01/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 20
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -153,7 +168,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/01/04"});
                 table2.AddRow(new string[] {
                             "2023/01/05"});
-#line 18
+#line 21
  testRunner.Then("The following records are created", ((string)(null)), table2, "Then ");
 #line hidden
             }
@@ -170,7 +185,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off that span a weekend", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 25
+#line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -180,10 +195,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 26
+#line 6
+this.FeatureBackground();
+#line hidden
+#line 29
  testRunner.Given("A user wants to request 5 day(s) off on \"2023/01/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 27
+#line 30
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -198,7 +216,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/01/06"});
                 table3.AddRow(new string[] {
                             "2023/01/09"});
-#line 28
+#line 31
  testRunner.Then("The following records are created", ((string)(null)), table3, "Then ");
 #line hidden
             }
@@ -215,7 +233,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "TimeOff"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off that span a holiday", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 37
+#line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -225,17 +243,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 38
+#line 6
+this.FeatureBackground();
+#line hidden
+#line 41
  testRunner.Given("A user wants to request 5 day(s) off on \"2023/07/03\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date"});
                 table4.AddRow(new string[] {
                             "2023/07/04"});
-#line 39
+#line 42
  testRunner.And("The following holidays exist", ((string)(null)), table4, "And ");
 #line hidden
-#line 42
+#line 45
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -250,7 +271,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/07/07"});
                 table5.AddRow(new string[] {
                             "2023/07/10"});
-#line 43
+#line 46
  testRunner.Then("The following records are created", ((string)(null)), table5, "Then ");
 #line hidden
             }
@@ -265,7 +286,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a request for multiple days off that span multiple holidays", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 53
+#line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -275,7 +296,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 54
+#line 6
+this.FeatureBackground();
+#line hidden
+#line 57
  testRunner.Given("A user wants to request 2 day(s) off on \"2023/11/22\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -284,10 +308,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/11/23"});
                 table6.AddRow(new string[] {
                             "2023/11/24"});
-#line 55
+#line 58
  testRunner.And("The following holidays exist", ((string)(null)), table6, "And ");
 #line hidden
-#line 59
+#line 62
  testRunner.When("Calculating days off", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -296,7 +320,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2023/11/22"});
                 table7.AddRow(new string[] {
                             "2023/11/27"});
-#line 60
+#line 63
  testRunner.Then("The following records are created", ((string)(null)), table7, "Then ");
 #line hidden
             }

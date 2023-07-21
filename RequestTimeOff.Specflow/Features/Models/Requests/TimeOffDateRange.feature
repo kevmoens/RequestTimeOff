@@ -3,6 +3,9 @@
 Calculate a range of dates to request off for.  This is done by putting in a start date and passing number of days to ask off to be greater than 1.
 This will calculate that many days off.
 
+Background: Initialize Holidays Repo
+Given The holidays are loaded for Time Off Date Ranges
+
 @TimeOff
 Scenario: Create a request for one day off
 	Given A user wants to request 1 day(s) off on "2023/01/03"
