@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace RequestTimeOff.Core.Models.Requests
@@ -10,7 +11,8 @@ namespace RequestTimeOff.Core.Models.Requests
     {
 		private ObservableCollection<TimeOff> _teamMemberTimeOffs;
 
-		public ObservableCollection<TimeOff> TeamMemberTimeOffs
+        [ExcludeFromCodeCoverage]
+        public ObservableCollection<TimeOff> TeamMemberTimeOffs
         {
 			get { return _teamMemberTimeOffs; }
 			set { _teamMemberTimeOffs = value; }

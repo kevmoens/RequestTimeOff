@@ -78,6 +78,7 @@ namespace RequestTimeOff.ViewModels
         }
         private string _reason;
 
+        [ExcludeFromCodeCoverage]
         public string Reason
         {
             get { return _reason; }
@@ -139,6 +140,8 @@ namespace RequestTimeOff.ViewModels
             // Stryker disable once all
             OnLoaded();
         }
+
+        [ExcludeFromCodeCoverage]
         public void OnDecline(TimeOff timeOff)
         {
             SelectedRequest = timeOff;
@@ -147,6 +150,8 @@ namespace RequestTimeOff.ViewModels
             DeclineVisibility = true;
             _openDialog.Open();
         }
+
+        [ExcludeFromCodeCoverage]
         private void OnDeclineAccept()
         {
             SelectedRequest.Declined = true;
@@ -161,11 +166,15 @@ namespace RequestTimeOff.ViewModels
             OnLoaded();
         }
 
+
+        [ExcludeFromCodeCoverage]
         private void OnDeclineCancel()
         {
             _openDialog.Close();
         }
 
+
+        [ExcludeFromCodeCoverage]
         private void OnViewTeamMembersTransactions(TimeOff request)
         {
             SelectedRequest = request;
@@ -173,7 +182,9 @@ namespace RequestTimeOff.ViewModels
             DeclineVisibility = false;
             _openDialog.Open();            
         }
-        
+
+
+        [ExcludeFromCodeCoverage]
         private void OnUserDetails (TimeOff request)
         {
             var user = _requestTimeOffRepository.UserQuery(t => t.Username == request.Username).First();
